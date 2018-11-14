@@ -20,3 +20,15 @@ Simply press <kbd>command</kbd> + <kbd>F</kbd> to search for a keyword
 
 :musical_keyboard: 
 :sparkles:
+
+```
+图片居中显示
+<div align=center>
+<img src="路径">
+</div>
+```
+
+<div align=center>
+<img src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1542218634766&di=108fc0dfa72ede7f5746f55e5b60b752&imgtype=0&src=http%3A%2F%2Fx.itunes123.com%2Fuploadfiles%2F1b13c3044431fb712bb712da97f42a2d.jpg">
+</div>
+
