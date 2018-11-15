@@ -1,2 +1,2 @@
-# -idea
-github markdown blog
+# Learning Blog Contents
+
