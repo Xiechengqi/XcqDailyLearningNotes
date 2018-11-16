@@ -6,7 +6,7 @@ Linux 下开源的　C/C++ 项目常常提供源码包，以下是转自[阮一�
 * sudo make install - 安装（Installation）- 操作系统连接
 ![](./Linux/images/compiler.png)
 
-> * ./configure是用来检测你的安装平台的目标特征的。比如它会检测你是不是有CC或GCC，并不是需要CC或GCC，它是个shell脚本。configure 其实是一个 shell　脚本
+> * ./configure　通过检查用户的编译环境, 在根据用于指定的编译特性来生成Makefile文件，它是个shell脚本。
 > * make是用来编译的，它从Makefile中读取指令，然后编译
 > * make install是用来安装的，它也从Makefile中读取指令，安装到指定的位置
 
