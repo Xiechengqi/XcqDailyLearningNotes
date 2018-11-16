@@ -8,4 +8,5 @@
 * [OS 笔记](./OS/OsNotes.md)
 * [OS 专业词语](./OS/ProWords.md)
 
-[markdown奇淫技巧](./NoClass/MarkdownSkills.md)
+## [闲知](./NoClass.README.md)
+* [markdown奇淫技巧](./NoClass/MarkdownSkills.md)
