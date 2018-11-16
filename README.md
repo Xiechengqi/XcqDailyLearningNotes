@@ -1,4 +1,4 @@
-# Learning Blog Contents
+# 学习笔记目录
 
 ## [Linux](./Linux/README.md)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
