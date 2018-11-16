@@ -1,10 +1,14 @@
 # Linux  C/C++ 软件包编译、安装原理详解
-Linux 下开源的　C/C++ 项目常常提供源码包，以下是转自[阮一峰博客的一篇](http://www.ruanyifeng.com/blog/2014/11/compiler.html)的安装方法```./configure```  ```make```  ```make install```的原理详解
+Linux 下开源的　C/C++ 项目常常提供源码包，以下是转自[阮一峰博客的一篇](http://www.ruanyifeng.com/blog/2014/11/compiler.html)的安装方法```./configure```  ```make```  ```make install```(这些都是典型的使用GNU的AUTOCONF和AUTOMAKE产生的程序的安装步骤)的原理详解
 
 * ./configure - 配置　- 确定标准库和头文件的位置　- 确定依赖关系
-* sudo make - 头文件的预编译(precompilation) - 预处理（Preprocessing）- 编译（Compilation）- 连接（Linking）
+* make - 头文件的预编译(precompilation) - 预处理（Preprocessing）- 编译（Compilation）- 连接（Linking）
 * sudo make install - 安装（Installation）- 操作系统连接
 ![](./Linux/images/compiler.png)
+
+> * ./configure是用来检测你的安装平台的目标特征的。比如它会检测你是不是有CC或GCC，并不是需要CC或GCC，它是个shell脚本。configure 其实是一个 shell　脚本
+> * make是用来编译的，它从Makefile中读取指令，然后编译
+> * make install是用来安装的，它也从Makefile中读取指令，安装到指定的位置
 
 ## 第一步 配置（configure）
 
