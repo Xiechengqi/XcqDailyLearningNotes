@@ -9,6 +9,7 @@
 * IPC - Inter-Process Communication - [进程间通信](https://zh.wikipedia.org/wiki/%E8%A1%8C%E7%A8%8B%E9%96%93%E9%80%9A%E8%A8%8A)
 * SoC - System on a Chip - [系统芯片](https://zh.wikipedia.org/wiki/%E7%B3%BB%E7%BB%9F%E8%8A%AF%E7%89%87)
 * regiser - [寄存器](https://zh.wikipedia.org/wiki/%E5%AF%84%E5%AD%98%E5%99%A8)
+* CPU Cache - [CPU 缓存](https://zh.wikipedia.org/wiki/CPU%E7%BC%93%E5%AD%98)
 * Computer memory - storage - [计算机存储器](https://zh.wikipedia.org/wiki/%E9%9B%BB%E8%85%A6%E8%A8%98%E6%86%B6%E9%AB%94)
 * microkernel - [微内核](https://zh.wikipedia.org/wiki/%E5%BE%AE%E5%85%A7%E6%A0%B8)
 * macrokernel　- [宏内核](https://zh.wikipedia.org/wiki/%E6%95%B4%E5%A1%8A%E6%80%A7%E6%A0%B8%E5%BF%83)
