@@ -3,6 +3,7 @@
 * CPU - Central Processing Unit - [中央处理单元](https://zh.wikipedia.org/wiki/%E4%B8%AD%E5%A4%AE%E5%A4%84%E7%90%86%E5%99%A8)
 * GPU - Graphics Processing Unit - [图像处理单元](https://zh.wikipedia.org/wiki/%E5%9C%96%E5%BD%A2%E8%99%95%E7%90%86%E5%99%A8)
 * RAM - Random Access Memory - [随机存取存储器](https://zh.wikipedia.org/wiki/%E9%9A%8F%E6%9C%BA%E5%AD%98%E5%8F%96%E5%AD%98%E5%82%A8%E5%99%A8)
+* ISA - Instruction Set Architecture - [指令集架构](https://zh.wikipedia.org/wiki/%E6%8C%87%E4%BB%A4%E9%9B%86%E6%9E%B6%E6%A7%8B)
 * RISC - reduced instruction set computing - [精简指令集](https://zh.wikipedia.org/wiki/%E7%B2%BE%E7%AE%80%E6%8C%87%E4%BB%A4%E9%9B%86)
 * CISC - Complex Instruction Set Computing - [复杂指令集](https://zh.wikipedia.org/wiki/%E5%A4%8D%E6%9D%82%E6%8C%87%E4%BB%A4%E9%9B%86)
 * ARM - Advanced RISC Machine - [高级 RISC 机](https://zh.wikipedia.org/wiki/ARM%E6%9E%B6%E6%A7%8B)
