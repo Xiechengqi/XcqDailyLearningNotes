@@ -1,17 +1,9 @@
 # 操作系统学习笔记
 
-## 计算机架构图
+## 计算机组成架构图
 
 <div align=center>
-<img src="./images/计算机架构.jpg"><br>计算机架构图
-</div>
-
-
-## 现代操作系统模块化图
-
-<div align=center>
-<img src="./images/OS1.png" width="25%" height="25%"/>
-<br>现代操作系统模块化图
+<img src="./images/计算机架构.jpg"><br>计算机组成架构图
 </div>
 
 ## 计算机架构 - Computer Architecture
@@ -41,13 +33,18 @@
 * 显式并发指令集 - EPIC - Explicitly Parallel Instruction Computing
 * 超长指令字指令集 - VLIW
 
-
 ### CPU 的微架构（又称处理器架构、CPU架构） - Microarchitecture
 
 * 微架构是 ISA 在处理器的实现，描述处理器是怎样实现功能的，其本质就是一系列硬件实现以满足各种指令集
 * Microarchitecture 是 ISA 的具体实现，而且对于同一个ISA，可以使用不同技术的微架构 ，比如单周期、多周期以及流水线。比如说 x86 ISA 有286，386，486，Pretium，Pretium Pro 等实现。目前，微架构涉及以下部分：流水线、并行、存储系统分层结构
 * 微架构包含处理器内部的构成以及这些构成起来的部分如何运行指令集架构，微架构通常被表示成流程图，以描述机器内部组件的连接情况，从一个闸或是寄存器，到算术逻辑单元（ALU），图上分布着数据路径（可以显示数据在微架构的位置）以及控制路径（显示数据该被什么指令所处理）
 
+## 现代操作系统模块化图
+
+<div align=center>
+<img src="./images/OS1.png" width="25%" height="25%"/>
+<br>现代操作系统模块化图
+</div>
 
 ## 操作系统内核
 
