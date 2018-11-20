@@ -9,5 +9,11 @@
 * [OS 专业词语](./OS/ProWords.md)
 * [SoC 与 CPU区别](./OS/SoCCPU.md)
 
+## [计算机组成原理](./ComputerComposition/README.md)
+* [学习笔记](./ComputerComposition/learningNotes.md)
+
+## [计算机网络](./ComputerNetwork/README.md)
+* [专业名词](./ComputerNetwork/ProWords.md)
+
 ## [闲知](./NoClass.README.md)
 * [markdown奇淫技巧](./NoClass/MarkdownSkills.md)
