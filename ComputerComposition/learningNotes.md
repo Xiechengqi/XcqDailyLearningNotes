@@ -3,7 +3,7 @@
 ## 存储层次结构
 
 <div align=center>
-<img src="./ComputerComposition/images/Inteli7存储层次结构.jpg" width=75% height=75%><br/>Intel Core i7存储层次结构
+<img src="./images/Inteli7存储层次结构.jpg" width=75% height=75%><br/>Intel Core i7存储层次结构
 </div>
 
 * CPU很少会直接访问内存，相反，当CPU请求内存中的数据时，L1 Cache会接管该访问。如果请求的数据在缓存中，那么L1 Cache 就将数据提供给CPU，并结束这次内存访问；如果请求的数据不在L1 Cache中，那么L1 Cache就将请求传递给L2 Cache。
@@ -14,5 +14,5 @@
 ## 总线
 
 <div align=center>
-<img src="./ComputerComposition/images/总线.jpg" width=60% height=60%><br/>计算机总线详解图
+<img src="./images/总线.jpg" width=60% height=60%><br/>计算机总线详解图
 </div>
