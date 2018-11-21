@@ -18,3 +18,4 @@
 ## [闲知](./NoClass.README.md)
 * [计算机小知识](./NoClass/计算机小知识.md)
 * [markdown奇淫技巧](./NoClass/MarkdownSkills.md)
+* [华为国产手机芯片产的是 SoC 不是 CPU](./NoClass/华为国产手机芯片SoC.md)
