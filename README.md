@@ -16,4 +16,5 @@
 * [专业名词](./ComputerNetwork/ProWords.md)
 
 ## [闲知](./NoClass.README.md)
+* [计算机小知识](./NoClass/计算机小知识.md)
 * [markdown奇淫技巧](./NoClass/MarkdownSkills.md)
