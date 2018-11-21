@@ -5,9 +5,9 @@
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
 
 ## [OS](./OS/README.md)
-* [OS 笔记](./OS/OsNotes.md)
-* [OS 专业词语](./OS/ProWords.md)
-* [SoC 与 CPU区别](./OS/SoCCPU.md)
+* [学习笔记](./OS/OsNotes.md)
+* [专业词语](./OS/ProWords.md)
+* [SoC 与 CPU 区别](./OS/SoCCPU.md)
 
 ## [计算机组成原理](./ComputerComposition/README.md)
 * [学习笔记](./ComputerComposition/learningNotes.md)
@@ -17,5 +17,5 @@
 
 ## [闲知](./NoClass.README.md)
 * [计算机小知识](./NoClass/计算机小知识.md)
-* [markdown奇淫技巧](./NoClass/MarkdownSkills.md)
+* [markdown 奇淫技巧](./NoClass/MarkdownSkills.md)
 * [华为国产手机芯片产的是 SoC 不是 CPU](./NoClass/华为国产手机芯片SoC.md)
