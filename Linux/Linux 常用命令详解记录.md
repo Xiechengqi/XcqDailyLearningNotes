@@ -7,7 +7,7 @@
 * []()<br/>
 * []()<br/>
 
-## [Wget](./LinuxCommand/wget.txt) - World Wide Web Get[[Top]](#目录)
+## [Wget](./LinuxCommand/wget.txt) - World Wide Web Get [[Top]](#目录)
 
 格式：wget []  [URL地址]
 ``` shell
