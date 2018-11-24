@@ -13,3 +13,10 @@ To connect to www.kernel.org insecurely, use ‘--no-check-certificate’.
 > 这是因为 wget 在使用 HTTPS 协议时，默认会去验证网站的证书，而这个证书验证经常会失败，加上 "--no-check-certificate" 选项，就能排除掉这个错误
 
 ## apt、wget、curl 设置代理端口
+
+## 一段脚本片段
+``` shell
+#!/bin/bash
+# Don't generate .pyc files
+export PYTHONDONTWRITEBYTECODE=1
+```
