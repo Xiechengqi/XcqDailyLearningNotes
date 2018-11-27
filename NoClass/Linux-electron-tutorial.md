@@ -7,5 +7,6 @@
 * Electron 对应不同平台可执行文件：Windows 中为 electron.exe、macOS 中为 electron.app、Linux 中为 electron 
 * 开发者可以自行添加标志、自定义图标、重命名或编辑 Electron 可执行文件
 * Electron 现已被多个开源 Web 应用程序用于前端与后端的开发，著名项目包括 GitHub 的 Atom、GitHub 客户端、WhatsApp Windows 及 Mac 客户端和微软的 Visual Studio Code
+* Electron 使用 web 页面作为它的 GUI，所以你能把它看作成一个被 JavaScript 控制的，精简版的 Chromium 浏览器
 
 > 由于 Electron 本身就是基于 Chromium 的，所以它的基础大小就已经很大了，应该 50M 左右
