@@ -18,7 +18,12 @@
 * [专业名词](./ComputerNetwork/ProWords.md)
 
 ## [闲知](./NoClass)[[Top]](#目录)
-* [计算机小知识](./NoClass/计算机小知识.md)
+* [计算机小知识](./NoClass/计算机小知识.md#集成电路上的晶体管的摩尔定律---Moore's-law-top)
+    * [集成电路上的晶体管的摩尔定律](./NoClass/计算机小知识.md)
+    * [CPU 集成度](./NoClass/计算机小知识.md#CPU-集成度-top)
+    * [CPU、MPU、MCU、SoC详解](./NoClass/计算机小知识.md#cpumpumcusoc-详解-top)
+    * [常会用到的２的ｎ次幂的值](./NoClass/计算机小知识.md#常会用到的２的ｎ次幂的值-top)
+    * [计算机中的编码格式](./NoClass/计算机小知识.md#计算机中的编码格式-top)
 * [markdown 奇淫技巧](./NoClass/MarkdownSkills.md)
 * [华为国产手机芯片产的是 SoC 不是 CPU](./NoClass/华为国产手机芯片SoC.md)
 * [浏览器架构简析](./NoClass/浏览器架构简析.md)
