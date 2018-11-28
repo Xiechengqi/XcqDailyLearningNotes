@@ -1,7 +1,7 @@
 # 平时 linux 遇到的问题解决和小知识
 ## 目录
-* [使用 wget 提示无法建立SSL连接](#使用-wget-提示无法建立SSL连接-top)
-* [通过编译安装软件时：[Error]运行时找不到.so文件](#通过编译安装软件时error运行时找不到.so文件-top)
+* [使用 wget 提示无法建立SSL连接](#使用-wget-提示无法建立ssl连接-top)
+* [通过编译安装软件时：[Error]运行时找不到.so文件](#通过编译安装软件时error运行时找不到so文件-top)
 * [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
 
 
