@@ -30,8 +30,8 @@ No such file or directory
 
 ### /etc/ld.so.conf 文件和 /etc/ld.so.conf.d/ 文件夹
 
-* Linux 中的库路径都存储在 /etc/ld.so.conf 文件里，而 /etc/ld.so.conf 的文件内容是``` include /etc/ld.so.conf.d/*.conf```，所以在 /etc/ld.so.conf.d 目录下，加入任何以 .conf 为后缀的文件，都能被 ld 链接器识别
-* 若要新增库文件路径
+* Linux 中 ld 的默认目录为 /lib 和 /usr/lib，扩展库路径目录都存储在 /etc/ld.so.conf 文件里，而 /etc/ld.so.conf 的文件内容是``` include /etc/ld.so.conf.d/*.conf```，所以在 /etc/ld.so.conf.d 目录下，加入任何以 .conf 为后缀的文件，都能被 ld 链接器识别
+* 新增库路径方法
     * 直接在 /etc/ld.so.conf 文件中后续添加
     * 将库文件路径写入 /etc/ld.so.conf.d/ 文件夹中的 .conf 文件中
     * 在 /etc/ld.so.conf.d/ 文件夹中添加新的 .conf 文件
