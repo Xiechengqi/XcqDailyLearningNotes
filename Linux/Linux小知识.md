@@ -21,8 +21,8 @@ To connect to www.kernel.org insecurely, use ‘--no-check-certificate’.
 
 * 在 linux 下，.so 文件相当与 windows 上的 dll 文件，即动态链接库
 * 在 Linux 下面，共享库(*.so) 的寻找和加载是由 /lib/ld.so 实现的
-      * ld.so 会在标准路经 /lib，/usr/lib 中寻找应用程序用到的共享库
-      * ld.so 也会在存有非标准路径的文件夹 /etc/ld.so.conf.ld 寻找应用程序用到的共享库
+     * ld.so 会在标准路经 /lib，/usr/lib 中寻找应用程序用到的共享库
+     * ld.so 也会在存有非标准路径的文件夹 /etc/ld.so.conf.ld 寻找应用程序用到的共享库
 * 动态链接库是为了减少发布程序的大小，可以将具有相同功能的代码模块放在动态链接库中，随应用程序一起发布；而对于应用程序来说，只需要知道其接口就可以，在运行时动态的加载代码到内存中
 
 ``` shell
