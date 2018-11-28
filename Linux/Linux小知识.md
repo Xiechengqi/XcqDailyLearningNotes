@@ -1,6 +1,11 @@
 # 平时 linux 遇到的问题解决和小知识
+## 目录
+* [使用 wget 提示无法建立SSL连接](#使用-wget-提示无法建立SSL连接-top)
+* [通过编译安装软件时：[Error]运行时找不到.so文件](#通过编译安装软件时error运行时找不到.so文件-top)
+* [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
 
-## 使用 wget 提示无法建立SSL连接
+
+## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
 ``` shell
 [root@localhost ~]# wget https://www.kernel.org/pub/software/scm/git/git-2.0.5.tar.gz
@@ -12,7 +17,7 @@ To connect to www.kernel.org insecurely, use ‘--no-check-certificate’.
 ```
 > 这是因为 wget 在使用 HTTPS 协议时，默认会去验证网站的证书，而这个证书验证经常会失败，加上 "--no-check-certificate" 选项，就能排除掉这个错误
 
-## 通过编译安装软件时：[Error]运行时找不到.so文件
+## 通过编译安装软件时：[Error]运行时找不到.so文件 [[Top]](#目录)
 
 * 在 linux 下，.so 文件相当与 windows 上的 dll 文件，即动态链接库
 * 动态链接库是为了减少发布程序的大小，可以将具有相同功能的代码模块放在动态链接库中，随应用程序一起发布；而对于应用程序来说，只需要知道其接口就可以，在运行时动态的加载代码到内存中
@@ -53,9 +58,9 @@ ldconfig -p | grep qt
 ldconfig 是在默认搜寻目录 /lib 和 /usr/lib 以及动态库配置文件 /etc/ld.so.conf 内所列目录下，搜索出可共享的动态链接库 - 格式 libxxx.so.xx，进而创建出动态装入程序( ld.so )所需的连接和缓存文件。缓存文件默认为 /etc/ld.so.cache，此文件保存已排好序的动态链接库名字列表，为了让动态链接库为系统所共享，需运行动态链接库的管理命令 ldconfig
 
 
-## apt、wget、curl 设置代理端口
+## apt、wget、curl 设置代理端口 [[Top]](#目录)
 
-## 一段脚本片段
+## 一段脚本片段 [[Top]](#目录)
 ``` shell
 #!/bin/bash
 # Don't generate .pyc files
