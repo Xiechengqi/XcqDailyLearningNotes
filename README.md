@@ -9,9 +9,9 @@
 ## [Linux](./Linux)[[Top]](#目录)
 * [记录平时常用的 Linux 命令](./Linux/Linux常用命令.md)
 * [平时 linux 遇到的问题解决和小知识](./Linux/Linux小知识.md)
-      * [使用 wget 提示无法建立SSL连接](./Linux/Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
-      * [通过编译安装软件时找不到.so文件](./Linux/Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
-      * [apt、wget、curl 设置代理端口](./Linux/Linux小知识.md#aptwgetcurl-设置代理端口-top)
+     * [使用 wget 提示无法建立SSL连接](./Linux/Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
+     * [通过编译安装软件时找不到.so文件](./Linux/Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
+     * [apt、wget、curl 设置代理端口](./Linux/Linux小知识.md#aptwgetcurl-设置代理端口-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
 
