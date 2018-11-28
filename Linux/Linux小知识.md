@@ -39,11 +39,11 @@ No such file or directory
 > ld.so.cache 的更新是递增式的，就像 PATH 系统环境变量一样，不是从头重新建立，而是向上累加，只有重新开机，系统才从零开始建立 ld.so.cache 文件。所以每次修改 /etc/ld.so.conf 文件或 /etc/ld.so.conf.d/ 文件夹都要执行一次命令：<kbd>ldconfig</kbd>
 
 <div align=center>
-  <img src="./images/ld.so.conf文件.jpg" width="75%" heigth="75%"><br/>/etc/ld.so.conf 文件
+  <img src="./images/ld.so.conf文件.jpg"><br/>/etc/ld.so.conf 文件
  </div>
  
  <div align=center>
-  <img src="./images/ld.so.conf.d文件夹.jpg" width="75%" heigth="75%"><br/>/etc/ld.so.conf.d/文件夹
+  <img src="./images/ld.so.conf.d文件夹.jpg"><br/>/etc/ld.so.conf.d/文件夹
  </div>
  
 ### 查看某个库是否安装
