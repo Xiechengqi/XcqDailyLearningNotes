@@ -1,12 +1,10 @@
 # 目录
 
-* [Linux](#linux-top)
-* []()
-* []()
-* []()
-* []()
-* []()
-
+* [Linux](#linuxtop)
+* [OS](#ostop)
+* [计算机组成原理](#计算机组成原理top)
+* [计算机网络](#计算机网络top)
+* [闲知](#闲知top
 
 ## [Linux](./Linux)[[Top]](#目录)
 * [记录平时常用的 Linux 命令](./Linux/Linux常用命令.md)
