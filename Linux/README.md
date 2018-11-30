@@ -1,7 +1,7 @@
 # 目录
 
 * [记录平时常用的 Linux 命令](./Linux常用命令.md)
-     * [wget](./Linux常用命令.md#wget-top)
+     * [wget](./Linux常用命令.md#wget---world-wide-web-get-top)
 * [平时 linux 遇到的问题解决和小知识](./Linux小知识.md)
      * [使用 wget 提示无法建立SSL连接](Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
      * [通过编译安装软件时找不到.so文件](Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
