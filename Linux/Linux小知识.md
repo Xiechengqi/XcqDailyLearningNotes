@@ -3,7 +3,7 @@
 * [使用 wget 提示无法建立SSL连接](#使用-wget-提示无法建立ssl连接-top)
 * [通过编译安装软件时：[Error]运行时找不到.so文件](#通过编译安装软件时error运行时找不到so文件-top)
 * [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
-
+* [更换 Ubuntu 登录界面背景](#-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -70,6 +70,33 @@ ldconfig -p | grep qt
 
 
 ## apt、wget、curl 设置代理端口 [[Top]](#目录)
+
+## 更换 Ubuntu 登录界面背景 [[Top]](#目录)
+
+<div align=center>
+  <img src="./images/登录界面.png"><br/>Ubuntu 18.04 LTS 默认登录界面
+</div>
+
+### 修改 /usr/share/gnome-shell/theme/ubuntu.css 或 /usr/share/gnome-shell/theme/gdm3.css 文件
+
+> ubuntu.css 和 gdm3.css 内容相同，只需修改其一即可
+
+修改该文件第 1814 行左右（#lockDialogGroup)：
+修改前：
+``` css
+#lockDialogGroup {
+  background: #2c001e url(resource:///org/gnome/shell/theme/noise-texture.png);
+  background-repeat: repeat; }
+```
+修改后：
+``` css
+#lockDialogGroup {
+  background: #2c001e url(file:///usr/share/gnome-shell/theme/denglubeijing.jpg);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+   }
+```
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
