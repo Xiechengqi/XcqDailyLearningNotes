@@ -12,6 +12,7 @@
      * [使用 wget 提示无法建立SSL连接](./Linux/Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
      * [通过编译安装软件时找不到.so文件](./Linux/Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
      * [apt、wget、curl 设置代理端口](./Linux/Linux小知识.md#aptwgetcurl-设置代理端口-top)
+     * [更换 Ubuntu 18.04 LTS 登录界面背景](./Linux/Linux小知识.md#更换-ubuntu-1804-lts-登录界面背景-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
 
