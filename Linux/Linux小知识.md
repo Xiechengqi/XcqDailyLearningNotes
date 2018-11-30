@@ -80,7 +80,7 @@ ldconfig -p | grep qt
 ### 修改 /usr/share/gnome-shell/theme/ubuntu.css 或 /usr/share/gnome-shell/theme/gdm3.css 文件
 
 > * Ubuntu 18.04 用的 Gnome 的桌面，和以前 Unity 桌面配置方式不同，所以 16.04 及以前版本修改方法与此不同
-> * Ubuntu.css 和 gdm3.css 内容相同，只需修改其一即可
+> * ubuntu.css 和 gdm3.css 内容相同，只需修改其一即可
 
 修改该文件第 1814 行左右（#lockDialogGroup)：
 修改前：
