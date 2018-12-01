@@ -100,7 +100,7 @@ ldconfig -p | grep qt
    }
 ```
 
-## 执行 make 命令时提示 “makefile:2: *** 遗漏分隔符 停止"
+## 执行 make 命令时提示 “makefile:2: *** 遗漏分隔符 停止" [[Top]](#目录)
 
 > 分析原因：gcc、rm、cp 前面是 tab 分割符，不能用空格，make 中规定每一 Shell 命令之前的开头必须使用字符
 
