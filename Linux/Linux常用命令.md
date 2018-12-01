@@ -1,7 +1,7 @@
 # 记录平时常用易忘的 Linux 命令
 ## 目录
 * [wget](#wget---world-wide-web-get-top)<br/>
-* [gcc]()<br/>
+* [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
 * []()<br/>
 * []()<br/>
 * []()<br/>
@@ -40,7 +40,7 @@ wget -Q 5m -i filelist.txt   //想要下载的文件超过5M而退出下载，-Q
 ```
 * wget 支持 HTTP，HTTPS 和 FTP 协议，支持FTP和HTTP下载方式，支持 http、https 代理（但不支持 socks 代理）
 
-## gcc - GNU C Compiler - GNU Compiler Collection
+## gcc - GNU C Compiler - GNU Compiler Collection [[Top]](#目录)
 
 > [gcc 编译 c 源文件过程详解](./linux小知识.md#linux-下-gcc-编译-c-源文件过程详解-top)
 
