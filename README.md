@@ -14,6 +14,7 @@
      * [apt、wget、curl 设置代理端口](./Linux/Linux小知识.md#aptwgetcurl-设置代理端口-top)
      * [更换 Ubuntu 18.04 LTS 登录界面背景](./Linux/Linux小知识.md#更换-ubuntu-1804-lts-登录界面背景-top)
      * [Linux 下 gcc 编译 c 源文件过程详解](./Linux/Linux小知识.md#linux-下-gcc-编译-c-源文件过程详解-top)
+     * [创建启动器（.Desktop文件)](./Linux/Linux小知识.md#创建启动器desktop文件-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
 
