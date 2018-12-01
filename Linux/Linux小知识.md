@@ -144,7 +144,7 @@ uninstall:
 > 此阶段会检查代码逻辑，若出现错误会中断编译提示
 
 <div align=center>
-    <img src="./images/编译错误.jpg" width="75%" heigth="75%" /><br/>test.s 编译错误中断提示
+    <img src="./images/编译出错.jpg" width="75%" heigth="75%" /><br/>test.s 编译出错中断提示
 </div>
 
 
