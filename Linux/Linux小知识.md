@@ -178,7 +178,7 @@ gcc test1.o test2.o -o test
 ### [补充参考]
 [gcc 编译过程详解](http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html#_Toc311642851)
 
-## 创建启动器（.Desktop文件)
+## 创建启动器（.Desktop文件) [[Top]](#目录)
 
 * 在 Linux 中，一个 .desktop 文件就是一个用来运行程序的快捷方式，没有此文件，你的应用就不会在应用菜单中显示。例如从源代码中编译的程序或者自己下载的压缩格式的应用，每次都需要打开终端来执行它的二进制文件
 * desktop 文件路径：
