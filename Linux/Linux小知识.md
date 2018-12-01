@@ -5,6 +5,7 @@
 * [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
 * [更换 Ubuntu 18.04 LTS 登录界面背景](#更换-ubuntu-1804-lts-登录界面背景-top)
 * [执行 make 命令时提示“makefile:2: *** 遗漏分隔符 停止”](#执行-make-命令时提示-makefile2--遗漏分隔符-停止-top)
+* [Linux 下 gcc 编译 c 源文件过程详解](#linux-下-gcc-编译-c-源文件过程详解-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -117,6 +118,49 @@ install:
 uninstall:
     rm -rf /usr/bin/helloworld
 ```
+
+## Linux 下 gcc 编译 c 源文件过程详解 [[Top]](#目录)
+
+<div align=center>
+    <img src="./images/gcc.png" width="75%" heigth="75%" /><br/>gcc 编译过程图
+</div>
+
+<div align=center>
+    <img src="./images/test.c.jpg" width="75%" heigth="75%" /><br/>test.c 源文件
+</div>
+
+### 预编译 - ``` gcc -E test.c -o test.i```
+
+<div align=center>
+    <img src="./images/test.i.jpg" width="75%" heigth="75%" /><br/>test.i 源文件预处理生成的文件
+</div>
+
+### 编译 - ``` gcc -S test.i -o test.s```
+
+<div align=center>
+    <img src="./images/test.s.jpg" width="75%" heigth="75%" /><br/>test.s 经编译生成的汇编文件
+</div>
+
+> 此阶段会检查代码逻辑，若出现错误会中断编译提示
+
+<div align=center>
+    <img src="./images/编译错误.jpg" width="75%" heigth="75%" /><br/>test.s 编译错误中断提示
+</div>
+
+
+### 汇编 - ``` gcc -c test.s -o test.o```
+
+<div align=center>
+    <img src="./images/test.o.jpg" width="75%" heigth="75%" /><br/>test.o 由汇编文件生成的二进制文件
+</div>
+
+### 链接 - ```gcc test.o test```
+
+<div align=center>
+    <img src="./images/test.jpg" width="75%" heigth="75%" /><br/>test 链接后生成的可执行文件
+</div>
+
+
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
