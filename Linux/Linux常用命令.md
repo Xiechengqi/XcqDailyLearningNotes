@@ -42,7 +42,7 @@ wget -Q 5m -i filelist.txt   //想要下载的文件超过5M而退出下载，-Q
 
 ## gcc - GNU C Compiler - GNU Compiler Collection [[Top]](#目录)
 
-> [gcc 编译 c 源文件过程详解](./Linux/Linux小知识.md#linux-下-gcc-编译-c-源文件过程详解-top)
+> [gcc 编译 c 源文件过程详解](/Linux/Linux小知识.md#linux-下-gcc-编译-c-源文件过程详解-top)
 
 * gcc 命令使用 GNU 推出的基于 C/C++ 的编译器，是开放源代码领域应用最广泛的编译器，具有功能强大，编译代码支持性能优化等特点
 * 经过了这么多年的发展，GCC 已经不仅仅能支持 C 语言；它现在还支持 Ada 语言、C++ 语言、Java 语言、Objective C 语言、Pascal 语言、COBOL 语言，以及支持函数式编程和逻辑编程的 Mercury 语言，等等
