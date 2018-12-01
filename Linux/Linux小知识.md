@@ -129,13 +129,13 @@ uninstall:
     <img src="./images/test.c.jpg" width="75%" heigth="75%" /><br/>test.c 源文件
 </div>
 
-### 预编译 - ``` gcc -E test.c -o test.i```
+### 预编译（预处理 - Preprocessing） - ``` gcc -E test.c -o test.i```
 
 <div align=center>
     <img src="./images/test.i.jpg" width="75%" heigth="75%" /><br/>test.i 源文件预处理生成的文件
 </div>
 
-### 编译 - ``` gcc -S test.i -o test.s```
+### 编译（Compilation） - ``` gcc -S test.i -o test.s```
 
 <div align=center>
     <img src="./images/test.s.jpg" width="75%" heigth="75%" /><br/>test.s 经编译生成的汇编文件
@@ -148,19 +148,31 @@ uninstall:
 </div>
 
 
-### 汇编 - ``` gcc -c test.s -o test.o```
+### 汇编(Assembly) - ``` gcc -c test.s -o test.o```
 
 <div align=center>
     <img src="./images/test.o.jpg" width="75%" heigth="75%" /><br/>test.o 由汇编文件生成的二进制文件
 </div>
 
-### 链接 - ```gcc test.o test```
+### 链接(Linking) - ```gcc test.o test```
 
 <div align=center>
     <img src="./images/test.jpg" width="75%" heigth="75%" /><br/>test 链接后生成的可执行文件
 </div>
 
+### 多个 c 源文件生成一个可执行文件
 
+``` shell
+gcc test1.c test2.c -o test
+```
+其实还是会先单独进行预处理、编译、汇编，在链接时会将两个二进制文件链接在一起，命令等价于
+``` shell
+gcc -c test1.c -o test1.o
+gcc -c test2.c -o test2.o
+gcc test1.o test2.o -o test
+```
+### [补充参考]
+(http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html#_Toc311642851)
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
