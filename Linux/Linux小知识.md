@@ -6,7 +6,7 @@
 * [更换 Ubuntu 18.04 LTS 登录界面背景](#更换-ubuntu-1804-lts-登录界面背景-top)
 * [执行 make 命令时提示“makefile:2: *** 遗漏分隔符 停止”](#执行-make-命令时提示-makefile2--遗漏分隔符-停止-top)
 * [Linux 下 gcc 编译 c 源文件过程详解](#linux-下-gcc-编译-c-源文件过程详解-top)
-* [创建启动器（.Desktop文件)](#创建启动器Desktop文件-top)
+* [创建启动器（.Desktop文件)](#创建启动器desktop文件-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
