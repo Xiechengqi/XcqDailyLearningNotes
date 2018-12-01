@@ -161,18 +161,21 @@ uninstall:
 </div>
 
 ### 多个 c 源文件生成一个可执行文件
-
+方法一、
 ``` shell
 gcc test1.c test2.c -o test
 ```
-其实还是会先单独进行预处理、编译、汇编，在链接时会将两个二进制文件链接在一起，命令等价于
+方法二、
 ``` shell
 gcc -c test1.c -o test1.o
 gcc -c test2.c -o test2.o
 gcc test1.o test2.o -o test
 ```
+
+> 第一种方法编译时需要所有文件重新编译，而第二种方法可以只重新编译修改的文件，未修改的文件不用重新编译
+
 ### [补充参考]
-(http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html#_Toc311642851)
+[gcc 编译过程详解](http://www.cnblogs.com/ggjucheng/archive/2011/12/14/2287738.html#_Toc311642851)
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
