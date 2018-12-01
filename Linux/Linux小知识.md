@@ -122,7 +122,7 @@ uninstall:
 ## Linux 下 gcc 编译 c 源文件过程详解 [[Top]](#目录)
 
 <div align=center>
-    <img src="./images/gcc.png" width="75%" heigth="75%" /><br/>gcc 编译过程图
+    <img src="./images/gcc.png" /><br/>gcc 编译过程图
 </div>
 
 <div align=center>
