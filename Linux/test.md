@@ -4,3 +4,10 @@
       <source id="ogv" src="http://media.w3.org/2010/05/sintel/trailer.ogv" type="video/ogg">
       <p>Your user agent does not support the HTML5 Video element.</p>
     </video>
+    
+
+
+<video id="video" controls="" preload="none" poster="http://om2bks7xs.bkt.clouddn.com/2017-08-26-Markdown-Advance-Video.jpg">
+<source id="mp4" src="http://media.w3.org/2010/05/sintel/trailer.mp4" type="video/mp4" type="video/mp4">
+</video>
+
