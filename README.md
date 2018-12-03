@@ -28,7 +28,7 @@
 
 ## [计算机网络](./ComputerNetwork)[[Top]](#目录)
 * [专业名词](./ComputerNetwork/ProWords.md)
-* [学习笔记](./ComputerNetWork/学习笔记.md)
+* [学习笔记](./ComputerNetwork/学习笔记.md)
 
 ## [闲知](./NoClass)[[Top]](#目录)
 * [计算机小知识](./NoClass/计算机小知识.md)
