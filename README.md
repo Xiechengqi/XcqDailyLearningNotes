@@ -40,4 +40,5 @@
 * [待学习整理知识链接](./NoClass/待学习整理知识.md)
 * [markdown 奇淫技巧](./NoClass/MarkdownSkills.md)
 * [华为国产手机芯片产的是 SoC 不是 CPU](./NoClass/华为国产手机芯片SoC.md)
+* [图片格式详解及对比](./NoClass/图片格式详解及其对比.md)
 * [浏览器架构简析](./NoClass/浏览器架构简析.md)
