@@ -37,6 +37,8 @@
     * [CPU、MPU、MCU、SoC详解](./NoClass/计算机小知识.md#cpumpumcusoc-详解-top)
     * [常会用到的２的ｎ次幂的值](./NoClass/计算机小知识.md#常会用到的２的ｎ次幂的值-top)
     * [计算机中的编码格式](./NoClass/计算机小知识.md#计算机中的编码格式-top)
+    * [静态链接库和动态链接库](./NoClass/计算机小知识.md#静态链接库和动态链接库-top)<br/>
+    * [TCP/IP 协议端口详解](./NoClass/计算机小知识.md#tcpip-端口详解-top)</br>
 * [待学习整理知识链接](./NoClass/待学习整理知识.md)
 * [markdown 奇淫技巧](./NoClass/MarkdownSkills.md)
 * [华为国产手机芯片产的是 SoC 不是 CPU](./NoClass/华为国产手机芯片SoC.md)
