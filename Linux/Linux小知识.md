@@ -72,7 +72,40 @@ ldconfig -p | grep qt
 > ld.so.cache 的更新是递增式的，就像 PATH 系统环境变量一样，不是从头重新建立，而是向上累加，只有重新开机，系统才从零开始建立 ld.so.cache 文件。所以每次修改 /etc/ld.so.conf 文件或 /etc/ld.so.conf.d/ 文件夹都要执行一次命令：<kbd>ldconfig</kbd>
 
 
-## apt、wget、curl 设置代理端口 [[Top]](#目录)
+## apt、wget、curl 设置代理端口 [[Top]](#目录)]
+
+### apt 代理设置
+１. 临时有效：bash 里命令行执行```export http_proxy=http://yourproxyaddress:proxyport```（https、ftp等其他代理类型类似）
+> 此时 wget、curl等应用程序都是使用http_proxy
+２. 专门设置 apt 的代理
+* 如果您希望 apt（而不是其他应用程序）一直使用某个代理，可以编辑 /etc/apt/apt.conf 配置文件（如果 /etc/apt/ 目录下没有 apt.conf 文件，那么需要手动创建）
+* 按照下面的格式，将网络代理配置信息加入到 apt.conf 文件里
+``` shell
+Acquire::http::proxy “http://user:passwd@proxyserver:port”;
+Acquire::http::Proxy "http://yourproxyaddress:proxyport";
+Acquire::http::Proxy “http://192.168.0.1：80“；
+Acquire::ftp::proxy "ftp://127.0.0.1:8000/";
+```
+* 保存退出当前配置文件，关闭当前终端，然后打开另一个终端
+* 运行 ```sudo apt-get update``` 命令，来检测 ubuntu 系统是否能够正常更新
+3. 统一设置所有应用程序的代理，对所有用户有效
+
+4. 统一设置所有应用程序的代理，对当前用户有效，会覆盖　/etc/environment 里的相同代理设置
+* 如果您希望apt-get和其他应用程序如wget等都使用http代理，您可以使用这种方式，编辑 ~/.bashrc文件，在您的.bashrc文件末尾添加如下内容：
+``` shell
+export http_proxy=http://yourproxyaddress:proxyport
+# 根据你的实际情况替换yourproxyaddress和proxyport
+```
+* 保存退出当前配置文件，关闭当前终端，然后打开另一个终端
+* 运行 ```sudo apt-get update``` 命令，来检测 ubuntu 系统是否能够正常更新
+
+### wget 代理设置
+１. 临时有效
+* bash 里命令行执行```export http_proxy=http://yourproxyaddress:proxyport```（https、ftp等其他代理类型类似）
+> 此时 wget、curl、apt 等应用程序都是使用http_proxy
+* 直接将代理作为 wget 命令的参数：```wget ... -e use_proxy=yes -e http_proxy=http://yourproxyaddress:proxyport ...``
+
+
 
 ## 更换 Ubuntu 18.04 LTS 登录界面背景 [[Top]](#目录)
 
