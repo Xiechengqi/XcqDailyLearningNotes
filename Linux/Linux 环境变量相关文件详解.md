@@ -1,7 +1,7 @@
 # Linux 环境变量相关文件详解
 
 
-## Bash Shell 环境配置文件加载顺序
+## Bash Shell 环境配置文件加载顺序（ Ubuntu ）
 
 > * Linux Bash Shell 运行时，按照一定的顺序加载配置文件，初始化配置文件后，运行 Bash Shell
 > * Linux Bash 的配置文件大概分为两类：系统配置文件和用户配置文件
@@ -16,7 +16,7 @@
 ```
 ~/.bash_profile、~/.bash_login、~/.profile、~/.bashrc
 ```
-
+> 除了读取上述配置文件之外，在登陆 shell 中还会读取其他相关配置信息，如读取 ```~/.bash_history、/etc/man.config、~/.bash_logout``` 等等
 
 ### 登录 shell（ login shell ）配置文件载入顺序
 
@@ -24,34 +24,43 @@
 * 比如通过 ssh 方式连接，或者由 tty1 ~ tty6 登陆，需要输入用户的账号与密码，此时取得的 bash 就称为 login shell
 
 <div align=center>
-<img src="./images/bash初始化过程.jpg"><br>login shell　载入读取环境配置文件过程图
+<img src="./images/bash初始化过程.jpg"><br>login shell 载入读取环境配置文件过程图
 </div>
 
-> ~/.bash_profile、~/.bash_login、~/.profile、~/.bashrc文件若没有，可自行创建
+> * ```~/.bash_profile、~/.bash_login、~/.profile、~/.bashrc```文件若没有，可自行创建
+> * 前两列只有 login shell 情况下才会加载（ ```/etc/profile ```及　```~/bash_profile``` 列 ）
 
-### 非登录shell（ non-login shell ）配置文件载入顺序
+### 非登录 shell（ non-login shell ）配置文件载入顺序
 
 * 取得 bash 接口的方法不需要重复登陆的举动 
 * 比如你以 X window 登陆 Linux 后， 再以 X 的图形化接口启动终端机，此时该终端接口无需输入账号与密码，则为 non-login shell 
 * 比如你在原本的 bash 环境下再次下达 bash 这个命令，同样的也没有输入账号密码，那第二个 bash (子程序) 也是 non-login shell
 
-~/.bashrc-->/etc/.bashrc-->/etc/profile.d/*.sh
-   
-> 如果在不同的配置文件中设置相同的变量，则后面执行的配置文件中变量的值会覆盖前面配置文件中同一变量的值
-
-* 除了读取上述配置文件之外，在登陆shell中还会读取其他相关配置信息，如读取 ~/.bash_history 
-* 对于 shell 环境变量修改之后需要立即生效的情形，可以使用 source 来立即生效
-
-``` shell
-source 带路径的文件配置名
-# source ~/.bashrc
-```
+<div align=center>
+<img src="./images/nonloginshell.jpg"><br>non login shell 载入读取环境配置文件过程图
+</div>
 
 ### source 命令
 
-source命令的作用就是用来执行一个脚本，那么：
+* 对于 shell 环境变量修改之后需要立即生效的情形，可以使用 source 来立即生效（ 也可以用命令 "." ）
 
-source a.sh 同直接执行 ./a.sh 有什么不同呢，比如你在一个脚本里export $KKK=111 ,如果你用./a.sh执行该脚本，执行完毕后，你运行 echo $KKK ,发现没有值，如果你用source来执行 ，然后再echo ,就会发现KKK=111。因为调用./a.sh来执行shell是在一个子shell里运行的，所以执行后，结构并没有反应到父shell里，但是source不同它就是在本shell中执行的，所以可以看到结果
+``` shell
+source 接带路径的配置文件名
+source filename
+# source /etc/profile
+. 接带路径的配置文件名
+. filename（中间有空格）
+# . /etc/profile
+```
+> * source filename 与 sh filename 、./filename的区别：
+> 	* source - 在当前 shell 内去读取、执行a.sh，而a.sh不需要有 "执行权限"，所有新建、改变变量的语句都会保存在当前 shell 里面
+> 	* sh - 打开一个 subshell 去读取、执行 filename ，而 filename 不需要有 "执行权限"
+> 	* . - 打开一个 subshell 去读取、执行 filename ，但 filename 需要有 "执行权限"
+> 	* 在子 shell 中执行脚本里面的语句，该子 shell 继承父 shell 的环境变量，但子在 shell 中改变的变量不会被带回父 shell（除非使用 export）
+
+<div align=center>
+<img src="./images/centosshell.png"><br>鸟哥书中 Centos bash shell 载入读取环境配置文件过程图
+</div>
 
 ### /etc/profile 文件
 ``` shell
