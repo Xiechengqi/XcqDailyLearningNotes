@@ -17,7 +17,7 @@
      * [创建启动器（.Desktop文件)](./Linux/Linux小知识.md#创建启动器desktop文件-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
-* [Linux 环境变量相关文件详解](./Linux/Linux 环境变量相关文件详解.md)
+* [Linux 环境变量相关文件详解](./Linux/Linux环境变量相关文件详解.md)
 
 ## [OS](./OS)[[Top]](#目录)
 * [学习笔记](./OS/OsNotes.md)
