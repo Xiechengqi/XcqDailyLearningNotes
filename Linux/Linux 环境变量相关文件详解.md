@@ -1,4 +1,4 @@
-# Linux 环境变量相关文件详解
+# Linux 环境变量相关文件详解（ 代码以 Ubuntu 18.04 LTS 为例 ）
 
 
 ## Bash Shell 环境配置文件加载顺序（ Ubuntu ）
@@ -185,6 +185,25 @@ PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/u
 export CLASSPATH=.:$JAVA_HOME/lib
 export JAVA_HOME=/opt/Java
 ```
+
+### ~/.bash_profile
+
+> Ubuntu 18.04 默认没有此文件，可自行手动创建
+``` shell
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc  ]; then
+    . ~/.bashrc
+fi
+
+# User specific environment and startup programs
+export PATH="$PATH:/opt/mssql-tools/bin"
+```
+
+### ~/.bash_login
+
+> Ubuntu 18.04 默认没有此文件，可自行手动创建
 
 ### ~/.profile 
 
