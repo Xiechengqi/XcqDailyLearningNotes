@@ -17,6 +17,7 @@
      * [创建启动器（.Desktop文件)](./Linux/Linux小知识.md#创建启动器desktop文件-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
+* [Linux 环境变量相关文件详解](./Linux/Linux 环境变量相关文件详解.md)
 
 ## [OS](./OS)[[Top]](#目录)
 * [学习笔记](./OS/OsNotes.md)
@@ -45,3 +46,4 @@
 * [浏览器架构简析](./NoClass/浏览器架构简析.md)
 * [图片格式详解及对比](./NoClass/图片格式详解及其对比.md)
 * [搞懂 SSH 登录原理学习历程](./NoClass/从密码学到ssh.md)
+
