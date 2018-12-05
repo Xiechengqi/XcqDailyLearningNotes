@@ -1,8 +1,57 @@
 # Linux 环境变量相关文件详解
 
+
+## Bash Shell 环境配置文件加载顺序
+
+> * Linux Bash Shell 运行时，按照一定的顺序加载配置文件，初始化配置文件后，运行 Bash Shell
+> * Linux Bash 的配置文件大概分为两类：系统配置文件和用户配置文件
+
+### Bash Shell 常用的环境配置文件
+
+* bash shell 系统配置文件
+```
+/etc/profile、/etc/bash.bashrc、/etc/profile.d/*.sh
+```
+* bash shell 用户配置文件
+```
+~/.bash_profile、~/.bash_login、~/.profile、~/.bashrc
+```
+
+
+### 登录 shell（ login shell ）配置文件载入顺序
+
+* 取得 bash 时需要完整的登陆流程的，就称为 login shell 
+* 比如通过 ssh 方式连接，或者由 tty1 ~ tty6 登陆，需要输入用户的账号与密码，此时取得的 bash 就称为 login shell
+
 <div align=center>
-<img src="./images/bash载入环境变量文件.jpg"><br>login shell载入读取环境配置文件过程图
+<img src="./images/bash初始化过程.jpg"><br>login shell　载入读取环境配置文件过程图
 </div>
+
+> ~/.bash_profile、~/.bash_login、~/.profile、~/.bashrc文件若没有，可自行创建
+
+### 非登录shell（ non-login shell ）配置文件载入顺序
+
+* 取得 bash 接口的方法不需要重复登陆的举动 
+* 比如你以 X window 登陆 Linux 后， 再以 X 的图形化接口启动终端机，此时该终端接口无需输入账号与密码，则为 non-login shell 
+* 比如你在原本的 bash 环境下再次下达 bash 这个命令，同样的也没有输入账号密码，那第二个 bash (子程序) 也是 non-login shell
+
+~/.bashrc-->/etc/.bashrc-->/etc/profile.d/*.sh
+   
+> 如果在不同的配置文件中设置相同的变量，则后面执行的配置文件中变量的值会覆盖前面配置文件中同一变量的值
+
+* 除了读取上述配置文件之外，在登陆shell中还会读取其他相关配置信息，如读取 ~/.bash_history 
+* 对于 shell 环境变量修改之后需要立即生效的情形，可以使用 source 来立即生效
+
+``` shell
+source 带路径的文件配置名
+# source ~/.bashrc
+```
+
+### source 命令
+
+source命令的作用就是用来执行一个脚本，那么：
+
+source a.sh 同直接执行 ./a.sh 有什么不同呢，比如你在一个脚本里export $KKK=111 ,如果你用./a.sh执行该脚本，执行完毕后，你运行 echo $KKK ,发现没有值，如果你用source来执行 ，然后再echo ,就会发现KKK=111。因为调用./a.sh来执行shell是在一个子shell里运行的，所以执行后，结构并没有反应到父shell里，但是source不同它就是在本shell中执行的，所以可以看到结果
 
 ### /etc/profile 文件
 ``` shell
@@ -126,6 +175,31 @@ fi
 PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:$JAVA_HOME/bin"
 export CLASSPATH=.:$JAVA_HOME/lib
 export JAVA_HOME=/opt/Java
+```
+
+### ~/.profile 
+
+``` shell
+# ~/.profile: executed by the command interpreter for login shells.
+# This file is not read by bash(1), if ~/.bash_profile or ~/.bash_login
+# exists.
+# see /usr/share/doc/bash/examples/startup-files for examples.
+# the files are located in the bash-doc package.
+
+# the default umask is set in /etc/profile; for setting the umask
+# for ssh logins, install and configure the libpam-umask package.
+#umask 022
+
+# if running bash
+if [ -n "$BASH_VERSION" ]; then
+    # include .bashrc if it exists
+    if [ -f "$HOME/.bashrc" ]; then
+	. "$HOME/.bashrc"
+    fi
+fi
+
+# set PATH so it includes user's private bin directories
+PATH="$HOME/bin:$HOME/.local/bin:$PATH"
 ```
 
 ### ~/.bashrc
