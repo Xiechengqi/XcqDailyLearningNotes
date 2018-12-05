@@ -1,7 +1,7 @@
 # Linux 环境变量相关文件详解
 
 <div align=center>
-<img src="./images/bash初始化过程.jpg"><br>login shell打开读取环境配置文件过程图
+<img src="./images/bash载入环境变量文件.jpg"><br>login shell载入读取环境配置文件过程图
 </div>
 
 ### /etc/profile 文件
