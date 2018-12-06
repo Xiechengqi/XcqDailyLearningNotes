@@ -1,6 +1,9 @@
 # Ubuntu 软件包安装
 
-## 源码包
+> * deb 是 Debian、Ubuntu 软件安装的一种格式
+> * rpm 是 Redhat、Fedora、SUSE 软件安装的一种格式
+
+## 源码包（ Tarball 软件)
 
 1. 安装编译工具：$ sudo apt-get install build-essential
 * 在ubuntu上编译程序，默认是有gcc的，但是没有g++。如果自己来安装g++也可以，不过它涉及到一些依赖库，有点麻烦，但 build-essential 包里有很多开发必备的软件包：dpkg-dev fakeroot g++ g++-4.6 libalgorithm-diff-perl libalgorithm-diff-xs-perl libalgorithm-merge-perl libdpkg-perl libstdc++6-4.6-dev libtimedate-perl
