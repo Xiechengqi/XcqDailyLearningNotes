@@ -1,6 +1,7 @@
 ## /etc/skel 文件夹 
+
 <div align=center>
-    <img src="./images/skel文件.jpg" width="75%" heigth="75%" /><br/>skel 目录
+<img src="../images/skel文件.jpg"/><br/>skel 目录
 </div>
 
 * skel 是 skeleton 的缩写，每当你新建一个用户的时候 (通过 useradd 命令)，/etc/skel 目录下的文件，都会原封不动的复制到新建用户的家目录下（~/）
