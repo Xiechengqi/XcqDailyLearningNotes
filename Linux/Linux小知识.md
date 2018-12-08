@@ -8,6 +8,7 @@
 * [创建启动器（.Desktop文件)](#创建启动器desktop文件-top)
 * [浅谈 /etc/skel 文件夹](#浅谈-etcskel-文件夹-top)
 * [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
+* [shell、终端、终端模拟器](#shell终端终端模拟器-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -298,7 +299,27 @@ export http_proxy=http://yourproxyaddress:proxyport
 １. 临时有效
 * bash 里命令行执行```export http_proxy=http://yourproxyaddress:proxyport```（https、ftp等其他代理类型类似）
 > 此时 wget、curl、apt 等应用程序都是使用http_proxy
-* 直接将代理作为 wget 命令的参数：```wget ... -e use_proxy=yes -e http_proxy=http://yourproxyaddress:proxyport ...``
+* 直接将代理作为 wget 命令的参数：```wget ... -e use_proxy=yes -e http_proxy=http://yourproxyaddress:proxyport ...```
+
+
+## shell、终端、终端模拟器 [[Top]](#目录)
+
+### shell 其实是 /bin 目录下的**可执行文件**
+* Linux 将允许使用的 shell 不同版本名存储在 /etc/shells，可以使用```cat /etc/shells```查看
+
+<div align=center>
+    <img src="./images/shell.jpg" /><br/>/bin 目录下的不同的 shell 版本
+</div>
+
+### 终端 - terminal
+> terminal 只是一个命令的输入窗口，例如 Windows 有 CMD
+
+<div align=center>
+    <img src="./images/terminal.jpg" /><br/>谈到 shell 以前以为就是这个，但这只是 terminal
+</div>
+
+### 终端模拟器 - terminal emulator
+> 例如：Windows 下的 Putty、Xshell；Linux 下的 Guake Terminal
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
