@@ -9,6 +9,7 @@
 * [浅谈 /etc/skel 文件夹](#浅谈-etcskel-文件夹-top)
 * [apt、wget、curl 设置代理端口](#aptwgetcurl-设置代理端口-top)
 * [shell、终端、终端模拟器](#shell终端终端模拟器-top)
+* [Ubuntu 彻底关闭 dash](#ubuntu-彻底关闭-dash-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -320,6 +321,13 @@ export http_proxy=http://yourproxyaddress:proxyport
 
 ### 终端模拟器 - terminal emulator
 > 例如：Windows 下的 Putty、Xshell；Linux 下的 Guake Terminal
+
+## Ubuntu 彻底关闭 dash [[Top]](#目录)
+
+> Ubuntu 安装了 dockey 代替系统设置里的默认 dash，但系统设置不能选择关闭 dash（只能选择隐藏，但时常误触就会弹出，很烦人）
+
+* 解决方法：在目录 ```/usr/share/gnome-shell/extensions/```删除文件夹```ubuntu-dock@ubuntu.com```
+> * 一定要先备份```ubuntu-dock@ubuntu.com```，注意权限问题
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
