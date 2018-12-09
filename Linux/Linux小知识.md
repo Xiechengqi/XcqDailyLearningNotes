@@ -330,23 +330,25 @@ export http_proxy=http://yourproxyaddress:proxyport
 * 解决方法：在目录 ```/usr/share/gnome-shell/extensions/```删除文件夹```ubuntu-dock@ubuntu.com```
 > * 一定要先备份```ubuntu-dock@ubuntu.com```，注意权限问题
 
-# sudo apt update 提示异常信息 [[Top]](#目录)
+## sudo apt update 提示异常信息 [[Top]](#目录)
 
 ``` shell
 N: 鉴于仓库 'http://dl.google.com/linux/earth/deb stable InRelease' 不支持 'i386' 体系结构，跳过配置文件 'main/binary-i386/Packages' 的获取。
 ```
-分析：
-这是因为执行`sudo apt update`时根据`/etc/apt/sources.list`镜像站读取下载所有软件源到`/var/lib/apt/lists/'目录，但可能下载了自己电脑架构不兼容的软件源，这是就会提示上面信息
-解决方法
+分析：这是因为执行`sudo apt update`时根据`/etc/apt/sources.list`镜像站读取下载所有软件源到`/var/lib/apt/lists/'目录，但可能会下载了自己电脑架构不兼容的软件源，这样就会提示上面信息
+
+### 解决方法
+
 > 移除架构不兼容的软件源
+
 * 执行命令：`dpkg --remove-architecture i386`
 
-> 上面命令可能出现错误：`dpkg: 错误: 无法移除体系结构 i386 ，当前它仍被数据库使用`
+#### 上面命令可能出现错误：`dpkg: 错误: 无法移除体系结构 i386 ，当前它仍被数据库使用`
 
 > * 先查看 安装了哪些外部架构： `dpkg --print-foreign-architectures`
 可能会显示： i386
-> * 删除所有i386包：`apt-get purge ".*:i386"`
-注意：purge 关键字（而不是 remove ）将删除与要卸载的软件包关联的所有配置文件
+> * 删除所有已下载的 i386 软件包：```apt-get purge ".*:i386"```
+purge 关键字（而不是 remove ）将删除与要卸载的软件包关联的所有配置文件
 > * 现在您可以删除 i386 架构：`dpkg --remove-architecture i386`
 
 ## 一段脚本片段 [[Top]](#目录)
