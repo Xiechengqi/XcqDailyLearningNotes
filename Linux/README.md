@@ -12,5 +12,6 @@
 * [Ubuntu 软件包安装方法](./UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./compiler.md)
 * [Linux 环境变量相关文件详解](./Linux环境变量相关文件详解.md)
+* [APT 剖析详解](./APT-剖析详解.md)
 
 
