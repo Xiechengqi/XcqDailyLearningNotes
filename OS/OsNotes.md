@@ -62,7 +62,7 @@
 * 微内核的系统有 WindowNT, Minix, Mach, etc.
 
 <div align=center>
-<img src="./images/OS微内核.png" /><br/>操作系统微内核
+<img src="./images/OS微内核.jpg" /><br/>操作系统微内核
 </div>
 
 > IPC - InterProcess Communication - 进程间通信
