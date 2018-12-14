@@ -123,5 +123,6 @@ ffprobe -show_frames test.mp4
 ffprobe -show_packets test.mp4
 ```
 
-##[[参考]](https://www.cnblogs.com/renhui/p/8458802.html)
+## 参考
+[20 篇 ffmpeg 学习](https://www.cnblogs.com/renhui/category/1165051.html)
 
