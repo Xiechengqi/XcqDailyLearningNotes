@@ -13,7 +13,7 @@
 * libswresample 实现音频混合和重采样例程。
 * libswscale 实现颜色转换和缩放例程
 
-##工具
+## 工具
 
 * ffmpeg
 * ffplay
