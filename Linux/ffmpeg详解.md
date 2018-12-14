@@ -125,4 +125,5 @@ ffprobe -show_packets test.mp4
 
 ## 参考
 [20 篇 ffmpeg 学习](https://www.cnblogs.com/renhui/category/1165051.html)
+[ 系统学习 ](https://blog.csdn.net/leixiaohua1020/article/details/15811977)
 
