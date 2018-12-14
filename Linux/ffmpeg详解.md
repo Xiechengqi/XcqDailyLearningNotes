@@ -113,6 +113,45 @@ Input #0, mov,mp4,m4a,3gp,3g2,mj2, from 'test.mp4':
       creation_time   : 2018-07-16T14:53:06.000000Z
 ```
 
+颜色编码：其中YUV420是视频中通常采用的颜色编码方式，Y表示亮度，而U，V则与颜色相关，而420则分别对应着存储相应分量所占用的比特数之比。其实采用这种编码方式就是为了早期彩色电视与黑白电视能更好的相容
+
+tbn is the time base in AVStream that has come from the container, I
+think. It is used for all AVStream time stamps.
+
+tbc is the time base in AVCodecContext for the codec used for a
+particular stream. It is used for all AVCodecContext and related time
+stamps.
+
+tbr is guessed from the video stream and is the value users want to see
+when they look for the video frame rate, except sometimes it is twice
+what one would expect because of field rate versus frame rate.
+
+fps 自然的是 frame per second，就是帧率了。
+
+所以tbn和tbc应该都是在相应层上的时间单元，比如tbn=2997就相当于在视频流层把1s的时间分成了2997个时间单元，如此精细可以更好的与其他流比如音频流同步，对应着fps=29.97就表示每100个时间单元中有一帧。
+
+时间同步方式：
+问题来了：fps=29.97这是一个小数啊，我如果直接利用公式 frame number = time * fps 得到了也不是一个整数啊，而帧号应该是一个整数才对。
+
+首先，29.97f/s这个变态的数是如何得到的？这起源于早期的NTSC电视制式，而现代的数字编码只是为了兼容而沿用了它的标准。其实在标准制定 时，NTSC采用的是30f/s的帧率，只是后来為了消除由彩色信号及伴音信号所產生的圖像干擾，每秒幀幅由30幀稍微下調至29.97幀，同時線頻由 15750Hz稍微下降至15734.26Hz
+
+然后，带小数点的帧率如何实现呢，显然每一秒不可能显示相同个数的帧。实际上存在着叫做SMPTE Non-Drop-Frame和SMPTE Drop-Frame的时间同步标准，也就是说在某些时候，会通过丢掉一些帧的方式来将时间同步上。
+
+比如刚才提到的29.97帧率，我们可以计算：29.97 f/sec = 1798.2 f/min = 107892 f/hour;
+对于30f/s的帧率我们可以计算： 30 f/s = 1800 f/s = 108000 f/hour;
+
+这样，如果利用每秒30帧的速度来采集视频，而用29.97f/s的速率来播放视频，每个小时就少播放了108帧，这样播放时间会比真实时间变慢。为了解决这个问题，SMPTE 30 Drop-Frame就采取了丢掉这108帧的方式，具体策略是每1分钟丢两帧，如果是第10分钟则不丢，所以每小时丢掉的帧数是：2×60 – 2×6 = 108 帧。更具体的信息，
+
+25 tbr代表帧率；1200k tbn代表文件层（st）的时间精度，即1S=1200k，和duration相关；50 tbc代表视频层（st->codec）的时间精度，即1S=50，和strem->duration和时间戳相关。
+
+25 tbr代表帧率；
+90k tbn代表文件层（st）的时间精度，即1S=1200k，和duration相关；
+50   tbc代表视频层（st->codec）的时间精度，即1S=50，和strem->duration和时间戳相关。
+
+https://www.jianshu.com/p/bfec3e6d3ec8
+
+https://www.jianshu.com/p/5b78a91f1091
+
 显示帧信息
 ``` shell
 ffprobe -show_frames test.mp4
