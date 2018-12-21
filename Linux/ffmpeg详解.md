@@ -1,4 +1,4 @@
-# [FFmpeg](https://github.com/FFmpeg/FFmpeg)
+# FFmpeg - [[github]](https://github.com/FFmpeg/FFmpeg)
 
 
 * FFmpeg 是处理多媒体内容（ 如音频，视频，字幕和相关元数据 ）的库和工具的集合
@@ -22,8 +22,90 @@
 ## ffmpeg
 
 * ffmpeg 是一个非常强大的工具，它可以转换任何格式的媒体文件，并且还可以用自己的 AudioFilter 以及 VideoFilter 进行处理和编辑。有了它，我们就可以对媒体文件做很多我们想做的事情了
-## ffplay
 
+### 使用 FFmpeg 视频分割
+
+``` shell 
+# 这个例子是将 test.mp4 视频的前 3 秒，重新生成一个新视频
+ffmpeg -ss 00:00:00 -t 00:00:03 -y -i test.mp4 -vcodec copy -acodec copy test1.mp4  
+
+[参数]
+-ss 开始时间，如： 00:00:00，表示从 0 秒开始，也可以写成 00:00:0
+-t 时长，如： 00:00:03，表示截取 3 秒长的视频，也可以写成 00:00:3
+-y 如果文件已存在强制替换
+-i 输入，后面是空格，紧跟着就是输入视频文件
+-vcodec [copy] 视频的编码格式，copy 表示保持视频编码格式不变 
+-acodec [copy] 音频的编码格式，copy 表示保持音频编码格式不变
+```
+
+### 使用 FFmpeg 从视频中制作 GIF 图
+
+### 使用 FFmpeg 转换 flv 到 mp4
+
+``` shell 
+ffmpeg -i input.flv -vcodec copy -acodec copy output.mp4
+```
+
+### 使用 FFmpeg 给视频添加水印
+
+``` shell
+# 给视频添加图片水印，水印居中显示
+ffmpeg -i input.mp4 -i watermark.png -filter_complex overlay="(main_w/2)-(overlay_w/2):(main_h/2)-(overlay_h)/2" output.mp4
+# 给视频添加 GIF 动态图水印，水印居中显示
+ffmpeg -i input.mp4 -i watermark.gif -filter_complex overlay="(main_w/2)-(overlay_w/2):(main_h/2)-(overlay_h)/2" output.mp4
+# 给视频添加文字水印，水印左上角显示
+ffmpeg -i input.mp4 -vf "drawtext=/usr/share/fonts/truetype/source-code-pro/SourceCodePro-BlackIt.ttf:text='视频添加文字水印':x=10:y=10:fontsize=24:fontcolor=yellow:shadowy=2" output.mp4
+
+[参数]
+overlay="(main_w/2)-(overlay_w/2):(main_h/2)-(overlay_h)/2" 设置水印的位置，居中显示
+```
+参数 overlay 详解
+
+* overlay 设置位置格式：`overlay="x:y[:1]"
+> * x:y 以左上的视频界面顶点为原点，向右为 x 轴正方向，向下为 y 轴正方向的直角坐标系中一点的横纵坐标
+> * :1  表示支持透明水印
+overlay 可选参数 | 说明 
+------ | ------ 
+main_w | 视频单帧图像宽度
+main_h | 视频单帧图像高度
+overlay_w | 水印图片的宽度
+overlay_h | 水印图片的高度
+(main_w/2)-(overlay_w/2):(main_h/2)-(overlay_h)/2 | 相对位置（居中显示）
+10:10 | 绝对位置（距离上边和左边都是 10 像素）	
+main_w-overlay_w-10:10 | 绝对位置（距离上边和右边都是 10 像素）
+
+
+> * 水印图片的尺寸不能大于视频单帧图像尺寸，否则会出错
+
+
+### 使用 FFmpeg 将字幕文件集成到视频文件
+
+#### 字幕文件格式间转换
+
+``` shell
+# 将 .srt 文件转换为 .ass 文件
+ffmpeg -i subtitle.srt subtitle.ass
+# 将 .ass 文件转换为 .srt 文件
+ffmpeg -i subtitle.ass subtitle.srt
+```
+
+* 由于 mp4 容器，不像 mkv 等容器有自己的字幕流
+* mkv 这种容器的视频格式中，会带有一个字幕流，可以在播放中，控制字幕的显示与切换，也可以通过工具或命令，将字幕从视频中分离出来
+* mp4 格式的容器，是不带字幕流的，所以如果要将字幕添加进去，就需要将字幕文件烧进视频中去。烧进去的视频，不能再分离出来，也不能控制字幕的显示与否
+
+``` shell
+# 比如将 input.srt 烧入 input.mp4 中，将合并的视频拷到 output.mp4
+# input.srt、input.mp4、output.mp4都是相对当前目录下 
+ffmpeg -i input.mp4 -vf subtitles=input.srt output.srt
+
+[参数]
+-y :覆盖同名的输出文件 
+-i  ：资源文件
+-vf：一般用于设置视频的过滤器 ( set video filters )
+subtitles= ：后面跟字幕文件，可以是 srt，ass
+```
+
+## ffplay
 * ffplay 是以 FFmpeg 框架为基础，外加渲染音视频的库 libSDL 构建的媒体文件播放器
 
 ### 格式 - `ffplay [选项] ['输入文件']`
