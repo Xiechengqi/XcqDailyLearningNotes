@@ -441,8 +441,15 @@ minute hour day month week command
 –    可以用整数之间的 – 表示一个整数范围，例如：如果 day 字段的值是 “2-6”，则表示每月的第2天到底6天都执行该命令
 /    可以用斜线表示命令的执行频率，例如：如果 minute 字段的值是 “*/10”，则表示每十分钟执行一次命令
 ```
+## Linux 手动添加字体文件 [[Top]](#目录)
 
-
+* Linux 的字体都在 /usr/share/fonts 这个目录里，一种字体就是这个目录下面的一个子目录
+* 将字体文件（.ttf 文件）放入这个目录下，还需要用root用户身份依次执行如下三条命令，这个字体才能用
+``` shell
+sudo mkfontscale
+sudo mkfontdir
+sudo fc-cache -fv
+```
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
