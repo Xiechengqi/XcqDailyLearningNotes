@@ -56,13 +56,23 @@ deb http://mirrordirector.raspbian.org/raspbian/ jessie main contrib non-free rp
 deb https://archive.raspbian.org/raspbian/ jessie main contrib non-free rpi
 ```
 
-## ssh 登录，开启后台运行命令 - `screen`
+## ssh 登录，开启后台运行命
 
+### `screen` - 希望断开 ssh 即关闭 screen 内执行任务，当再次登录还能从上次任务结束出开始，不必重新执行
 * 安装 screen :`sudo apt install screen`
 * 开启一个后台：`screen -dmS xxx( 后台名字 )`
 * 暂时退出当前 screen :<kbd>CTRL</kbd> + <kbd>a</kbd> + <kbd>d</kbd>
 * 显示已开启的后台：`screen -ls`
 * 返回某一个后台“xxx” :`screen -r xxx`
+
+### `nohup` - 即使断开 ssh 连接，使用 nohup 执行的任务仍然会在后台运行，非常适用于远程使用服务器下载
+
+* 如果你正在运行一个进程，而且你觉得在退出帐户时该进程还不会结束，那么可以使用 nohup 命令。该命令可以在你退出帐户/关闭终端之后继续运行相应的进程。nohup 就是不挂起的意思( no hang up)
+
+``` shell
+nohup [命令] [参数] [&]
+# 最后加上 & ，这样即使退出当前终端，命令仍然会在后台运行
+```
 
 ## 安装中文字库
 
