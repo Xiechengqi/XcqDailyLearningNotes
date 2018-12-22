@@ -102,6 +102,32 @@ ffmpeg -i input.mp4 -acodec libmp3lame -vn output.mp3
 # 一般 acc 编码器默认已经装上
 ffmpeg -i input.mp4 -c copy output.acc
 ```
+
+### 使用 FFmpeg 合并多个视频或多个音频
+
+#### 一、合并多个音频
+
+``` shell
+ffmpeg -i input1.mp3 -i input2.mp4 output.mp3
+```
+#### 二、合并多个视频
+
+> [更多方法](https://blog.csdn.net/doublefi123/article/details/47276739)
+
+**FFmpeg concat 分离器（需要 FFmpeg 1.1 以上版本，最通用方法）**
+
+1. 先创建一个文本文件(.txt)
+```
+# 例如文件 inputfilelist.txt 内容
+file 'input1.mp4'
+file 'input2.mp4'
+file 'input3.mp4'
+```
+> 文件新建在当前目录下，文件存放待合并的视频文件名，注意格式：file 'xxx'
+2. 然后执行命令
+``` shell
+ffmpeg -f concat -i inputfilelist.txt -c copy output.mp4
+```
 ### 使用 FFmpeg 将字幕文件集成到视频文件
 
 #### 字幕文件格式间转换
