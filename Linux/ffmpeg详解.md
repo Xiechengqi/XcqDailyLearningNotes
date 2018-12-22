@@ -23,6 +23,13 @@
 
 * ffmpeg 是一个非常强大的工具，它可以转换任何格式的媒体文件，并且还可以用自己的 AudioFilter 以及 VideoFilter 进行处理和编辑。有了它，我们就可以对媒体文件做很多我们想做的事情了
 
+### 预备知识
+
+* codec - 编码解码器
+
+> * A codec is a device or computer program for encoding or decoding a digital data stream or signal. Codec is a portmanteau of coder-decoder.
+> * A codec encodes a data stream or a signal for transmission and storage, possibly in encrypted form, and the decoder function reverses the encoding for playback or editing. Codecs are used in videoconferencing, streaming media, and video editing applications.
+
 ### 使用 FFmpeg 视频分割
 
 ``` shell 
@@ -77,7 +84,24 @@ main_w-overlay_w-10:10 | 绝对位置（距离上边和右边都是 10 像素）
 
 > * 水印图片的尺寸不能大于视频单帧图像尺寸，否则会出错
 
+### 使用 FFmpeg 提取视频中的音频文件( aac、mp3 等 )
 
+``` shell
+# 一、提取的音频格式是 mp3 的情况
+# 先查看自己的 ffmpeg 的库依赖有没有编码 mp3 的库（通常是 libmp3lame，而且一般安装 ffmpeg 时只有解码 mp3 的库）
+ffmpeg -codecs | grep mp
+# 提取视频中音，音频格式为 mp3
+ffmpeg -i input.mp4 -f mp3 -vn output.mp3
+# 或
+ffmpeg -i input.mp4 -acodec libmp3lame -vn output.mp3
+[参数]
+-vn 禁止视频输出 
+-f 输出编码格式
+-acodec 音频编码器
+# 二、提取的音频格式是 acc 的情况
+# 一般 acc 编码器默认已经装上
+ffmpeg -i input.mp4 -c copy output.acc
+```
 ### 使用 FFmpeg 将字幕文件集成到视频文件
 
 #### 字幕文件格式间转换
