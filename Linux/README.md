@@ -17,7 +17,7 @@
      * [Linux 中使用 crontab 命令启用自定义定时任务](Linux小知识.md#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Ubuntu 软件包安装方法](./UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./compiler.md)
-* [Linux 环境变量相关文件详解](./Linux环境变量相关文件详解.md)
+* [从 Bash Shell 启动“窥探” Linux 环境变量相关文件](./从-Bash-Shell-启动"窥探"-Linux-环境变量相关文件.md)
 * [APT 剖析详解](./APT-剖析详解.md)
 
 
