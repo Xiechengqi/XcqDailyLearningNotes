@@ -6,7 +6,7 @@
      * [使用 wget 提示无法建立SSL连接](Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
      * [通过编译安装软件时找不到.so文件](Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
      * [更换 Ubuntu 18.04 LTS 登录界面背景](Linux小知识.md#更换-ubuntu-1804-lts-登录界面背景-top)
-     * [执行 make 命令时提示“makefile:2: *** 遗漏分隔符 停止”](#执行-make-命令时提示-makefile2--遗漏分隔符-停止-top)
+     * [执行 make 命令时提示“makefile:2: *** 遗漏分隔符 停止”](Linux小知识.md#执行-make-命令时提示-makefile2--遗漏分隔符-停止-top)
      * [Linux 下 gcc 编译 c 源文件过程详解](Linux小知识.md#linux-下-gcc-编译-c-源文件过程详解-top)
      * [创建启动器（.Desktop文件)](Linux小知识.md#创建启动器desktop文件-top)
      * [浅谈 /etc/skel 文件夹](Linux小知识.md#浅谈-etcskel-文件夹-top)
@@ -17,7 +17,7 @@
      * [Linux 中使用 crontab 命令启用自定义定时任务](Linux小知识.md#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Ubuntu 软件包安装方法](./UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./compiler.md)
-* [从 Bash Shell 启动“窥探” Linux 环境变量相关文件](./从-Bash-Shell-启动"窥探"-Linux-环境变量相关文件.md)
+* [从 Bash Shell 启动“窥探” Linux 环境变量相关文件](./从BashShell启动“窥探”Linux环境变量相关文件.md)
 * [APT 剖析详解](./APT-剖析详解.md)
 
 
