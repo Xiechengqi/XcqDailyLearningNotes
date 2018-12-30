@@ -19,6 +19,7 @@
 * [Linux C/C++ 软件包编译、安装步骤详解](./compiler.md)
 * [从 Bash Shell 启动“窥探” Linux 环境变量相关文件](./从BashShell启动“窥探”Linux环境变量相关文件.md)
 * [APT 剖析详解](./APT-剖析详解.md)
-* [trans常用命令详解](./trans命令.md)
+* [ffmpeg 详解](./ffmpeg详解.md)
+* [trans 常用命令详解](./trans命令.md)
 
 
