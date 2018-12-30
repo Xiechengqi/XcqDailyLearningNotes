@@ -12,10 +12,13 @@
 3. 编译、安装软件
 * 一般情况下，里面有个configure文件，则运行命令:
 ```shell
-sudo ./configure —prefix=/usr/local/filename/  #存放路径，可更改
+sudo ./configure --prefix=/usr/local/filename  #存放路径，可更改
 make    #编译
 sudo make install #安装
 ```
+
+> --prefix 选项是配置安装目录，如果不配置该选项，安装后可执行文件默认放在 `/usr /local/bin`，库文件默认放在`/usr/local/lib`，配置文件默认放在`/usr/local/etc`，其它的资源文件放在`/usr /local/share`，比较凌乱。如上安装后的所有资源文件都在`/usr/local/filename`文件夹里
+
 * 如果只有Makefile文件，则运行命令：
 ```shell
 make    #编译
@@ -31,6 +34,12 @@ sudo make install   # 安装
 5. 清除编译过程中产生的临时文件：$ make clean
 6. 清除配置过程中产生的文件：$ make distclean (谨用)
 7. 卸载软件时，进入源码文件目录：$ make uninstall
+
+**关于卸载**
+
+* 如果没有配置 --prefix 选项，源码包也没有提供 make uninstall，则可以通过以下方式可以完整卸载：
+  * 找一个临时目录重新安装一遍，如：`./configure --prefix=/tmp/to_remove && make install`
+  * 然后遍历`/tmp/to_remove`的文件，删除对应安装位置的文件即可（ 因为`/tmp/to_remove`里的目录结构就是没有配置 --prefix 选项时的目录结构 ）
 
 ## deb包
 
