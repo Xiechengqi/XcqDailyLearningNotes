@@ -1,4 +1,6 @@
-# trans 命令详解
+# [trans](https://github.com/soimort/translate-shell) 命令详解
+
+![](./images/trans.jpg)
 
 ## 常用命令
 
@@ -61,7 +63,7 @@ $ trans en: 'Hello
 world'
 ```
 
-语言和相关的更多细节，参见**[wiki: Languages](https://github.com/soimort/translate-shell/wiki/Languages)**.
+语言和相关的更多细节，参见[wiki: Languages](https://github.com/soimort/translate-shell/wiki/Languages)
 
 | Language | Code | Language | Code | Language | Code |
 | :------: | :--: | :------: | :--: | :------: | :--: |
