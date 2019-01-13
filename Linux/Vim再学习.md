@@ -1,6 +1,8 @@
 # Vim 编辑器再学习
 
-> 使用 Ubuntu 已经两年了，对于 Vim 的利用只能算是小半桶水水平，一直感觉利用 Vim 编程非常麻烦，几次尝试系统学习 Vim，并从此转换到 Vim 使用者一族，但都半途而废。现在终于下定决心，即使摸着石头也要过了这条 “河”。我认为这就好比当年从 Windows 迁移到 Linux 上，一开始一直犹犹豫豫，但后来看到一片令我茅塞顿开的文章，那天下午我就开始了 Linux 的生涯，凡事都要迈出第一步嘛！
+> * 使用 Ubuntu 已经两年了，对于 Vim 的利用只能算是小半桶水水平，一直感觉利用 Vim 编程非常麻烦，几次尝试系统学习 Vim，并从此转换到 Vim 使用者一族，但都半途而废。现在终于下定决心，即使摸着石头也要过了这条 “河”。我认为这就好比当年从 Windows 迁移到 Linux 上，一开始一直犹犹豫豫，但后来看到一片令我茅塞顿开的文章，那天下午我就开始了 Linux 的生涯，凡事都要迈出第一步嘛！
+> * 对于大多数用户来说，Vim 有着一个比较陡峭的学习曲线。这意味着开始学习的时候可能会进展缓慢，但是一旦掌握一些基本操作之后，能大幅度提高编辑效率。在Vim 用户手册中更加详细的描述了 Vim 的基础和进阶功能。可以在Vim中输入 `:help user-manual` 进入用户手册。手册除了原始的英文版本之外，也被志愿者翻译成了各国文字，其中包括中文。 --- Wiki
+> * 通篇教程以 Ubuntu 18.04 LTS 为例
 
 ## Vim 安装、卸载
 
@@ -56,6 +58,8 @@ sudo apt purge --auto-remove vim
 
 1. 系统级 Vim 配置文件
 
+> 在 Linux 和 Mac OS X 中，这个文件位于你的 home 文件夹，并以 `.vimrc` 命名；在 Windows 中，这个文件位于你的 home 文件夹，并以 `_vimrc`命名。
+
 * `/etc/vim/vimrc`
 系统的每个用户在打开 Vim 时都会载入它
 * `/usr/share/vim/vimrc`
@@ -68,15 +72,47 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 * `~/.vimrc
 应该在这里编辑自己的 Vim 配置信息
 
-### vimrc 文件编辑
+### VimScript - Vim 的自定义配置
 
-> 常规的 set 之类自行百度、Google 很容易，记录一些**奇淫技巧**
+1. 简介
+
+* 一门用于定制 Vim 的脚本语言
+* vimrc 和 Vim 中的插件（ .vim ）都是使用 Vim 脚本语言 - vimscript 编写的
+
+2. Vimscript
+
+> * **VimScript 系统学习：**http://learnvimscriptthehardway.onefloweroneworld.com/
+> * [学习 VimScript 笔记]()
+
+** 记录一些 vimrc 的技巧用法
 
 * 要让.vimrc变更内容生效，一般的做法是先保存 .vimrc 再重启 vim，增加如下设置，可以实现保存 .vimrc 时自动重启加载
 ``` shell
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 ```
 
+* 支持中文不乱码
+```
+# 设置编码
+set fileencodings=utf-8,ucs-bom,gb18030,gbk,gb2312,cp936
+set termencoding=utf-8
+set encoding=utf-8
+```
+> * 与 Vim 编码有关的变量包括：encoding、fileencoding、termencoding
+>   * encoding 选项用于缓存的文本、寄存器、Vim 脚本文件等
+>   * fileencoding 选项是 Vim 写入文件时采用的编码类型
+>   * termencoding 选项表示输出到终端时采用的编码类型
 
+* 显示空格和 tab 键
+``` shell
+set listchars=tab:>-,trail:-
+```
+> * Vim 编辑器中默认不显示文件中的 tab 和空格符，方便定位输入错误
 
+* 括号自动补全
 
+```
+inoremap ( ()<Esc>i
+inoremap [ []<Esc>i
+inoremap { {}<Esc>i
+```
