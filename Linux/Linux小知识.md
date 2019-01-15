@@ -468,7 +468,7 @@ sudo export PATH=/usr/local/vim/bin:$PATH
 ``` shell
 sudo vim /etc/profile
 # 在文档最后，添加
-export PATH="/home/tuotu/bin:$PATH"
+export PATH="/usr/local/vim/bin:$PATH"
 # 保存，退出，然后运行，即可立即生效
 source /etc/profile
 ```
