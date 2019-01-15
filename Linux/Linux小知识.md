@@ -12,6 +12,7 @@
 * [Ubuntu 彻底关闭 dash](#ubuntu-彻底关闭-dash-top)
 * [sudo apt update显示：鉴于仓库 'xxx' 不支持 'i386' 体系结构，跳过配置文件 'xx' 的获取](#sudo-apt-update-提示异常信息-top)
 * [Linux 中使用 crontab 命令启用自定义定时任务](#linux-中使用-crontab-命令启用自定义定时任务-top)
+* [Linux 添加环境变量 $PATH](#linux-添加环境变量-path-top]
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -443,6 +444,35 @@ minute hour day month week command
 –    可以用整数之间的 – 表示一个整数范围，例如：如果 day 字段的值是 “2-6”，则表示每月的第2天到底6天都执行该命令
 /    可以用斜线表示命令的执行频率，例如：如果 minute 字段的值是 “*/10”，则表示每十分钟执行一次命令
 ```
+
+## Linux 添加环境变量 $PATH [[Top]](#目录)
+
+> 有时手动编译安装软件包时，可执行目录 - `bin` 目录并不在环境变量 `$PATH` 里，所以不可以直接在终端执行，这时需要手动添加新的 `bin` 路径到 `$PATH` 环境变量中
+
+* `$PATH`：决定了 shell 将到哪些目录中寻找命令或程序，PATH 的值是一系列目录，当您运行一个程序时，Linux 在这些目录下进行搜寻编译链接
+* 其格式为：
+`PATH=$PATH:<PATH1>:<PATH2>:<PATH3>:------:<PATHn>`
+> * 你可以自己加上指定的路径，中间用冒号隔开
+> * 环境变量更改后，在用户下次登陆时生效，如果想立刻生效而免去重新启动，则可执行下面的语句：`$source   /etc/profile`
+
+**添加方法**
+
+1. 临时添加，退出终端即没有效果了
+
+``` shell
+sudo export PATH=/usr/local/vim/bin:$PATH
+```
+
+2. `/etc/profile` 文件中修改，全局永久有效
+
+``` shell
+sudo vim /etc/profile
+# 在文档最后，添加
+export PATH="/home/tuotu/bin:$PATH"
+# 保存，退出，然后运行，即可立即生效
+source /etc/profile
+```
+
 ## Linux 手动添加字体文件 [[Top]](#目录)
 
 * Linux 的字体都在 /usr/share/fonts 这个目录里，一种字体就是这个目录下面的一个子目录
