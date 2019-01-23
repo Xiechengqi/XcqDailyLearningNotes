@@ -70,7 +70,8 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 2. 用户级 Vim 配置文件
 
 * `~/.vimrc
-应该在这里编辑自己的 Vim 配置信息
+
+> 应该在这里编辑自己的 Vim 配置信息，**这个文件里不要有重复的配置**，比如 `filetype plugin indent on` 和 `filetype plugin on` `filetype indent on` 重复，之前直接复制了别人的部分配置，直接导致 vim 缓冲区出现问题，导致无法正常打开文件，而且这样的错误很难发现排除
 
 ### VimScript - Vim 的自定义配置
 
@@ -116,3 +117,13 @@ inoremap ( ()<Esc>i
 inoremap [ []<Esc>i
 inoremap { {}<Esc>i
 ```
+
+## buffer \ tab \ windows 详解
+
+> * A buffer is the in-memory text of a file
+> * A window is a viewport on a buffer
+> * A tab page is a collection of windows
+
+## Buffer
+
+> A buffer is an area of Vim’s memory used to hold text read from a file. In addition, an empty buffer with no associated file can be created to allow the entry of text. – vim.wikia
