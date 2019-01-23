@@ -44,5 +44,5 @@ python3 manage.py startapp appName
 ```
 
 <div align=center>
-  <img src='./images/appName.jpg/></br>在 project 里新创建一个 app
+  <img src='./images/appName.jpg'/></br>在 project 里新创建一个 app
 </div>
