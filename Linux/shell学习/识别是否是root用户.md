@@ -13,6 +13,8 @@ check_root
 
 ### echo
 
+> `echo -e` —— 开启转义，即可读取 '\n' 为换行
+
 
 shell 脚本中 echo 显示内容带颜色显示，echo 显示带颜色，需要使用参数 -e 
 
