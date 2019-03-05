@@ -1,4 +1,4 @@
-```
+``` shell
 #!/usr/bin/env bash
 
 Green_background_prefix="\033[42;37m" && Font_color_suffix="\033[0m"
@@ -44,7 +44,7 @@ echo -e "\033[41;36m something here \033[0m"
 ```
 
 字背景颜色范围：40—–47 
-```
+``` shell
    echo -e “\033[40;37m 黑底白字 \033[0m” 
 　　echo -e “\033[41;37m 红底白字 \033[0m” 
 　　echo -e “\033[42;37m 绿底白字 \033[0m” 
