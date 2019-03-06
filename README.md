@@ -21,6 +21,7 @@
      * [Ubuntu 彻底关闭 dash](./Linux/Linux小知识.md#ubuntu-彻底关闭-dash-top)
      * [sudo apt update显示：鉴于仓库 'xxx' 不支持 'i386' 体系结构，跳过配置文件 'xx' 的获取](./Linux/Linux小知识.md#sudo-apt-update-提示异常信息-top)
      * [Linux 中使用 crontab 命令启用自定义定时任务](./Linux/Linux小知识.md#linux-中使用-crontab-命令启用自定义定时任务-top)
+     * [`#!/usr/bin/env` 与 `#!/usr/bin`区别](./Linux/Linux小知识.md#usrbinenv-与-usrbin区别-top)
 * [Ubuntu 软件包安装方法](./Linux/UbuntuSoftwareInstall.md)
 * [Linux C/C++ 软件包编译、安装步骤详解](./Linux/compiler.md)
 * [从 Bash Shell 启动 “窥探” Linux 环境变量相关文件.md](./Linux/从BashShell启动“窥探”Linux环境变量相关文件.md)
