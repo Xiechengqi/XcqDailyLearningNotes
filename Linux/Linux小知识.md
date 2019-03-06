@@ -13,7 +13,7 @@
 * [sudo apt update显示：鉴于仓库 'xxx' 不支持 'i386' 体系结构，跳过配置文件 'xx' 的获取](#sudo-apt-update-提示异常信息-top)
 * [Linux 中使用 crontab 命令启用自定义定时任务](#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Linux 添加环境变量 $PATH](#linux-添加环境变量-path-top)
-* [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#)
+* [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#usrbinenv-与-usrbin区别-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
