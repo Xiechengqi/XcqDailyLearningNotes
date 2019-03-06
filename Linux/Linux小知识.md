@@ -13,6 +13,7 @@
 * [sudo apt update显示：鉴于仓库 'xxx' 不支持 'i386' 体系结构，跳过配置文件 'xx' 的获取](#sudo-apt-update-提示异常信息-top)
 * [Linux 中使用 crontab 命令启用自定义定时任务](#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Linux 添加环境变量 $PATH](#linux-添加环境变量-path-top)
+* [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -482,6 +483,26 @@ sudo mkfontscale
 sudo mkfontdir
 sudo fc-cache -fv
 ```
+
+## `#!/usr/bin/env` 与 `#!/usr/bin`区别 [[Top]](#目录)
+
+> 在 Linux、Unix、Mac 的一些脚本中，经常在开头出现`#!/usr/bin/env` 与 `#!/usr/bin`
+
+例如：
+
+``` shell
+#!/usr/bin/env python
+#!/usr/bin python
+#!/usr/bin/env perl
+#!/usr/bin perl
+```
+
+**区别**
+
+> * `#!/usr/bin python`: 表示脚本执行的一定是`/usr/bin/python`解释器，但有时 python 解释器并不是安装在`/usr/bin`目录下，这时脚本就无法执行。
+> * `#!/usr/bin/env python`: 脚本执行时会通过命令`/usr/bin/env`运行 python，env 会从环境变量中寻找 python 解释器并执行。所以，即使 python 并未安装在 `/usr/bin` 目录下也是可以的
+> * 推荐使用`#!/usr/bin/env python` 形式
+
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
