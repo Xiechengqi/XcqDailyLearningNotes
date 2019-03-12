@@ -58,8 +58,6 @@ sudo apt purge --auto-remove vim
 
 1. 系统级 Vim 配置文件
 
-> 在 Linux 和 Mac OS X 中，这个文件位于你的 home 文件夹，并以 `.vimrc` 命名；在 Windows 中，这个文件位于你的 home 文件夹，并以 `_vimrc`命名。
-
 * `/etc/vim/vimrc`
 系统的每个用户在打开 Vim 时都会载入它
 * `/usr/share/vim/vimrc`
@@ -69,9 +67,11 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 ```
 2. 用户级 Vim 配置文件
 
-* `~/.vimrc
+* ~/.vimrc
 
-> 应该在这里编辑自己的 Vim 配置信息，**这个文件里不要有重复的配置**，比如 `filetype plugin indent on` 和 `filetype plugin on` `filetype indent on` 重复，之前直接复制了别人的部分配置，直接导致 vim 缓冲区出现问题，导致无法正常打开文件，而且这样的错误很难发现排除
+> * 在 Linux 和 Mac OS X 中，这个文件位于你的 home 文件夹，并以 `.vimrc` 命名；在 Windows 中，这个文件位于你的 home 文件夹，并以 `_vimrc`命名
+
+> * 应该在这里编辑自己的 Vim 配置信息，**这个文件里不要有重复的配置**，比如 `filetype plugin indent on` 和 `filetype plugin on` `filetype indent on` 重复。之前直接复制了别人的部分配置，正巧就发生了上面的重复，直接导致 vim 缓冲区出现问题，导致无法正常打开文件，而且这样的错误很难发现排除
 
 ### VimScript - Vim 的自定义配置
 
@@ -82,12 +82,12 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 
 2. Vimscript
 
-> * **VimScript 系统学习：**http://learnvimscriptthehardway.onefloweroneworld.com/
-> * [学习 VimScript 笔记]()
+> * VimScript 系统学习：http://learnvimscriptthehardway.onefloweroneworld.com/
+> * [我的学习 VimScript 笔记](./Vimscript学习.md)
 
-** 记录一些 vimrc 的技巧用法
+**记录一些 vimrc 的技巧用法**
 
-* 要让.vimrc变更内容生效，一般的做法是先保存 .vimrc 再重启 vim，增加如下设置，可以实现保存 .vimrc 时自动重启加载
+* 要让 .vimrc 变更内容生效，一般的做法是先保存 .vimrc 再重启 vim 。增加如下设置，可以实现保存 .vimrc (`:w`) 时自动重启加载
 ``` shell
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 ```
