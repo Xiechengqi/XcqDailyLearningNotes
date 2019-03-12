@@ -91,6 +91,13 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 ``` shell
 autocmd BufWritePost $MYVIMRC source $MYVIMRC
 ```
+* 设置 html / css / python 等文件的默认模板
+
+1. 在`~/.vim/vimfiles`目录下建一个自定义后缀的模板文件，比如 template.html，在里面输入你自己想要初始化模板的内容 
+2. 在 `~/.vimrc` 或 `/etc/vim/vimrc` 文件中添加
+```
+autocmd BufNewFile *.html 0r ~/.vim/vimfiles/template.html
+```
 
 * 支持中文不乱码
 ```
