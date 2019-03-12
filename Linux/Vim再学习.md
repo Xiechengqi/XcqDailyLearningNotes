@@ -83,7 +83,7 @@ lrwxrwxrwx 1 root root 14 Apr 11  2018 vimrc -> /etc/vim/vimrc
 2. Vimscript
 
 > * VimScript 系统学习：http://learnvimscriptthehardway.onefloweroneworld.com/
-> * [我的学习 VimScript 笔记](./Vimscript学习.md)
+> * [我的学习 VimScript 笔记](./VimScript学习.md)
 
 **记录一些 vimrc 的技巧用法**
 
