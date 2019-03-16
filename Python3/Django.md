@@ -37,6 +37,7 @@ python3 manage.py runserver 0.0.0.0:8000 //这时 Django 运行在8000端口，�
 
 * 一个 project 可以包含 多个 web app；一个 web app 可以属于多个 project
 * 一个 web app 常常实现某个功能，一个 project 往往是配置文件和多个 web app 的集合
+* app 的存放位置可以是任何地点，但是通常都将它们放在与 manage.py 脚本同级的目录下，这样方便导入文件
 * Django 项目中的内层 `projectName/` 目录就是一个 web app，也可以在一个 Django project 里创建多个 app，使用命令：
 ``` shell
 # 在 manage.py 层执行如下命令
