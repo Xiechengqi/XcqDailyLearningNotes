@@ -4,7 +4,7 @@
 * [OS](#ostop)
 * [计算机组成原理](#计算机组成原理top)
 * [计算机网络](#计算机网络top)
-* [Python3 学习](#python-3学习top)
+* [Python3 学习](#python3-学习top)
 * [经济学常识学习](#经济学小常识top)
 * [闲知](#闲知top)
 
