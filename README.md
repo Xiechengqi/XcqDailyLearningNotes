@@ -4,6 +4,7 @@
 * [OS](#ostop)
 * [计算机组成原理](#计算机组成原理top)
 * [计算机网络](#计算机网络top)
+* [Python3 学习](#Python3top)
 * [闲知](#闲知top)
 
 ## [Linux](./Linux)[[Top]](#目录)
@@ -41,6 +42,17 @@
 ## [计算机网络](./ComputerNetwork)[[Top]](#目录)
 * [专业名词](./ComputerNetwork/ProWords.md)
 * [学习笔记](./ComputerNetwork/学习笔记.md)
+
+## [Python3 学习](./Python3)[[Top]](#目录)
+* [Django 学习](./Python3/Django.md)
+* [re 学习](./Python3/re正则表达式.md)
+* [Tkinter 学习](./Python3/Python_Tkinter.ipynb)
+* [Numpy 学习](./Python3/Numpy.md)
+* [Matplotlib 学习](./Python3/matplotlib.md)
+* [BeautifulSoup 学习](./Python3/BeautifulSoup.md)
+* [Python 小知识](./Python3/Python小知识.md)
+* [Pyhton 基础进阶学习](./Python3/进阶学习.md)
+
 
 ## [闲知](./NoClass)[[Top]](#目录)
 * [计算机小知识](./NoClass/计算机小知识.md)
