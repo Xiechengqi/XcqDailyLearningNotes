@@ -503,6 +503,13 @@ sudo fc-cache -fv
 > * `#!/usr/bin/env python`: 脚本执行时会通过命令`/usr/bin/env`运行 python，env 会从环境变量中寻找 python 解释器并执行。所以，即使 python 并未安装在 `/usr/bin` 目录下也是可以的
 > * 推荐使用`#!/usr/bin/env python` 形式
 
+## 永久修改 DNS
+
+https://blog.csdn.net/MrBaymax/article/details/79430744
+
+https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
+
+
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
