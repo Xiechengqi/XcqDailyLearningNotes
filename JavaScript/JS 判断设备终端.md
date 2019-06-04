@@ -1,5 +1,6 @@
-JS判断设备终端（PC，iPad，iPhone，android，winPhone）和浏览器
+# JS判断设备终端（PC，iPad，iPhone，android，winPhone）和浏览器
 
+``` javascript
 var ua = navigator.userAgent;
         var browser = {},
             weixin = ua.match(/MicroMessenger\/([^\s]+)/i),
@@ -17,3 +18,4 @@ var ua = navigator.userAgent;
             chrome = ua.match(/CriOS\/([\d.]+)/i),
             opera = ua.match(/Opera\/([\d.]+)/i),
             safari = ua.match(/Safari\/([\d.]+)/i);
+```
