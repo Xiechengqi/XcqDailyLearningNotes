@@ -14,6 +14,7 @@
 * [Linux 中使用 crontab 命令启用自定义定时任务](#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Linux 添加环境变量 $PATH](#linux-添加环境变量-path-top)
 * [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#usrbinenv-与-usrbin区别-top)
+* [Linux程序存放目录](#Linux程序存放目录-top)
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -509,7 +510,8 @@ https://blog.csdn.net/MrBaymax/article/details/79430744
 
 https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 
-
+## Linux程序存放目录 [[Top]](#目录)
+![](./images/Linux程序存放目录.jpg)
 
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
