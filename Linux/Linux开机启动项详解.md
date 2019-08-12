@@ -1,6 +1,6 @@
 # Linux 开机启动项详解
 
-## 开机启动相关文件
+## 一、开机启动相关文件
 
 ### `/etc/rc[0-6].d`目录
 
@@ -9,7 +9,7 @@
 /etc/rcx.d
 </div>
 
-目录下文件的命名规则：**S|K + nn + script**
+> 目录下文件的命名规则：**S|K + nn + script**
 
 <div align=center>
 <img src="/Linux/images/rc0.jpg"><br/>
@@ -32,9 +32,7 @@
 * nn：取值 0 - 100，表示优先级，数字越大，优先级越低
 * script：软链接指向的脚本的文件名
 
-> * `/etc/init.d` 目录下的控制脚本接受参数 start | stop | restart | status | force-reload
-
-## 设置开机启动方法
+## 二、设置开机启动方法
 
 ### 1. 编辑`/etc/rc.local`文件
 
@@ -81,19 +79,24 @@ touch /var/lock/subsys/local
 
 ### 4. 添加一个开机启动服务
 
-将你的启动脚本复制到 /etc/init.d目录下，并设置脚本权限, 假设脚本为test
+将你的启动脚本复制到` /etc/init.d`目录下，并设置脚本权限, 假设脚本为 test
+
 ``` bash
 $ mv test /etc/init.d/test
 $ sudo chmod 755 /etc/init.d/test
 ```
+
+> * `/etc/init.d` 目录下的控制脚本接受参数 start | stop | restart | status | force-reload
+
 将该脚本放倒启动列表中去
 ```
 $ cd .etc/init.d
 $ sudo update-rc.d test defaults 95
 ```
-> 其中数字 95 是脚本启动的顺序号，按照自己的需要相应修改即可。在你有多个启动脚本，而它们之间又有先后启动的依赖关系时你就知道这个数字的具体作用了。
+> * 其中数字 95 是脚本启动的顺序号，按照自己的需要相应修改即可。在你有多个启动脚本，而它们之间又有先后启动的依赖关系时你就知道这个数字的具体作用了。
 
 ** update-rc.d ** 命令 : 为`/etc/init.d`目录下的脚本建立或删除到`/etc/rc[0-6].d`的软链接
+
 > update-rc.d 命令要在 `etc/init.d/` 目录下执行，可能还需要 root 权限
 * 增加一个服务
   * 添加这个服务并让它开机自动执行 : update-rc.d apache2 defaults
