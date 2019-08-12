@@ -95,7 +95,7 @@ $ sudo update-rc.d test defaults 95
 ```
 > * 其中数字 95 是脚本启动的顺序号，按照自己的需要相应修改即可。在你有多个启动脚本，而它们之间又有先后启动的依赖关系时你就知道这个数字的具体作用了。
 
-** update-rc.d ** 命令 : 为`/etc/init.d`目录下的脚本建立或删除到`/etc/rc[0-6].d`的软链接
+**update-rc.d**  命令 : 为`/etc/init.d`目录下的脚本建立或删除到`/etc/rc[0-6].d`的软链接
 
 > update-rc.d 命令要在 `etc/init.d/` 目录下执行，可能还需要 root 权限
 * 增加一个服务
