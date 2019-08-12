@@ -5,14 +5,14 @@
 ### `/etc/rc[0-6].d`目录
 
 <div align=center>
-<img src="/images/.jpg"><br/>
+<img src="/images/rc06.jpg"><br/>
 /etc/rcx.d
 </div>
 
 目录下文件的命名规则：**S|K + nn + script**
 
 <div align=center>
-<img src="/images/.jpg"><br/>
+<img src="/images/rc0.jpg"><br/>
 /etc/rc0.d 目录下文件
 </div>
 
@@ -56,18 +56,11 @@ touch /var/lock/subsys/local
 /usr/local/thttpd/sbin/thttpd  -C /usr/local/thttpd/etc/thttpd.conf
 ```
 
-### 2. 自己写一个shell脚本
-
-将写好的脚本（ .sh 文件）放到目录 `/etc/profile.d/` 下，系统启动后就会自动执行该目录下的所有 shell 脚本。
-
-<div align=center>
-<img src="/images/.jpg"><br/>
-/etc/profile.d 文件夹中文件
-</div>
+### 2. 使用 chkconfig \ systemctl 命令
 
 > 早期的 Linux 版本是用 chkconfig 命令来设置 rc 的 link，设置开机启动项；用 service 命令调用服务的 start、stop、restart、status 等函数。在现在主流 Linux 版本已经将这两个命令合并成一个 systemctl 命令了，映射关系如下:
 
-| 任务 | 旧指令 ( chkdonfig、service ) | 新指令 ( systemctl ) |
+| 任务 | 旧指令 ( chkconfig、service ) | 新指令 ( systemctl ) |
 | --- | --- | --- |
 | 设置服务开机自启 | chkconfig --level 3 httpd on | systemctl enable httpd.service |
 | 禁止服务开机自启 | chkconfig --level 3 httpd off | systemctl disable httpd.service |
@@ -77,7 +70,16 @@ touch /var/lock/subsys/local
 | 关闭服务 | service httpd stop | systemctl stop httpd.service |
 | 重启服务 | service httpd restart | systemctl restart httpd.service |
 
-### 添加一个开机启动服务
+### 3. 自己写一个shell脚本
+
+将写好的脚本（ .sh 文件）放到目录 `/etc/profile.d/` 下，系统启动后就会自动执行该目录下的所有 shell 脚本。
+
+<div align=center>
+<img src="/images/profiled.jpg"><br/>
+/etc/profile.d 文件夹中文件
+</div>
+
+### 4. 添加一个开机启动服务
 
 将你的启动脚本复制到 /etc/init.d目录下，并设置脚本权限, 假设脚本为test
 ``` bash
