@@ -5,14 +5,14 @@
 ### `/etc/rc[0-6].d`目录
 
 <div align=center>
-<img src="/images/rc06.jpg"><br/>
+<img src="/Linux/images/rc06.jpg"><br/>
 /etc/rcx.d
 </div>
 
 目录下文件的命名规则：**S|K + nn + script**
 
 <div align=center>
-<img src="/images/rc0.jpg"><br/>
+<img src="/Linux/images/rc0.jpg"><br/>
 /etc/rc0.d 目录下文件
 </div>
 
@@ -75,7 +75,7 @@ touch /var/lock/subsys/local
 将写好的脚本（ .sh 文件）放到目录 `/etc/profile.d/` 下，系统启动后就会自动执行该目录下的所有 shell 脚本。
 
 <div align=center>
-<img src="/images/profiled.jpg"><br/>
+<img src="/Linux/images/profiled.jpg"><br/>
 /etc/profile.d 文件夹中文件
 </div>
 
