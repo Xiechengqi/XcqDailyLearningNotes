@@ -1,3 +1,5 @@
+案例一、
+
 ``` shell
 #!/usr/bin/env bash
 
@@ -78,4 +80,16 @@ echo -e "\033[41;36m something here \033[0m"
 　　\33[u 恢复光标位置 
 　　\33[?25l 隐藏光标 
 　　\33[?25h 显示光标
+```
+
+案例二、`id -u `（显示当前用户的 uid ）
+
+``` shell
+[ $(id -u) != "0" ] && echo "Error: You must be root to run this script" && exit 1
+```
+
+案例三、`whoami`（显示当前用户的用户名）
+
+``` shell
+[$(whoami) != "root" ] && echo  "Error: You must be root to run this script" && exit 1
 ```
