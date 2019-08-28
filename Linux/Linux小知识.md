@@ -513,6 +513,9 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 ## Linux程序存放目录 [[Top]](#目录)
 ![](./images/Linux程序存放目录.jpg)
 
+
+## 一台服务器至少应该设置两个用户，一个是 root,另外一个是拥有 root 权限的普通用户（通过配置`/etc/sudoers`可以实现），这样就能够保证一个密码出错后还可以通过另外一个用户登录服务器重置密码
+
 ## 一段脚本片段 [[Top]](#目录)
 ``` shell
 #!/bin/bash
