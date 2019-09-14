@@ -3,7 +3,7 @@
 ## 命令行新建并初始化 Django 项目
 
 ``` shell
-django-admin startproject projectName
+$ django-admin startproject projectName
 ```
 
 <div align=center>
