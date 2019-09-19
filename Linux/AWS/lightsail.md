@@ -9,23 +9,23 @@
 <div align=center>
   <img src="./images/02.jpg"><br/>
 </div>
-
+<br/>
 <div align=center>
   <img src="./images/03.jpg"><br/>
 </div>
-
+<br/>
 
 <div align=center>
   <img src="./images/04.jpg"><br/>下载私钥
 </div>
-
+<br/>
 <div align=center>
   <img src="./images/05.jpg"><br/>切换到私钥目录
 </div>
-
+<br/>
 
 <div align=center>
   <img src="./images/06.jpg"><br/>修改私钥权限为 600
 </div>
-
+<br/>
 ### 删除`/root/.ssh/authorized_keys`中 ssh-rsa 前面内容，保存退出服务器，再次登录时即可使用`ssh -i xxx.pem root@host_ip`
