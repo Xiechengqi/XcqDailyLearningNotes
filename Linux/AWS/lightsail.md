@@ -18,6 +18,9 @@
 <div align=center>
   <img src="./images/04.jpg"><br/>下载私钥
 </div>
+
+> **客户端私钥只有一个，不同实例的私钥都相同**
+
 <br/>
 <div align=center>
   <img src="./images/05.jpg"><br/>切换到私钥目录
