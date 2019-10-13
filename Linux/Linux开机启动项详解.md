@@ -66,8 +66,8 @@ touch /var/lock/subsys/local
 | 禁止服务开机自启 | chkconfig --level 3 httpd off | systemctl disable httpd.service |
 | 查看服务状态 | service httpd status | systemctl status httpd.service |
 | 显示所有开机启动服务 | chkconfig --list | systemctl list-units --type=service |
-| 显示当前已启动的开机启动服务 | &emsp&emsp&emsp&emsp--- | systemctl list-units &#124; grep enable |
-| 显示当前已启动的开机启动文件 | &emsp&emsp&emsp&emsp--- | systemctl list-files &#124; grep enable |
+| 显示当前已启动的开机启动服务 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;--- | systemctl list-units &#124; grep enable |
+| 显示当前已启动的开机启动文件 | &emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;--- | systemctl list-files &#124; grep enable |
 | 显示启动失败的开机启动服务 | --- | systemctl --failed |
 | 启动服务 | service httpd start | systemctl start httpd.service |
 | 关闭服务 | service httpd stop | systemctl stop httpd.service |
