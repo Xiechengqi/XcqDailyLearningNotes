@@ -61,12 +61,12 @@ touch /var/lock/subsys/local
 > 早期的 Linux 版本是用 chkconfig 命令来设置 rc 的 link，设置开机启动项；用 service 命令调用服务的 start、stop、restart、status 等函数。在现在主流 Linux 版本已经将这两个命令合并成一个 systemctl 命令了，映射关系如下:
 
 | 任务 | 旧指令 ( chkconfig、service ) | 新指令 ( systemctl ) |
-| --- | --- | --- |
+| --- | :---: | :---: |
 | 设置服务开机自启 | chkconfig --level 3 httpd on | systemctl enable httpd.service |
 | 禁止服务开机自启 | chkconfig --level 3 httpd off | systemctl disable httpd.service |
 | 查看服务状态 | service httpd status | systemctl status httpd.service |
 | 显示所有开机启动服务 | chkconfig --list | systemctl list-units --type=service |
-| 显示当前已启动的开机启动服务 | --- | `systemctl list-units | grep enable` |
+| 显示当前已启动的开机启动服务 | --- | <div>systemctl list-units|grep enable</div> |
 | 显示当前已启动的开机启动文件 | --- | `systemctl list-files | grep enable` |
 | 显示启动失败的开机启动服务 | --- | `systemctl --failed` |
 | 启动服务 | service httpd start | systemctl start httpd.service |
