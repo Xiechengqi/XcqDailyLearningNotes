@@ -13,8 +13,11 @@
 * [sudo apt update显示：鉴于仓库 'xxx' 不支持 'i386' 体系结构，跳过配置文件 'xx' 的获取](#sudo-apt-update-提示异常信息-top)
 * [Linux 中使用 crontab 命令启用自定义定时任务](#linux-中使用-crontab-命令启用自定义定时任务-top)
 * [Linux 添加环境变量 $PATH](#linux-添加环境变量-path-top)
+* [Linux 手动添加字体文件](#linux-手动添加字体文件-top)
 * [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#usrbinenv-与-usrbin区别-top)
+* [永久修改 DNS](#永久修改-dns-top)
 * [Linux程序存放目录](#Linux程序存放目录-top)
+
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
 
@@ -504,7 +507,7 @@ sudo fc-cache -fv
 > * `#!/usr/bin/env python`: 脚本执行时会通过命令`/usr/bin/env`运行 python，env 会从环境变量中寻找 python 解释器并执行。所以，即使 python 并未安装在 `/usr/bin` 目录下也是可以的
 > * 推荐使用`#!/usr/bin/env python` 形式
 
-## 永久修改 DNS
+## 永久修改 DNS [[Top]](#目录)
 
 https://blog.csdn.net/MrBaymax/article/details/79430744
 
