@@ -22,6 +22,7 @@
 * [APT 剖析详解](./APT-剖析详解.md)
 * [ffmpeg 详解](./ffmpeg详解.md)
 * [trans 常用命令详解](./trans命令.md)
+* [Linux 开机启动项详解](./Linux开机启动项详解.md)
 * [正则表达式学习](./正则表达式学习.md)
 * [Linux 防火墙学习](./防火墙学习.md)
 
