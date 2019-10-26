@@ -113,3 +113,27 @@ Simply press <kbd>command</kbd> + <kbd>F</kbd> to search for a keyword
 > * 默认标题栏居中对齐，内容居左对齐
 > * `-:`表示内容和标题栏居右对齐，`:-`表示内容和标题栏居左对齐，`:-:`表示内容和标题栏居中对齐
 > * 内容和`|`之间的多余空格会被忽略，每行第一个`|`和最后一个`|`可以省略，`-`的数量至少有一个
+
+
+```
+├── coding
+│   ├── baidutranslate.ipynb
+│   ├── Python datetime.ipynb
+│   ├── Python hashlib.ipynb
+│   ├── Python urllib.ipynb
+│   ├── Python 多进程和多线程.ipynb
+│   ├── Python 模版.ipynb
+│   ├── test1.py
+│   ├── test.py
+│   └── 未命名.ipynb
+├── learning.py
+└── src
+```
+
+``` 
+制表符
+┌ └ ┐ ┘ ─ │ ├ ┤ ┬ ┴ ┼
+
+就是制作表格用的符号。
+可以用输入法自带的特殊符号输入，也可以从现成的表格中撷取粘贴
+```
