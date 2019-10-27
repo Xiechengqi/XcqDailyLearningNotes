@@ -27,7 +27,18 @@
 
 4. 登录后切换成 root 用户,修改 root 密码
 
-5. 之后修改 `~/.ssh/authorized_keys` 文件，则以后可以使用用户 root 直接登录
+5. 修改 `/etc/ssh/sshd_config` 文件
+``` 
+# 被注释去掉注释, 是 no 的改为 yes
+PermitRootLogin yes
+PasswordAuthentication yes
+```
+
+6. 最后修改 `/root/.ssh/authorized_keys`  , 删除 `/root/.ssh/authorized_keys` 中 `ssh-rsa` 前面内容 ( 没有则不修改 )
+
+7. 重启 ssh: `sudo service sshd restart`
+
+8. 再次登录时即可使用 `ssh root@host_ip`,之后输入密码即可登入
 
 
 ### 实操截屏
@@ -64,11 +75,23 @@
 <br/>
 
 <div align=center>
+  <img src="./images/12.jpg"><br/>PermitRootLogin yes   PasswordAuthentication yes
+</div>
+<br/>
+
+<div align=center>
+  <img src="./images/11.jpg"><br/>修改 /root/.ssh/authorized_keys
+</div>
+<br/>
+
+<div align=center>
   <img src="./images/11.jpg"><br/>重启 sshd 服务
 </div>
 <br/>
 
-> * 删除`/root/.ssh/authorized_keys`中 `ssh-rsa` 前面内容 ( 没有则不修改 )，保存退出服务器
+<div align=center>
+  <img src="./images/11.jpg"><br/>ssh root@ip 登录
+</div>
+<br/>
 
-> * 再次登录时即可使用`ssh root@host_ip`,之后输入密码即可登入
  
