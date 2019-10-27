@@ -36,28 +36,37 @@
   <img src="./images/02.jpg"><br/>
 </div>
 <br/>
+
 <div align=center>
   <img src="./images/03.jpg"><br/>
 </div>
 <br/>
 
 <div align=center>
-  <img src="./images/04.jpg"><br/>下载私钥
+  <img src="./images/04.jpg"><br/>下载私钥到本地
 </div>
 
 
 <br/>
 <div align=center>
-  <img src="./images/05.jpg"><br/>切换到私钥目录
+  <img src="./images/05.jpg"><br/>本地切换到私钥目录
 </div>
 <br/>
 
 <div align=center>
-  <img src="./images/06.jpg"><br/>修改私钥权限为 600
+  <img src="./images/06.jpg"><br/>本地修改私钥权限为 600
 </div>
 <br/>
 
+<div align=center>
+  <img src="./images/10.jpg"><br/>登入远程服务器, sudo su 切换到 root 用户并修改 root 密码
+</div>
+<br/>
 
+<div align=center>
+  <img src="./images/11.jpg"><br/>重启 sshd 服务
+</div>
+<br/>
 
 > * 删除`/root/.ssh/authorized_keys`中 `ssh-rsa` 前面内容 ( 没有则不修改 )，保存退出服务器
 
