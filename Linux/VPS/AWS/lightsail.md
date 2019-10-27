@@ -2,7 +2,7 @@
 
 ## 本地使用 ssh 命令行登录
 
-### 讲解
+### 步骤讲解
 
 1.  首次登录命令: `ssh -i xxx.pem username@host_ip`
 
