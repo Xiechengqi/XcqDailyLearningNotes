@@ -27,6 +27,11 @@
 
 4. 登录后切换成 root 用户, 设置 root 密码
 
+```
+sudo su
+passwd root
+```
+
 5. 修改 `/etc/ssh/sshd_config` 文件
 ``` 
 # 被注释去掉注释, 是 no 的改为 yes
