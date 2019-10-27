@@ -45,6 +45,8 @@ PasswordAuthentication yes
 
 8. 再次登录时即可使用 `ssh root@host_ip`,之后输入密码即可登入
 
+> * 若想使用普通用户登录, 需要切换到 root 下修改普通用户登录密码, 并且需要如上面一样修改 `/home/用户名/.ssh/authorized_keys`,重启 ssh 后退出再次登录即可使用普通用户
+
 
 ### 实操截屏
 
