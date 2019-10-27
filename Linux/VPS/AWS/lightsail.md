@@ -25,7 +25,7 @@
 </div>
 <br/>
 
-4. 登录后切换成 root 用户,修改 root 密码
+4. 登录后切换成 root 用户, 设置 root 密码
 
 5. 修改 `/etc/ssh/sshd_config` 文件
 ``` 
