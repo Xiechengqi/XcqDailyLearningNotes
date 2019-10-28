@@ -12,9 +12,9 @@
 
 每当执行命令进行软件的安装或着更新，或者软件源的更新时，apt 会访问 <kbd>/etc/apt/sources.list</kbd> 内的地址，并在该网站中找到对应系统的包信息例如我的操作系统是 ubuntu，网站是 <kbd>deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</kbd> 网易的，那么当我们执行安装的命令时，他就会对应的访问 <kbd>http://mirrors.163.com/ubuntu/dists/lucid/main/binary-i386/</kbd> 的 <kbd>packages.gz</kbd>，这个文件是服务器上软件包及其依赖关系的清单，并且用 `gzip` 压缩过了。`apt-get update`使用这个清单来确定能够获得哪些补充的软件包且他的内容会被保存在`/var/lib/apt/lists`内，通过访问这个 lists 确定该软件是否已安装，是否是最新版本，依赖关系是否满足，从而确定要更新内容，并进行更新，其安装过程主要是由dpkg来完成
 
-## 背景知识
+## 一、 背景知识
 
-### PPA 源 - Personal Package Archives - 个人软件包集
+### 1. PPA 源 - Personal Package Archives - 个人软件包集
 
 > 源和软件仓库实际上是一个意思，厂商将编译后的二进制文件和软件信息存放至服务器，用户需要安装软件时，包管理器自动分析本机和容器（repository）内的信息，下载需要的包并自动安装，安装后将新安装的软件信息存放至本地数
 
@@ -42,7 +42,7 @@ deb http://ppa.launchpad.net/wireshark-dev/stable/ubuntu trusty main
 ```
 原来文件里就是添加了一个跟软件源一模一样的东西，他们的作用殊途同归啊。我想这其实是 Ubuntu 为了分辨官方的源和第三方的源才设计成在 <kbd>sources.list</kbd> 和 <kbd>sources.list.d/</kbd> 这两个地方中存储软件源信息。因为第三方的源毕竟不太可信，如果随便更新的话可是会出事情的。
 
-### `deb http://site.example.com/debian distribution component` 格式详解 
+### 2. `deb http://site.example.com/debian distribution component` 格式详解 
 
 ``` shell
 deb http://site.example.com/debian distribution component1 component2 component3
@@ -116,7 +116,7 @@ Codename:	bionic
 
 
 
-## apt 基本命令
+## 二、 apt 基本命令
 
 ``` shell 
 用法： apt [选项] 命令
@@ -141,7 +141,7 @@ Codename:	bionic
  $ sudo apt-get --reinstall install [package-name]
 ```
 
-## `sudo apt install xxx` 详解
+## 1. `sudo apt install xxx` 详解
 
 
 ### 命令执行背后的故事
@@ -159,7 +159,7 @@ Codename:	bionic
 #### 补充：源码安装软件应该把源码包放在 /usr/local
 
 
-## `sudo apt update`
+## 2. `sudo apt update`
 
 ### 命令执行背后的故事
 
@@ -174,11 +174,11 @@ sudo rm -rf /var/lib/apt/lists/*
 sudo apt-get update
 ```
 
-## `sudo apt autoremove`
+## 3. `sudo apt autoremove`
 
 `autoclean` 是另一种方法，用于清除下载的包文件的本地存储库，clean 和之间的区别在于autoclean后者仅删除无法再从其源下载的包文件，并且很可能无用
 
-## `/etc/apt/` 目录详解
+## 4. `/etc/apt/` 目录详解
 
 <div align=center>
 <img src="./images/etc-apt目录.jpg" /></br>/etc/apt 目录详解图
@@ -235,7 +235,7 @@ deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main
 
 版本首选项文件。您可以在此处指定“ 固定 ”，即从单独的源或不同版本的分发中获取某些包的首选项。
 
-## `/var/cache/apt/`
+## 5. `/var/cache/apt/`
 
 ### `/var/cache/apt/archives/`
 
