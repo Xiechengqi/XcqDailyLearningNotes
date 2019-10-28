@@ -41,7 +41,7 @@ deb http://ppa.launchpad.net/wireshark-dev/stable/ubuntu trusty main
 ```
 原来文件里就是添加了一个跟软件源一模一样的东西，他们的作用殊途同归啊。我想这其实是 Ubuntu 为了分辨官方的源和第三方的源才设计成在 sources.list 和 sources.list.d/ 这两个地方中存储软件源信息。因为第三方的源毕竟不太可信，如果随便更新的话可是会出事情的。
 
-### `deb http://site.example.com/debian distribution component`格式详解 
+### <kbd>deb http://site.example.com/debian distribution component</kbd>格式详解 
 
 ``` shell
 deb http://site.example.com/debian distribution component1 component2 component3
@@ -56,7 +56,7 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic restricted universe multiverse 
   * deb - 档案类型为二进制预编译软件包，一般我们所用的档案类型
   * deb-src - 档案类型为用于编译二进制软件包的源代码
 
-> 每行的第一个单词 deb 或 deb-src，描述了文件类型，目录中包含的是二进制软件包（deb），即我们通常使用的已编译好的软件包；或包含的是源码包（ deb-src ），源码包包含源程序编码、Debian管理文件（.dsc）和 “Debian化” 该程序所做更改的记录文件 diff.gz
+> 每行的第一个单词 deb 或 deb-src，描述了文件类型，目录中包含的是二进制软件包（ deb ），即我们通常使用的已编译好的软件包；或包含的是源码包（ deb-src ），源码包包含源程序编码、Debian 管理文件（ .dsc ）和 “Debian化” 该程序所做更改的记录文件 diff.gz
   
 2. 仓库地址 (Repository URL)
 
@@ -65,12 +65,26 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic restricted universe multiverse 
 * 仓库地址可以是多种类型：http、ftp、file（ 本地文件，例如：一个加载了ISO9600 文件系统的目录 ） 或 ssh 
 
 
-3. 发行版 (Distribution)
+3. 发行版 - Distribution
 
-* 跟在仓库地址后的是发行版。发行版有两种分类方法，一类是发行版的具体代号，如 xenial,trusty, precise 等；还有一类则是发行版的发行类型，如oldstable, stable, testing 和 unstable
+* 跟在仓库地址后的是发行版。发行版有两种分类方法
+  * 一类是发行版的具体代号，如 xenial,trusty, precise 等
+  * 另一类则是发行版的发行类型，如 oldstable, stable, testing 和 unstable
 * 另外，在发行版后还可能有进一步的指定，如 xenial-updates, trusty-security, stable-backports 等
 
-4. 软件包分类 (Component)
+
+> * 可以通过命令 `lsb_release -cs`,查看当前操作系统代号, 例如 Ubuntu 16.04 LTS 代号为 xenial, Ubuntu 18.04 LTS 代号为 bionic
+
+``` shell
+$ lsb_release -ca
+No LSB modules are available.
+Distributor ID:	Ubuntu
+Description:	Ubuntu 18.04.3 LTS
+Release:	18.04
+Codename:	bionic
+```
+
+4. 软件包分类 - Component
 
 * 跟在发行版之后的就是软件包的具体分类了，可以有一个或多个。不同的 Linux 发行版对软件有着不同的分类
 
