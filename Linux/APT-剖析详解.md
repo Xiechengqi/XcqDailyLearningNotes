@@ -6,10 +6,11 @@
 <img src="./images/软件安装方法历程.jpg" /></br>软件安装方法历程图
 </div>
 
-`/etc/apt/sources.list`只会告知系统可以访问的镜像站点地址，这时每当系统执行一次`sudo apt install xxx`都要链接镜像站检索出对应的软件地址，这样是很浪费时间的，所以在本地`/var/lib/apt/lists/`会缓存一份镜像站里的所有软件源信息，这样每次执行`sudo apt install xxx`直接在本地缓冲里检索，在连接网络下载文件。所以`sudo apt install`会先访问`/var/lib/apt/lists/`；而且`sudo apt update`更新的是`/var/lib/apt/lists/`里的软件源
+<kbd>/etc/apt/sources.list</kbd> 只会告知系统可以访问的镜像站点地址，这时每当系统执行一次 `sudo apt install xxx` 都要链接镜像站检索出对应的软件地址，这样是很浪费时间的，所以在本地 <kbd>/var/lib/apt/lists/</kbd> 会缓存一份镜像站里的所有软件源信息，这样每次执行 `sudo apt install xxx` 直接在本地缓冲里检索，在连接网络下载文件。所以 `sudo apt install` 会先访问 <kbd>/var/lib/apt/lists/</kbd>；而且 `sudo apt update` 更新的是 <kbd>/var/lib/apt/lists/</kbd> 里的软件源
 
 
-每当执行命令进行软件的安装或着更新，或者软件源的更新时，apt 会访问 `/etc/apt/sources.list` 内的地址，并在该网站中找到对应系统的包信息例如我的操作系统是 ubuntu，网站是` deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse `网易的，那么当我们执行安装的命令时，他就会对应的访问 `http://mirrors.163.com/ubuntu/dists/lucid/main/binary-i386/` 的 packages.gz，这个文件是服务器上软件包及其依赖关系的清单，并且用 gzip 压缩过了。`apt-get update`使用这个清单来确定能够获得哪些补充的软件包且他的内容会被保存在`/var/lib/apt/lists`内，通过访问这个 lists 确定该软件是否已安装，是否是最新版本，依赖关系是否满足，从而确定要更新内容，并进行更新，其安装过程主要是由dpkg来完成
+
+每当执行命令进行软件的安装或着更新，或者软件源的更新时，apt 会访问 <kbd>/etc/apt/sources.list</kbd> 内的地址，并在该网站中找到对应系统的包信息例如我的操作系统是 ubuntu，网站是 <kbd>deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</kbd> 网易的，那么当我们执行安装的命令时，他就会对应的访问 <kbd>http://mirrors.163.com/ubuntu/dists/lucid/main/binary-i386/</kbd> 的 <kbd>packages.gz</kbd>，这个文件是服务器上软件包及其依赖关系的清单，并且用 `gzip` 压缩过了。`apt-get update`使用这个清单来确定能够获得哪些补充的软件包且他的内容会被保存在`/var/lib/apt/lists`内，通过访问这个 lists 确定该软件是否已安装，是否是最新版本，依赖关系是否满足，从而确定要更新内容，并进行更新，其安装过程主要是由dpkg来完成
 
 ## 背景知识
 
@@ -24,7 +25,7 @@
 ```
 例如，我们想要添加一个 Wireshark 软件的 PPA 源，我们可以根据它官网上提供的命令来进行添加，如下图所示： 
 
-当我们添加完 PPA 源之后，系统就会在 /etc/apt/sources.list.d/ 文件夹里创建了两个文件：
+当我们添加完 PPA 源之后，系统就会在 <kbd>/etc/apt/sources.list.d/</kbd> 文件夹里创建了两个文件：
 
 ``` shell
 $ cd /etc/apt/sources.list.d
@@ -33,15 +34,15 @@ wireshark-dev-stable-trusty.list
 wireshark-dev-stable-trusty.list.save
 ```
 
-我们再来打开一下 wireshark-dev-stable-trusty.list 文件看看里面的内容是什么：
+我们再来打开一下 <kbd>wireshark-dev-stable-trusty.list</kbd> 文件看看里面的内容是什么：
 
 ```
 deb http://ppa.launchpad.net/wireshark-dev/stable/ubuntu trusty main
 # deb-src http://ppa.launchpad.net/wireshark-dev/stable/ubuntu trusty main
 ```
-原来文件里就是添加了一个跟软件源一模一样的东西，他们的作用殊途同归啊。我想这其实是 Ubuntu 为了分辨官方的源和第三方的源才设计成在 sources.list 和 sources.list.d/ 这两个地方中存储软件源信息。因为第三方的源毕竟不太可信，如果随便更新的话可是会出事情的。
+原来文件里就是添加了一个跟软件源一模一样的东西，他们的作用殊途同归啊。我想这其实是 Ubuntu 为了分辨官方的源和第三方的源才设计成在 <kbd>sources.list</kbd> 和 <kbd>sources.list.d/</kbd> 这两个地方中存储软件源信息。因为第三方的源毕竟不太可信，如果随便更新的话可是会出事情的。
 
-### <kbd>deb http://site.example.com/debian distribution component</kbd>格式详解 
+### `deb http://site.example.com/debian distribution component` 格式详解 
 
 ``` shell
 deb http://site.example.com/debian distribution component1 component2 component3
@@ -50,7 +51,7 @@ deb-src http://site.example.com/debian distribution component1 component2 compon
 deb http://mirrors.aliyun.com/ubuntu/ bionic main restricted
 deb-src http://mirrors.aliyun.com/ubuntu/ bionic restricted universe multiverse main
 ```
-1. 档案类型 (Archive type)
+1. 档案类型 - Archive type
 
 * 条目的第一个词 deb 或是 deb-src 表明了所获取的软件包档案类型
   * deb - 档案类型为二进制预编译软件包，一般我们所用的档案类型
@@ -58,11 +59,11 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic restricted universe multiverse 
 
 > 每行的第一个单词 deb 或 deb-src，描述了文件类型，目录中包含的是二进制软件包（ deb ），即我们通常使用的已编译好的软件包；或包含的是源码包（ deb-src ），源码包包含源程序编码、Debian 管理文件（ .dsc ）和 “Debian化” 该程序所做更改的记录文件 diff.gz
   
-2. 仓库地址 (Repository URL)
+2. 仓库地址 - Repository URL
 
 * 条目的第二个词则是软件包所在仓库的地址，我们可以更换仓库地址为其他地理位置更靠近自己的镜像来提高下载速度
   * Ubuntu 软件源的源列表：[国内开源镜像站点汇总](https://segmentfault.com/a/1190000000375848)
-* 仓库地址可以是多种类型：http、ftp、file（ 本地文件，例如：一个加载了ISO9600 文件系统的目录 ） 或 ssh 
+* 仓库地址可以是多种类型：http、ftp、file（ 本地文件，例如：一个加载了 ISO9600 文件系统的目录 ） 或 ssh 
 
 
 3. 发行版 - Distribution
@@ -140,7 +141,7 @@ Codename:	bionic
  $ sudo apt-get --reinstall install [package-name]
 ```
 
-## ```sudo apt install xxx```
+## `sudo apt install xxx` 详解
 
 
 ### 命令执行背后的故事
@@ -148,10 +149,10 @@ Codename:	bionic
 ### 安装中下载的各种软件源文件、配置文件到哪里去了？
 
 #### ```sudo apt install xxx```安装软件的各种文件主要分散到以下四个目录
-* /usr/bin - 二进制文件
-* /usr/lib - 动态函数库文件
-* /usr/share/doc - 使用手册
-* /usr/share/man - man page
+* <kbd>/usr/bin</kbd> - 二进制文件
+* <kbd>/usr/lib</kbd> - 动态函数库文件
+* <kbd>/usr/share/doc</kbd> - 使用手册
+* <kbd>/usr/share/man</kbd> - man page
 
 > 所以在多用户情况下使用 `sudo apt install xxx`安装软件，会造成软件存放散乱，寻找软件配置文件麻烦；但 apt 安装软件系统会自动注册环境变量，且是全局的
 
@@ -163,17 +164,19 @@ Codename:	bionic
 ### 命令执行背后的故事
 
 * 执行 `sudo apt update`
-* 链接`/etc/apt/sources.list`里的软件源的镜像站，自动检索对比镜像站里的所有软件源与本地的`/var/lib/apt/lists/`目录，若发现有更新，立即在`/var/lib/apt/lists/`目录里跟新
+* 链接 <kbd>/etc/apt/sources.list</kbd> 里的软件源的镜像站，自动检索对比镜像站里的所有软件源与本地的 <kbd>/var/lib/apt/lists/</kbd> 目录，若发现有更新，立即在 <kbd>/var/lib/apt/lists/</kbd> 目录里跟新
 * 更新完毕
 
 ## `/var/lib/apt/lists`
 
+``` shell
 sudo rm -rf /var/lib/apt/lists/*
 sudo apt-get update
+```
 
 ## `sudo apt autoremove`
 
-autoclean是另一种方法，用于清除下载的包文件的本地存储库，clean和之间的区别在于autoclean后者仅删除无法再从其源下载的包文件，并且很可能无用
+`autoclean` 是另一种方法，用于清除下载的包文件的本地存储库，clean 和之间的区别在于autoclean后者仅删除无法再从其源下载的包文件，并且很可能无用
 
 ## `/etc/apt/` 目录详解
 
