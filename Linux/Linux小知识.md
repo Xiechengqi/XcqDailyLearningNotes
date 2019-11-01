@@ -17,7 +17,7 @@
 * [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#usrbinenv-与-usrbin区别-top)
 * [永久修改 DNS](#永久修改-dns-top)
 * [Linux程序存放目录](#Linux程序存放目录-top)
-* [更换镜像源}(#更换镜像源-top)
+* [更换镜像源](#更换镜像源-top)
 
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
