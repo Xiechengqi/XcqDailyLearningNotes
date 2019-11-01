@@ -17,7 +17,7 @@
 * [`#!/usr/bin/env` 与 `#!/usr/bin`区别](#usrbinenv-与-usrbin区别-top)
 * [永久修改 DNS](#永久修改-dns-top)
 * [Linux程序存放目录](#Linux程序存放目录-top)
-* [更换镜像源}(#更换镜像源-top)
+* [更换 apt yum epel 镜像源}(#更换-apt-yum-epel-镜像源-top)
 
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
@@ -518,6 +518,9 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 ![](./images/Linux程序存放目录.jpg)
 
 ## 更换镜像源[[Top]](#目录)
+
+https://opsx.alibaba.com/mirror?lang=zh-CN
+
 
 ## 一台服务器至少应该设置两个用户，一个是 root,另外一个是拥有 root 权限的普通用户（通过配置`/etc/sudoers`可以实现），这样就能够保证一个密码出错后还可以通过另外一个用户登录服务器重置密码
 
