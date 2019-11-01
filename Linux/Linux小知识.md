@@ -517,7 +517,7 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 ## Linux程序存放目录 [[Top]](#目录)
 ![](./images/Linux程序存放目录.jpg)
 
-## 更换镜像源[[Top]](#目录)
+## 更换镜像源 [[Top]](#目录)
 
 阿里镜像源：https://opsx.alibaba.com/mirror?lang=zh-CN
 
