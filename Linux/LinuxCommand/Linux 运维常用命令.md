@@ -283,6 +283,21 @@ ip address
     23895841   143531   0       0       0       0
 ```
 
+<kbd>ip -s -s link eno</kbd>
+
+``` shell
+2: eno1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
+    link/ether ec:8e:b5:44:4a:1c brd ff:ff:ff:ff:ff:ff
+    RX: bytes  packets  errors  dropped overrun mcast   
+    0          0        0       0       0       0       
+    RX errors: length   crc     frame   fifo    missed
+               0        0       0       0       0       
+    TX: bytes  packets  errors  dropped carrier collsns 
+    0          0        0       0       0       0       
+    TX errors: aborted  fifo   window heartbeat transns
+               0        0       0       0       1  
+   ```
+
 * <kbd>RX</kbd> - 表示接收
 * <kbd>TX</kbd> - 表示发送
 * <kbd>bytes</kbd> - 接收/发送的字节数
