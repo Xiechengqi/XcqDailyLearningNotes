@@ -9,6 +9,7 @@
 * [闲知](#闲知top)
 
 ## [Linux](./Linux)[[Top]](#目录)
+* [Linux 运维常用命令](./Linux/LinuxCommand/Linux%20运维常用命令.md)
 * [记录平时常用的 Linux 命令](./Linux/README.md)
 * [平时 linux 遇到的问题解决和小知识](./Linux/Linux小知识.md)
      * [使用 wget 提示无法建立SSL连接](./Linux/Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
