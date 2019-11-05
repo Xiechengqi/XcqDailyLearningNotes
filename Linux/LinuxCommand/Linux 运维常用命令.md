@@ -2,6 +2,10 @@
 
 > * Ubuntu 18.04 LTS
 
+<div align=center>
+<img src="../images/运维基本命令.jpg" /></br>Linux 运维常用命令
+</div>
+
 ## 目录
 
 * CPU
