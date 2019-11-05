@@ -283,7 +283,7 @@ ip address
     23895841   143531   0       0       0       0
 ```
 
-<kbd>ip -s -s link eno</kbd>
+<kbd>ip -s -s link eno1</kbd>
 
 ``` shell
 2: eno1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
