@@ -208,7 +208,7 @@ ip neigh
 
 ### 命令输出详解
 
-<kbd>ip address</kbd>
+<kbd>**ip address**</kbd>
 
 ``` shell
 ip address
@@ -250,7 +250,7 @@ ip address
  * <kbd>valid_lft forever</kbd> - IPv6 地址的有效使用期限
  * <kbd>preferred_lft forever</kbd> - IPv6 地址的首选生存期
  
- <kbd>ip route</kbd>
+ <kbd>**ip route**</kbd>
  
  ```shell
  ip route
@@ -264,7 +264,7 @@ ip address
 * <kbd>metric 1002</kbd> - 跳跃计数，确定网关的优先级，默认 20，数值越小优先级越高
 * <kbd>proto kernel</kbd> - 该路由的协议，主要有 redirect，kernel，boot，static，ra 等，其中 kernel 指的是直接由核心判断自动设定
 
-<kbd>ip -s link</kbd>
+<kbd>**ip -s link**</kbd>
 
 ``` shell
 1: lo: <LOOPBACK,UP,LOWER_UP> mtu 65536 qdisc noqueue state UNKNOWN mode DEFAULT group default qlen 1000
@@ -287,7 +287,7 @@ ip address
     23895841   143531   0       0       0       0
 ```
 
-<kbd>ip -s -s link eno1</kbd>
+<kbd>**ip -s -s link eno1**</kbd>
 
 ``` shell
 2: eno1: <NO-CARRIER,BROADCAST,MULTICAST,UP> mtu 1500 qdisc fq_codel state DOWN mode DEFAULT group default qlen 1000
