@@ -37,6 +37,139 @@
 
 * nicstat
 
+## netstat 
+
+* 显示与 IP、TCP、UDP 和 ICMP 协议相关的统计数据，同时还可用于检验本机各端口的网络连接情况
+* <kbd>netstat [选项]</kbd>
+* [选项]
+  * <kbd>-a</kbd> - 显示所有选项，默认不显示 LISTEN 相关
+  * <kbd>-t</kbd> - 仅显示 tcp 相关选项
+  * <kbd>-u</kbd> - 仅显示 udp 相关选项
+  * <kbd>-n</kbd> - 拒绝显示别名，能显示数字的全部转化成数字
+  * <kbd>-l</kbd> - 仅显示正在 Listen（ 监听 ）的服务状态
+  * <kbd>-p</kbd> - 显示建立相关连接的程序名
+  * <kbd>-r</kbd> - 显示路由信息，路由表
+  * <kbd>-e</kbd> - 显示扩展信息，例如 uid 等
+  * <kbd>-s</kbd> - 按各个协议进行统计
+  * <kbd>-c</kbd> - 每隔一个固定时间，执行该 netstat 命令
+  * <kbd>-i</kbd> - 显示网卡接口信息
+  
+  ### 常用命令
+  
+``` shell
+  netstat -antp                                      # 以数字的形式显示所有的 TCP 连接，并显示对应程序所监听的端口号
+  netstat -anup                                     # 以数字的形式显示所有的 UDP 连接，并显示对应程序所监听的端口号
+  netstat -st                                            # 统计 TCP 协议相关的网络统计数据
+  netstat -rn                                           # 打印内核路由信息
+  netstat -ie                                            # 显示网络接口信息
+  
+  # 统计中当前 TCP 每个状态的数量，通过这个数量，我们就可以大致知道服务器 TCP 连接当前的健康状态
+  netstat -n | awk '/^tcp/{++state[$NF]}; END{for(key in state) print key, "\t", state[key]}'
+  
+  # 统计连接某服务端口最多的 IP 地址
+  netstat -nat | grep ":80" | awk '{print $5}' | awk -F: '{print $1}' | sort | uniq -c | sort -nr | head -20
+```
+  
+  ### 命令输出详解
+  
+<kbd>**netstat -a**</kbd>
+
+``` shell
+  netstat -a
+      Active Internet connections (servers and established)
+    Proto  Recv-Q   Send-Q             Local Address           Foreign Address              State      
+    tcp        0                  0                          0.0.0.0:http              0.0.0.0:*                             LISTEN     
+    tcp        0                  0                          0.0.0.0:https            0.0.0.0:*                             LISTEN     
+    tcp        0                  0                          jellythink:https      39.154.11.104:8543      ESTABLISHED
+    tcp        0                  0                          jellythink:50398    100.100.30.25:http        ESTABLISHED
+. . . .                    
+    Active UNIX domain sockets (servers and established)
+    Proto RefCnt Flags       Type       State         I-Node   Path
+    unix  9      [ ]         DGRAM                    6897     /dev/log
+    unix  2      [ ]         DGRAM                    9721     /run/systemd/shutdownd
+    unix  3      [ ]         STREAM     CONNECTED     11477    
+    unix  3      [ ]         STREAM     CONNECTED     11478    /run/systemd/journal/stdout
+    unix  3      [ ]         STREAM     CONNECTED     11234    /run/systemd/journal/stdout
+. . . . 
+```
+    
+* `Active Internet connections (servers and established)` - 称为有源 TCP 连接，包括 TCP 和 UDP 等的详细状态
+* `Active UNIX domain sockets (servers and established)` - 称为有源 Unix 域套接口（ 和网络套接字一样，但是只能用于本机通信，性能可以提高一倍 ）
+* 有源 TCP 连接字段详解：
+  * `Proto` - 当前连接的协议；如 TCP、UDP
+  * `Recv-Q` - 网络接收队列
+  * `Send-Q` - 网络发送队列；接收队列和发送队列一般都应该是 0，如果不是则表示数据包正在队列中堆积，但是这种情况比较少见
+  * `Local Address` - 本机的 ip:port（ 注意此处 127.0.0.1 默认显示主机名，0.0.0.0 默认显示 \*，端口可能显示别名。若强制显示数字，加 `-n` 参数 ）
+  * `Foreign Address` - 对端 ip:port；与 Local Address 规则相同
+  * `State` - 当前套接字的网络状态，有以下几种状态：
+    * `LISTEN` - 监听来自其它 TCP 端口的连接请求
+    * `SYN-SENT` - 再发送连接请求后等待匹配的连接请求（如果有大量这样的状态包，检查是否中招了）
+    * `SYN-RECEIVED` - 再收到和发送一个连接请求后等待对方对连接请求的确认（如有大量此状态，估计被flood攻击了）
+    * `ESTABLISHED` - 代表一个打开的连接
+    * `FIN-WAIT-1` - 等待远程TCP连接中断请求，或先前的连接中断请求的确认
+    * `FIN-WAIT-2` - 从远程TCP等待连接中断请求
+    * `CLOSE-WAIT` - 等待从本地用户发来的连接中断请求
+    * `CLOSING` - 等待远程TCP对连接中断的确认
+    * `LAST-ACK` - 等待原来的发向远程TCP的连接中断请求的确认（不是什么好东西，此项出现，检查是否被攻击）
+    * `TIME-WAIT` - 等待足够的时间以确保远程TCP接收到连接中断请求的确认
+    * `CLOSED` - 没有任何连接状态
+
+<kbd>**netstat -rn**</kbd>
+
+``` shell
+netstat -rn
+内核 IP 路由表
+Destination         Gateway                   Genmask         Flags   MSS  Window  irtt   Iface
+0.0.0.0                   192.168.152.1         0.0.0.0               UG        0             0            0     wlo1
+169.254.0.0         0.0.0.0                        255.255.0.0     U           0             0            0     wlo1
+172.17.0.0            0.0.0.0                       255.255.0.0      U          0             0             0    docker0
+192.168.152.0     0.0.0.0                       255.255.248.0 U          0             0            0     wlo1
+```
+
+* `Destination` - 目标网络或目标主机
+* `Gateway` - 网关地址，如果没有就显示星号
+* `Genmask` - 网络掩码，0.0.0.0 表示默认路由
+* `Flags` - 标志位，有以下常用取值：
+  * `U` - 表示该路由是启动的
+  * `H` - 目标是一部主机（ IP ）而非网域
+  * `G` - 需要透过外部的主机（ gateway ）来转递封包
+* `Iface` - 网络接口名
+
+
+## free
+
+* 显示系统中已用和未用的物理内存、交换内存、共享内存和内核使用的缓冲区的总和
+* <kbd>free [选项]</kbd>
+* [选项]
+  *  <kbd>-k</kbd> - 以 KB 为单位显示内存使用情况
+  *  <kbd>-m</kbd> - 以 MB 为单位显示内存使用情况
+  * <kbd>-g</kbd> - 以 GB 为单位显示内存使用情况
+  * <kbd>-h</kbd> - 以人类友好的方式显示内存使用情况
+  
+### 命令输出详解
+  
+``` shell
+free -h
+                      total        used        free      shared  buff/cache   available
+Mem:           7.7G        5.5G        637M      735M        1.5G            1.3G
+Swap:          7.9G        495M        7.4G
+```
+
+* `total` - 内存总数，物理内存总数
+* `Mem` - 物理内存
+* `used` - 已经使用的内存数
+* `free` - 空闲的内存数
+* `shared` - 多个进程共享的内存总额
+* `buffers` - 缓冲内存数
+* `cached` - 缓存内存数
+* `Swap` - 交换分区，虚拟内存
+
+> * total = used + free + buff + cache
+> * buffer 是用于存放要输出到 disk（ 块设备 ）的数据的，而 cache 是存放从 disk 上读出的数据
+>   * A buffer is something that has yet to be "written" to disk
+>   * A cache is something that has been "read" from the disk and stored for later use
+
+
 
 ## top - display Linux processes
 
