@@ -37,7 +37,140 @@
 
 * nicstat
 
-## netstat 
+
+### iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions
+
+* 
+* <kbd>iostat [选项]</kbd>
+* [选项}
+-C 显示 CPU 使用情况
+-d 显示磁盘使用情
+-k 以 KB 为单位显示
+-m 以 M 为单位显示
+-N 显示磁盘阵列(LVM) 信息
+-n 显示 NFS 使用情况
+-p[磁盘] 显示磁盘和分区的情况
+-t 显示终端和 CPU 的信息
+-x 显示详细信息
+-V 显示版本信息
+
+### ps - report a snapshot of the current processes
+
+* <kbd>ps [选项]</kbd>
+* [选项]
+
+
+* ps命令支持三种使用的语法格式
+  1. UNIX 风格，选项可以组合在一起，并且选项前必须有“-”连字符
+  2. BSD 风格，选项可以组合在一起，但是选项前不能有“-”连字符
+  3. GNU 风格的长选项，选项前有两个“-”连字符
+
+**常用命令**
+
+ps aux
+
+ps -ef
+
+ps axjf
+
+ps axms
+
+ps axZ
+
+ps -U root -u root u
+
+
+## lsof - list open files
+
+* lsof 可以查看打开的文件有：普通文件、目录、网络文件系统的文件、字符或设备文件、(函数)共享库、管道、命名管道、符号链接、网络文件（NFS file、网络  socket、unix 域名 socket ）、还有其它类型的文件，等等
+* <kbd>lsof [选项]</kbd>
+* [选项]
+<kbd>-a</kbd> - 使用 AND 逻辑，合并选项输出内容
+<kbd>-c</kbd> - 列出名称以指定名称开头的进程打开的文件
+<kbd>-d</kbd> - 列出打开指定文件描述的进程
+<kbd>+d</kbd> - 列出目录下被打开的文件
+<kbd>+D</kbd> - 递归列出目录下被打开的文件
+<kbd>-n</kbd> - 列出使用 NFS 的文件
+<kbd>-u</kbd> - 列出指定用户打开的文件
+<kbd>-p</kbd> - 列出指定进程号所打开的文件
+<kbd>-i</kbd> - 列出打开的套接字
+
+### 常用命令
+
+``` shell
+lsof -i                                          # 列出所有的网络连接
+lsof -i :80                                   # 列出 80 端口目前打开的文件列表
+lsof -i tcp                                   # 列出所有的 TCP 网络连接信息
+lsof -i udp                                 # 列出所有的 UDP 网络连接信息
+lsof -i tcp:80                            # 列出 80 端口 TCP 协议的所有连接信息
+lsof -i udp:25                          # 列出 25 端口 UDP 协议的所有连接信息
+lsof -c ngin                              # 列出以 ngin 开头的进程打开的文件列表
+lsof -p 20711                          # 列出指定进程打开的文件列表
+lsof -u xcq                                # 列出指定用户打开的文件列表
+lsof -u xcq -i tcp                    # 将所有的 TCP 网络连接信息和指定用户打开的文件列表信息一起输出
+lsof -a -u uasp -i tcp            # 将指定用户打开的文件列表信息，同时是 TCP 网络连接信息的一起输出；注意和上一条命令进行对比
+lsof +d /usr/local/                # 列出目录下被进程打开的文件列表
+lsof +D /usr/local/                # 递归搜索目录下被进程打开的文件列表
+
+lsof -i @peida.linux:20,21,22,80 -r 3                     
+# 列出目前连接到主机 peida.linux 上端口为 20，21，22，80相关的所有文件信息，且每隔 3 秒不断的执行 lsof 指令
+```
+
+### 命令输出详解 
+
+<kbd>**lsof**</kbd>
+
+``` shell
+sudo lsof
+COMMAND    PID  TID          USER   FD       TYPE         DEVICE   SIZE/OFF       NODE             NAME
+systemd      1                            root   cwd       DIR               8,2         4096                      2                 /
+systemd      1                            root   rtd         DIR                8,2         4096                      2                 /
+systemd      1                            root   txt          REG              8,2       1595792        46137607         /lib/systemd/systemd
+systemd      1                            root   mem     REG              8,2       1700792        46137433         /lib/x86_64-linux-gnu/libm-2.27.so
+systemd      1                            root   mem     REG              8,2        121016          46137523         /lib/x86_64-linux-gnu/libudev.so.1.6.9
+systemd      1                            root   mem     REG              8,2         84032           46139105          /lib/x86_64-linux-gnu/libgpg-error.so.0.22.0
+systemd      1                            root   mem     REG              8,2         43304           46139138          /lib/x86_64-linux-gnu/libjson-c.so.3.0.1
+systemd      1                            root   mem     REG              8,2         34872           21766670           /usr/lib/x86_64-linux-gnu/libargon2.so.0
+systemd      1                            root   mem     REG              8,2        432640          46137584           /lib/x86_64-linux-gnu/libdevmapper.so.1.02.1
+. . .
+```
+
+* `COMMAND` - 进程的名称
+* `PID` - 进程标识符
+* `TID` - 线程标识符
+* `USER` - 进程所有者
+* `FD` - 文件描述符，应用程序通过文件描述符识别该文件，一般有以下取值
+  * `cwd` - 表示 current work dirctory，即：应用程序的当前工作目录，这是该应用程序启动的目录
+  * `txt` - 该类型的文件是程序代码，如应用程序二进制文件本身或共享库
+  * `lnn` - library references ( AIX )
+  * `er` - FD information error ( see NAME column )
+  * `jld` - jail directory ( FreeBSD )
+  * `ltx` - shared library text ( code and data )
+  * `mxx` - hex memory-mapped type number xx
+  * `m86` - DOS Merge mapped file
+  * `mem` - memory-mapped file
+  * `mmap` - memory-mapped device
+  * `pd` - parent directory
+  * `rtd` - root directory
+  * `tr` - kernel trace file ( OpenBSD )
+  * `v86` - VP/ix mapped file
+  * `0` - 表示标准输出
+  * `1` - 表示标准输入
+  * `2` - 表示标准错误
+* `TYPE` - 文件类型，常见的文件类型有以下几种
+  * `DIR` - 表示目录
+  * `CHR` - 表示字符类型
+  * `BLK` - 块设备类型
+  * `UNIX` - UNIX 域套接字
+  * `FIFO` - 先进先出 ( FIFO ) 队列
+  * `IPv4` - 网际协议 ( IP ) 套接字
+* `DEVICE` - 指定磁盘的名称
+* `SIZE/OFF` - 文件的大小
+* `NODE` - 索引节点（ 文件在磁盘上的标识 ）
+* `NAME` - 打开文件的确切名称
+
+
+## netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
 
 * 显示与 IP、TCP、UDP 和 ICMP 协议相关的统计数据，同时还可用于检验本机各端口的网络连接情况
 * <kbd>netstat [选项]</kbd>
@@ -136,7 +269,7 @@ Destination         Gateway                   Genmask         Flags   MSS  Windo
 * `Iface` - 网络接口名
 
 
-## free
+## free - Display amount of free and used memory in the system
 
 * 显示系统中已用和未用的物理内存、交换内存、共享内存和内核使用的缓冲区的总和
 * <kbd>free [选项]</kbd>
@@ -171,7 +304,7 @@ Swap:          7.9G        495M        7.4G
 
 
 
-## top - display Linux processes
+## top - Display Linux processes
 
 * 显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等
 * <kbd>top [选项] ([参数])</kbd>
@@ -447,49 +580,6 @@ ip address
 * <kbd>collsns</kbd> - 因在网络上发送冲突而导致的失败数
 
 
-### ps - report a snapshot of the current processes
-
-* ps [options]
-*
-
-* ps命令支持三种使用的语法格式
-  1. UNIX 风格，选项可以组合在一起，并且选项前必须有“-”连字符
-  2. BSD 风格，选项可以组合在一起，但是选项前不能有“-”连字符
-  3. GNU 风格的长选项，选项前有两个“-”连字符
-
-**常用命令**
-
-ps aux
-
-ps -ef
-
-ps axjf
-
-ps axms
-
-ps axZ
-
-ps -U root -u root u
-
-
-### lsof - list open files
-
-* lsof   [ -?abChKlnNOPRtUvVX ] [ -A A ] [ -c c ] [ +c c ] [ +|-d d ] [ +|-D D ] [ +|-e s ] [ +|-E ] [ +|-f [cfgGn] ] [ -F [f] ] [ -g [s] ] [ -i [i] ] [ -k k ] [ +|-L [l] ] [ +|-m m ] [ +|-M ] [ -o [o] ] [ -p s ] [ +|-r [t[m<fmt>]] ] [ -s [p:s]  ]  [  -S  [t] ] [ -T [t] ] [ -u s ] [ +|-w ] [ -x [fl] ] [ -z [z] ] [ -Z [Z] ] [ -- ] [names]
-* 常用选项
-  * -a - 指示其它选项之间为与的关系
-  * -c <进程名> 输出指定进程所打开的文件
-  * -d <文件描述符> 列出占用该文件号的进程
-  * +d <目录>  输出目录及目录下被打开的文件和目录(不递归)
-  * +D <目录>  递归输出及目录下被打开的文件和目录
-  * -i <条件>  输出符合条件与网络相关的文件
-  * -n 不解析主机名
-  * -p <进程号> 输出指定 PID 的进程所打开的文件
-  * -P 不解析端口号
-  * -t 只输出 PID
-  * -u 输出指定用户打开的文件
-  * -U 输出打开的 UNIX domain socket 文件
-  * -h 显示帮助信息
-  * -v 显示版本信息
 
 
 
