@@ -38,23 +38,98 @@
 * nicstat
 
 
-### iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions
+## iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions
 
-* 
-* <kbd>iostat [选项]</kbd>
-* [选项}
--C 显示 CPU 使用情况
--d 显示磁盘使用情
--k 以 KB 为单位显示
--m 以 M 为单位显示
--N 显示磁盘阵列(LVM) 信息
--n 显示 NFS 使用情况
--p[磁盘] 显示磁盘和分区的情况
--t 显示终端和 CPU 的信息
--x 显示详细信息
--V 显示版本信息
+* **主要用于监控磁盘**
+* <kbd>iostat [选项] [时间间隔（秒）] [输出次数]</kbd>
+* [选项]
+  * <kbd>-c</kbd> - 显示 CPU 使用情况
+  * <kbd>-d</kbd> - 显示磁盘使用情况
+  * <kbd>-k</kbd> - 以 KB 为单位显示
+  * <kbd>-m</kbd> - 以 M 为单位显示
+  * <kbd>-N</kbd> - 显示磁盘阵列 ( LVM ) 信息
+  * <kbd>-n</kbd> - 显示 NFS 使用情况
+  * <kbd>-p</kbd> - 显示磁盘和分区的情况
+  * <kbd>-t</kbd> - 显示终端和 CPU 的信息
+  * <kbd>-x</kbd> - 显示详细信息
+  * <kbd>-V</kbd> - 显示版本信息
 
-### ps - report a snapshot of the current processes
+
+### 常用命令
+
+``` shell
+iostat -x                                           # 打印磁盘使用详细状态
+iostat -d 2 10                                 # 每隔 2 秒打印一次磁盘使用情况，一共打印 10 次
+```
+
+### 命令输出详解
+
+<kbd>**iostat**</kbd>
+
+``` shell
+# CentOS 7
+iostat
+Linux 3.10.0-514.26.2.el7.x86_64 (iZuf62pye4v8osus1bsqgjZ) 	Thursday, November 07, 2019 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait    %steal   %idle
+                      0.49        0.00    0.29               0.13         0.00       99.09
+
+Device:    tps    kB_read/s    kB_wrtn/s    kB_read    kB_wrtn
+vda          4.18         0.82              72.32           1690217  148491664
+```
+* `avg-cpu` - 和 top 输出第三行一样
+  * `%user` - CPU 处在用户模式下的时间百分比
+  * `%nice` - CPU 处在带 NICE 值的用户模式下的时间百分比
+  * `%system` - CPU 处在系统模式下的时间百分比
+  * `%iowait` - CPU 等待输入输出完成时间的百分比。**如果该值较高，表示磁盘存在 I/O 瓶颈**
+  * `%steal` - 管理程序维护另一个虚拟处理器时，虚拟 CPU 的无意识等待时间百分比
+  * `%idle` - CPU 空闲时间百分比
+* `Device`
+  * `tps` - 每秒 I/O 数（ 即 IOPS，磁盘连续读和连续写之和 ）
+  * `kB_read/s` - 每秒从磁盘读取数据大小，单位 KB/s
+  * `kB_wrtn/s` - 每秒写入磁盘的数据的大小，单位 KB/s
+  * `kB_read` - 从磁盘读出的数据总数，单位 KB
+  * `kB_wrtn` - 写入磁盘的的数据总数，单位 KB
+
+<kbd>**iostat -x**</kbd>
+
+``` shell
+# CentOS 7
+iostat -x
+Linux 3.10.0-514.26.2.el7.x86_64 (iZuf62pye4v8osus1bsqgjZ) 	Thursday, November 07, 2019 	_x86_64_	(1 CPU)
+
+avg-cpu:  %user   %nice %system %iowait  %steal   %idle
+           0.49    0.00    0.29    0.13    0.00   99.09
+
+Device:         rrqm/s   wrqm/s     r/s        w/s     rkB/s    wkB/s       avgrq-sz    avgqu-sz   await       r_await       w_await   svctm  %util
+vda                 0.00         0.54            0.04    4.14     0.82      72.32         34.97          0.01             2.06          4.43              2.03             0.35     0.15
+```
+* `Device` - 设备名称
+* `rrqm/s` - 每秒合并到设备的读取请求数
+* `wrqm/s` - 每秒合并到设备的写请求数
+* `r/s` - 每秒向磁盘发起的读操作数
+* `w/s` - 每秒向磁盘发起的写操作数
+* `rkB/s` - 每秒读 K 字节数
+* `wkB/s` - 每秒写 K 字节数
+* `avgrq-sz` - 平均每次设备 I/O 操作的数据大小
+* `avgqu-sz` - 平均 I/O 队列长度
+* `await` - 平均每次设备 I/O 操作的等待时间 ( 毫秒 )。**一般地，系统 I/O 响应时间应该低于 5ms，如果大于 10ms 就比较大了**
+* `r_await` - 每个读操作平均所需的时间；不仅包括硬盘设备读操作的时间，还包括了在 kernel 队列中等待的时间
+* `w_await` - 每个写操作平均所需的时间；不仅包括硬盘设备写操作的时间，还包括了在 kernel 队列中等待的时间
+* `svctm` - 平均每次设备 I/O 操作的服务时间 ( 毫秒 )（ 这个数据不可信！）
+* `%util` - 一秒中有百分之多少的时间用于 I/O 操作，即被 IO 消耗的 CPU 百分比。**一般地，如果该参数是 100% 表示设备已经接近满负荷运行了**
+
+### 使用技巧
+
+> * 除了关注指标外，我们更需要结合部署的业务进行分析。对于磁盘随机读写频繁的业务，比如图片存取、数据库、邮件服务器等，此类业务吗，tps 才是关键点。对于顺序读写频繁的业务，需要传输大块数据的，如视频点播、文件同步，关注的是磁盘的吞吐量
+> * 如果 `%util` 接近 100%，说明产生的 I/O 请求太多，I/O 系统已经满负荷，该磁盘可能存在瓶颈
+> * 如果 `svctm` 比较接近 `await`，说明 I/O 几乎没有等待时间
+> * 如果 `await` 远大于 `svctm`，说明 I/O 队列太长，I/O 响应太慢，则需要进行必要优化
+> * 如果 `avgqu-sz` 比较大，也表示有大量 I/O 在等待
+
+
+
+## ps - report a snapshot of the current processes
 
 * <kbd>ps [选项]</kbd>
 * [选项]
@@ -333,11 +408,11 @@ top -p 1138  #显示进程号为1138 的进程信息，CPU、内存占用率等
 
 * 进程字段排序
   * 默认进入 top 时，各进程是按照 CPU 的占用量来排序的。但是，我们可以改变这种排序：
-  * M：根据驻留内存大小进行排序
-  * P：根据 CPU 使用百分比大小进行排序
-  * T：根据时间 / 累计时间进行排序
+  * <kbd>M</kbd> 键 - 根据驻留内存大小进行排序
+  * <kbd>P</kbd> 键 - 根据 CPU 使用百分比大小进行排序
+  * <kbd>T</kbd> 键 - 根据时间 / 累计时间进行排序
 * 多核 CPU 监控
-  * 在 top 基本视图中，第三行表示 CPU 状态信息；这里显示数据是所有 CPU 的平均值，多核 CPU 可以通过按 <kbd>1</kbd> 键来展开显示每个 CPU 状态
+  * 在 top 基本视图中，第三行表示 CPU 状态信息；这里显示数据是所有 CPU 的平均值（ avg-cpu ），多核 CPU 可以通过按 <kbd>1</kbd> 键来展开显示每个 CPU 状态
 
 ### 命令输出详解
 
