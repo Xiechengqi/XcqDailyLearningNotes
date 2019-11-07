@@ -1,6 +1,6 @@
-# Linux 运维常用命令查询
+# Linux 性能分析常用命令
 
-> * Ubuntu 18.04 LTS
+> * 主要以Ubuntu 18.04 LTS 为例，命令在 Linux 不同操作系统可能略有差别
 
 <div align=center>
 <img src="../images/AnalysisAndTools.png" /></br>Linux 运维常用命令
@@ -10,8 +10,12 @@
 
 * top - CPU
 * [netstat](#netstat-top) - <kbd>Sockets</kbd> <kbd>TCP\UDP</kbd> <kbd>IP</kbd> <kbd>Ethernet</kbd>
-* ip - Ethernet
-* vmstat - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
+* [ip](#ip-top) - <kbd>Ethernet</kbd>
+* [vmstat](#vmstat-top) - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
+* [iostat](#iostat-top) - <kbd>Block Device Interface</kbd> <kbd>I/O Controller</kbd>
+* [lsof](#lsof-top)
+* [ps](#ps-top)
+* [free](#free-top)
 * pidstat - CPU
 * mpstat - CPU
 * dstat - CPU
@@ -24,20 +28,14 @@
 * dtrace - Port
 * dastat - Disk
 * dtrace - Disk
-
-
-* ps
-* lsof
-
 * ipconfig
-
 * slabtop
-* free
-
 * nicstat
 
 
-## iostat - Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions
+## iostat [[Top]](#目录)
+
+> Report Central Processing Unit (CPU) statistics and input/output statistics for devices and partitions
 
 * **主要用于监控磁盘**
 * <kbd>iostat [选项] [时间间隔（秒）] [输出次数]</kbd>
@@ -154,7 +152,9 @@ ps axZ
 ps -U root -u root u
 
 
-## lsof - list open files
+## lsof [[Top]](#目录)
+
+> list open files
 
 * lsof 可以查看打开的文件有：普通文件、目录、网络文件系统的文件、字符或设备文件、(函数)共享库、管道、命名管道、符号链接、网络文件（NFS file、网络  socket、unix 域名 socket ）、还有其它类型的文件，等等
 * <kbd>lsof [选项]</kbd>
@@ -345,7 +345,9 @@ Destination         Gateway                   Genmask         Flags   MSS  Windo
 * `Iface` - 网络接口名
 
 
-## free - Display amount of free and used memory in the system
+## free [[Top]](#目录)
+
+> Display amount of free and used memory in the system
 
 * 显示系统中已用和未用的物理内存、交换内存、共享内存和内核使用的缓冲区的总和
 * <kbd>free [选项]</kbd>
@@ -380,7 +382,9 @@ Swap:          7.9G        495M        7.4G
 
 
 
-## top - Display Linux processes
+## top [[Top]](#目录)
+
+> Display Linux processes
 
 * 显示当前系统正在执行的进程的相关信息，包括进程 ID、内存占用率、CPU 占用率等
 * <kbd>top [选项] ([参数])</kbd>
@@ -479,7 +483,9 @@ KiB Swap:  8275964 total,  8273784 free,     2180 used.  3538032 avail Mem
   * `COMMAND` - 命令名/命令行
   
   
-## ip - show / manipulate routing, network devices, interfaces and tunnels
+## ip [[Top]](#目录)
+
+> show / manipulate routing, network devices, interfaces and tunnels
 
 * <kbd>ip [选项] 对象 { 命令 | help }</kbd>
 * 常用对象
