@@ -3,35 +3,34 @@
 > * Ubuntu 18.04 LTS
 
 <div align=center>
-<img src="../images/运维基本命令.jpg" /></br>Linux 运维常用命令
+<img src="../images/AnalysisAndTools.png" /></br>Linux 运维常用命令
 </div>
 
 ## 目录
 
-* CPU
-  * top
-  * pidstat
-  * mpstat
-  * dstat
-  * perf
-* Ethernet ( 以太网 )
-  * tcpdump
-  * ip
-  * nicstat
-  * dtrace  
-* Port ( 端口 )
-  * ping
-  * dastat
-  * dtrace
-* Disk ( 磁盘 )
-  * dastat
-  * dtrace
+* top - CPU
+* [netstat](#netstat-top) - <kbd>Sockets</kbd> <kbd>TCP\UDP</kbd> <kbd>IP</kbd> <kbd>Ethernet</kbd>
+* ip - Ethernet
+* vmstat - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
+* pidstat - CPU
+* mpstat - CPU
+* dstat - CPU
+* perf - CPU
+* tcpdump - Ethernet
+* nicstat - Ethernet
+* dtrace - Ethernet
+* ping - Port
+* dastat - Port
+* dtrace - Port
+* dastat - Disk
+* dtrace - Disk
+
+
 * ps
 * lsof
-* netstat
 
 * ipconfig
-* vmstat
+
 * slabtop
 * free
 
@@ -245,7 +244,9 @@ systemd      1                            root   mem     REG              8,2   
 * `NAME` - 打开文件的确切名称
 
 
-## netstat - Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
+## netstat [[Top]](#目录)
+
+> Print network connections, routing tables, interface statistics, masquerade connections, and multicast memberships
 
 * 显示与 IP、TCP、UDP 和 ICMP 协议相关的统计数据，同时还可用于检验本机各端口的网络连接情况
 * <kbd>netstat [选项]</kbd>
