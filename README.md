@@ -9,8 +9,8 @@
 * [闲知](#闲知top)
 
 ## [Linux](./Linux)[[Top]](#目录)
-* [Linux 运维常用命令](./Linux/LinuxCommand/Linux%20性能相关常用命令.md)
-* [记录平时常用的 Linux 命令](./Linux/Linux常用命令.md)
+* [Linux 性能相关常用工具](./Linux/LinuxCommand/Linux%20性能相关常用命令.md)
+* [Linux 常用 命令](./Linux/Linux常用命令.md)
 * [平时 linux 遇到的问题解决和小知识](./Linux/Linux小知识.md)
      * [使用 wget 提示无法建立SSL连接](./Linux/Linux小知识.md#使用-wget-提示无法建立ssl连接-top)
      * [通过编译安装软件时找不到.so文件](./Linux/Linux小知识.md#通过编译安装软件时error运行时找不到so文件-top)
