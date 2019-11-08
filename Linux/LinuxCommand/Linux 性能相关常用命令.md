@@ -1,24 +1,46 @@
-# Linux 性能分析常用命令
+# Linux 性能相关常用命令 - Linux Performance
 
 > * 主要以Ubuntu 18.04 LTS 为例，命令在 Linux 不同操作系统可能略有差别
+> * [《BPF Performance Tools》](http://www.brendangregg.com/linuxperf.html)
+<div align=center>
+<img src="../images/AnalysisAndTools.png" /></br> Linux 性能分析工具
+</div>
+
+</br>
 
 <div align=center>
-<img src="../images/AnalysisAndTools.png" /></br>Linux 运维常用命令
+<img src="../images/PerformanceObservabilityTools.png" /></br> Linux 性能观测工具
+</div>
+
+<div align=center>
+<img src="../images/linux_benchmarking_tools.png" /></br> Linux 性能测评工具
+</div>
+
+<div align=center>
+<img src="../images/linux_observability_sar.png" /></br> Linux
+</div>
+
+<div align=center>
+<img src="../images/perf-tools_2016.png" /></br> Linux
+</div>
+
+<div align=center>
+<img src="../images/bcc_tracing_tools.png" /></br> Linux
 </div>
 
 ## 目录
 
-* top - CPU
+* [top](#top-top) - <kbd>CPU</kbd> <kbd>DRAM</kbd>
 * [netstat](#netstat-top) - <kbd>Sockets</kbd> <kbd>TCP\UDP</kbd> <kbd>IP</kbd> <kbd>Ethernet</kbd>
 * [ip](#ip-top) - <kbd>Ethernet</kbd>
-* [vmstat](#vmstat-top) - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
 * [iostat](#iostat-top) - <kbd>Block Device Interface</kbd> <kbd>I/O Controller</kbd>
 * [lsof](#lsof-top)
 * [ps](#ps-top)
-* [free](#free-top)
+* [free](#free-top) - <kbd>Virtual Memory</kbd>
+* [vmstat](#vmstat-top) - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
+* [dstat](#dstat-top) - <kbd>CPU</kbd> <kbd>Virtual Memory</kbd> <kbd>Disk</kbd> <kbd>Port</kbd>
 * pidstat - CPU
 * mpstat - CPU
-* dstat - CPU
 * perf - CPU
 * tcpdump - Ethernet
 * nicstat - Ethernet
@@ -28,6 +50,7 @@
 * dtrace - Port
 * dastat - Disk
 * dtrace - Disk
+* perl
 * ipconfig
 * slabtop
 * nicstat
@@ -126,7 +149,9 @@ vda                 0.00         0.54            0.04    4.14     0.82      72.3
 
 
 
-## ps - report a snapshot of the current processes
+## ps [[Top]](#目录)
+
+> report a snapshot of the current processes
 
 * <kbd>ps [选项]</kbd>
 * [选项]
