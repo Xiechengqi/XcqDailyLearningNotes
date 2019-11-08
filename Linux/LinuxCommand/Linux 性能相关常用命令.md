@@ -37,9 +37,9 @@
 * [lsof](#lsof-top)
 * [ps](#ps-top)
 * [free](#free-top) - <kbd>Virtual Memory</kbd>
+* [pidstat](#pidstat-top) - <kbd>CPU</kbd>
 * [vmstat](#vmstat-top) - <kbd>System Call InterFace</kbd> <kbd>Scheduler</kbd> <kbd> Virtual Memory</kbd>
 * [dstat](#dstat-top) - <kbd>CPU</kbd> <kbd>Virtual Memory</kbd> <kbd>Disk</kbd> <kbd>Port</kbd>
-* pidstat - CPU
 * mpstat - CPU
 * perf - CPU
 * tcpdump - Ethernet
@@ -55,6 +55,131 @@
 * slabtop
 * nicstat
 
+## vmstat [[Top]](#目录)
+
+> Virtual Meomory Statistics, Report virtual memory statistics
+
+* **对操作系统的虚拟内存、进程、CPU活动进行监控，低开销的系统性能观察方式，不足之处是无法对某个进程进行深入分析**
+
+
+### 使用技巧
+
+* vmstat 本身就是低开销工具，在非常高负荷的服务器上，你需要查看并监控系统的健康情况，在控制窗口还是能够使用 vmstat 输出结果
+
+
+## pidstat [[Top]](#目录)
+
+> Report statistics for Linux tasks
+
+* **监控全部或指定进程的 cpu、内存、线程、设备 IO 等系统资源的占用情况**
+* <kbd>pidstat [选项] [时间] [次数]</kbd>
+* [选项]
+  * <kbd>-u</kbd> - 默认的参数，显示各个进程的 CPU 使用统计
+  * <kbd>-r</kbd> - 显示各个进程的内存使用统计
+  * <kbd>-d</kbd> - 显示各个进程的 IO 使用情况
+  * <kbd>-p <pid></kbd> - 指定进程号
+  * <kbd>-w</kbd> - 显示每个进程的上下文切换情况
+  * <kbd>-t</kbd> - 显示选择任务的线程的统计信息外的额外信息
+ 
+ ### 常用命令
+ 
+ ``` shell
+ pidstat                                              # 显示所有进程的 CPU 使用率
+ pidstat -r                                          # 输出进程内存使用情况统计
+ pidstat -d -p 1 1 5                         # 每隔一秒，一共输出 5 次进程 ID 为 1 的 IO 统计信息
+ pidstat -t -p 1                                # 显示选择任务 ( pid =1 )的线程的统计信息外的额外信息
+```
+
+### 使用技巧
+
+* pidstat 首次运行时显示自系统启动开始的各项统计信息，之后运行 pidstat 将显示自上次运行该命令以后的统计信息。用户可以通过指定统计的次数和时间来获得所需的统计信息
+* pidstat 是 sysstat 软件套件的一部分，sysstat 包含很多监控 linux 系统状态的工具，它能够从大多数 linux 发行版的软件源中获得
+* 安装：`sudo apt install sysstat` 或 `yum install sysstat`
+ 
+ 
+ ### 命令输出详解
+ 
+ <kbd>**pidstat**</kbd>
+ 
+ ``` shell
+Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
+
+08:41:58 CST   UID       PID    %usr   %system  %guest   %wait    %CPU   CPU  Command
+08:41:58 CST     0             1        0.05        0.17          0.00        0.03        0.22        7        systemd
+08:41:58 CST     0             7        0.00        0.00          0.00        0.00        0.00        0        ksoftirqd/0
+08:41:58 CST     0             8        0.03        0.29          0.00        0.06        0.32        3        rcu_sched
+08:41:58 CST     0            16       0.00       0.00           0.00        0.00        0.00        1        ksoftirqd/1
+08:41:58 CST     0            22       0.00       0.00           0.00        0.00        0.00        2        ksoftirqd/2
+08:41:58 CST     0            28       0.00       0.00           0.00        0.01        0.00        3        ksoftirqd/3
+08:41:58 CST     0            34       0.00       0.00           0.00        0.00        0.00        4        ksoftirqd/4
+```
+
+* `UID` - 用户 ID
+* `PID` - 进程 ID
+* `%usr` - 进程在用户空间占用 CPU 的百分比
+* `%system` - 进程在内核空间占用 CPU 的百分比
+* `%guest` - 任务花费在虚拟机上的 CPU 使用率（ 运行在虚拟处理器 ）
+* `%CPU` - 任务总的 CPU 使用率
+* `CPU` - 正在运行这个任务的处理器编号
+* `Command` - 这个任务的命令名称
+
+<kbd>**pidstat -r**</kbd>
+
+``` shell
+Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
+
+08:55:44 CST   UID       PID  minflt/s  majflt/s     VSZ       RSS    %MEM        Command
+08:55:44 CST     0             1      8.72          0.04       225880    9476    0.12              systemd
+08:55:44 CST     0           299   5.12          0.17       174836   46424   0.58        systemd-journal
+```
+
+* `minflt/s` - 从内存中加载数据时每秒出现的次要错误的数目，这些不要求从磁盘载入内存页面
+* `majflt/s` - 从内存中加载数据时每秒出现的主要错误的数目，这些要求从磁盘载入内存页面
+* `VSZ` - 虚拟地址大小，虚拟内存的使用 KB
+* `RSS` - 长期内存使用，任务的不可交换物理内存的使用量 KB
+ * `%MEM` - 进程使用的物理内存百分比，`top`命令也会输出该字段
+* `Command` - task 命令名
+
+<kbd>**pidstat -d**</kbd>
+
+``` shelll
+Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
+
+09:01:44 CST   UID       PID     kB_rd/s   kB_wr/s   kB_ccwr/s    iodelay      Command
+09:01:44 CST     0             1        -1.00          -1.00             -1.00            713             systemd
+09:01:44 CST     0            61       -1.00          -1.00             -1.00              8                kworker/2:1
+09:01:44 CST     0           219      -1.00          -1.00             -1.00            228             kworker/u16:3
+```
+
+* `kB_rd/s` - 进程每秒从磁盘读取的数据量( kB )
+* `kB_wr/s` - 进程每秒向磁盘写入的数据量(kB )
+* `kB_ccwr/s` - 任务写入磁盘被取消的速率（ KB ）( 当任务截断脏的 pagecache 的时候会发生  )
+
+<kbd>**pidstat -t**</kbd>
+
+``` shell
+Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
+
+09:13:48 CST   UID      TGID       TID    %usr   %system  %guest   %wait    %CPU   CPU  Command
+09:13:48 CST     0             1             -        0.03         0.12          0.00          0.04          0.15       4      systemd
+09:13:48 CST     0             -             1        0.03         0.12          0.00          0.04          0.15       4      |__systemd
+09:13:48 CST     0             2             -        0.00         0.00          0.00          0.00          0.00       7      kthreadd
+```
+
+* `TGID` - 主线程的标识
+* `TID` - 线程 ID
+
+<kbd>**pidstat -w**</kbd>
+
+``` shell
+Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
+
+09:17:57 CST   UID       PID   cswch/s nvcswch/s      Command
+09:17:57 CST     0             1     29.38         0.13                  systemd
+09:17:57 CST     0             2      0.09          0.00                  kthreadd
+```
+* `Cswch/s` - 每秒主动任务上下文切换数量
+* `Nvcswch/s` - 每秒被动任务上下文切换数量
 
 ## iostat [[Top]](#目录)
 
