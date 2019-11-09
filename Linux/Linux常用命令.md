@@ -1,5 +1,10 @@
 # 记录平时常用易忘的 Linux 命令
 ## 目录
+
+* [系统信息](#系统信息-top)<br/>
+* [硬件信息](#硬件信息-top)<br/>
+* [性能分析](./LinuxCommand/Linux%20性能相关常用命令.md)<br/>
+* [日志管理](#日志管理-top)<br/>
 * [wget](#wget---world-wide-web-get-top)<br/>
 * [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
 * [sed]()<br/>
@@ -12,9 +17,68 @@
 * []()<br/>
 * []()<br/>
 * []()<br/>
-* []()<br/>
-* []()<br/>
-* []()<br/>
+
+# 系统信息 [[Top]](#目录)
+
+``` shell
+uname -a                          # 查看 Linux 内核版本信息
+
+cat /proc/version           # 查看内核版本
+
+cat /etc/issue                   # 查看系统版本
+
+lsb_release -a                   # 查看系统版本，可以带各种参数, -a ALL
+
+locale -a                              # 列出所有语系
+
+locale                                   # 当前环境变量中所有编码
+
+hwclock                              # 查看时间
+
+who                                     # 显示已登录用户
+
+w                                          # 显示已登录用户并显示它们正在执行任务
+
+whoami                         # 查看当前用户名
+
+logname                         # 查看初始登录用户名
+
+uptime                                # 查看服务器启动时间
+
+sar -n DEV 1 10                  # 查看网卡网速流量
+
+dmesg                                # 显示开机信息
+
+lsmod                                # 查看内核模块
+```
+## 硬件信息 [[Top]](#目录)
+
+``` shell
+lscpu# 查看 CPU 信息
+more /proc/cpuinfo# 查看 CPU 信息
+cat /proc/cpuinfo | grep name | cut -f2 -d: | uniq -c # 查看 CPU 型号和逻辑核心数
+getconf LONG_BIT # CPU 运行的位数
+cat /proc/cpuinfo | grep 'physical id' | sort | uniq -c # 物理 CPU 个数
+cat /proc/cpuinfo | grep flags | grep 'lm' | wc -l # 结果大于 0 则支持 64 位
+more /proc/meminfo # 查看内存信息
+dmidecode # 查看全面硬件信息
+dmidecode | grep "Product Name" # 查看服务器型号
+dmidecode | grep -P -A5 "Memory\s+Device" | grep Size | grep -v Range # 查看内存插槽
+cat /proc/mdstat # 查看软 raid 信息
+cat /proc/scsi/scsi # 查看 Dell 硬 raid 信息 ( IBM、HP 需要官方检测工具 )
+lspci # 查看硬件信息
+lspci | grep RAID # 查看是否支持 RAID
+lspci -vvv | grep Ethernet # 查看网卡型号
+lspci -vvv | grep Kernel | grep driver # 查看驱动模块
+modinfo tg2 # 查看驱动版本 ( 驱动模块 )
+ethtool -i <网卡名> # 查看网卡驱动版本，先用 ip -a 查看网卡名
+```
+
+## 日志管理 [[Top]](#目录)
+
+``` shell
+
+```
 
 ## sed 
 
@@ -41,7 +105,7 @@ wget -b URL     //查看下载进度命令：tail -f wget-log
 wget --spider URL
 
 // 设定下载带宽上线，实现限速下载
-wget --limit-rate 数字k(千字节)/m(兆字节) URL
+wget --limit-rate 数字k(千字节)/m(兆字节) URL                         
 
 // 访问需认证的页面
 wget --user username -password password URL    //指定–user 和–password参数
