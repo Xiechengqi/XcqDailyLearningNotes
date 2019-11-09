@@ -2,15 +2,31 @@
 ## 目录
 * [wget](#wget---world-wide-web-get-top)<br/>
 * [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
+* [sed]()<br/>
+* [awk]()<br/>
+* [grep]()<br/>
+* [tr]()<br/>
+* [wc]()<br/>
 * []()<br/>
 * []()<br/>
 * []()<br/>
 * []()<br/>
+* []()<br/>
+* []()<br/>
+* []()<br/>
+* []()<br/>
+
+## sed 
+
+* 文本筛选和格式转换的流式编辑器
+* <kbd>**sed [选项] ... {命令或脚本} [输入文件] ...**</kbd>
+
 
 ## [wget] - World Wide Web Get [[Top]](#目录)
 
-格式：wget [ ]  [URL地址]
-### 常用命令[[详细]](./LinuxCommand/wget.txt)
+<kbd>**wget [ ]  [URL地址]**</kbd>
+
+### 常用命令
 ``` shell
 // 支持断点续传
 wget -c URL
