@@ -17,13 +17,17 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 
 * <kbd>**git config**</kbd>
 * <kbd>**git init**</kbd> - 初始化一个 git 仓库
+
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
 * <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
  * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
 * <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
 * <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )
 * <kbd>**git commit -m \<message\>**</kbd> - 提交 ( commit ) 暂存区到本地仓库，message 是本次提交说明
-* <kbd>**git status**</kbd>
+ 
+* <kbd>**git status**</kbd> - 查看工作区和暂存区文件修改状态
+* <kbd>**git status -s**</kbd> - `git status` 输出精简版
+ 
 * <kbd>**git log**</kbd>  - 查看本地仓库 commit 记录
 * <kbd>**git log --pretty=oneline**</kbd>  - 查看本地仓库 commit 记录及对应 commit ID，以单行形式展示
 * <kbd>**git reflog**</kbd> - 可以查看所有分支对当前仓库的操作记录 ( commit / reset / checkout / merge / etc ) 以及操作的 commit ID ( 方便回退到某个操作时版本状态 )
@@ -31,30 +35,31 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
  
 * <kbd>**git checkout -- \<file\>**</kbd> - **工作区撤销 file 修改**，工作区的 file 回退到最近一次 `git commit` 或 `git add` 时的状态
 * <kbd>**git reset HEAD \<file\>**</kbd> -  **暂存区撤销 file 修改**，把暂存区内关于 file 的修改回退到工作区
-* <kbd>**git reset --hard HEAD^**</kbd> - 本地仓库回退到上一次 
+* <kbd>**git reset --hard HEAD^**</kbd> - 本地仓库回退到上一次 commit 版本
+* <kbd>**git reset --hard HEAD~5**</kbd> - 本地仓库回退到 5 次 commit 前版本
+* <kbd>**git reset --hard \<commit_ID\>**</kbd> - 本地仓库跳到 commit_ID 对应的 commit 版本
  
+
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
 * <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
  * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
 * <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
+* <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked )
 
-* <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )mit 版本
-* <kbd>**git reset --hard HEAD~5**</kbd> - 本地仓库回退到 5 次 commit 前版本
-* <kbd>**git reset --hard \<commit_ID\>**</kbd> - 本地仓库跳到 commit_ID 对应的 commit 版本
- 
 * <kbd>**git diff file**</kbd> - 查看 file **工作区**和**暂存区**里的区别
 * <kbd>**git diff HEAD -- file**</kbd> - 查看 file **工作区**和**本地仓库**里的区别
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
+
 * <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 reponame git 仓库关联远程 github 上的 reponame 仓库
 * <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
 * <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
-* <kbd>**git branch**</kbd> - 查看显示分支和当前所在分支
-* <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支
+* <kbd>**git branch**</kbd> - 显示所有分支和标记当前所在分支
+* <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支 ( 在 branch 分支上是删除不了本分支的，需要先切换到其他分支 )
 * <kbd>**git checkout <branch>**</kbd> - 切换到 branch 分支
 * <kbd>**git checkout -b <branch>**</kbd> - 创建并切换到 branch 分支 
 * <kbd>**git merge \<branch\>**</kbd> - 合并 branch 分支到当前分支
-* <kbd>****</kbd> - 
-* <kbd>****</kbd> - 
+* <kbd>**git switch -c \<branch\>**</kbd> - 切换到 branch 分支，最新版切换分支方式
+* <kbd>**git switch master**</kbd> - 切换到本地仓库的 master 主分支
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
