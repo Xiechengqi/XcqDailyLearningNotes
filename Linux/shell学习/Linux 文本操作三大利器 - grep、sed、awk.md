@@ -58,9 +58,9 @@
 >   * eg: `sed -n -e '2,3 s/old/new/g' -e '1,$ p' inputfile`
 
 * 显示匹配 string 的行
-  * `sed -n '/string/p' filename
+  * `sed -n '/string/p' filename`
 * 删除匹配 string 的行
-  * `sed -n '/string/d' filename
+  * `sed -n '/string/d' filename`
 * 用 new 字符串替换 string 字符串
   * `sed '[位置参数] s/string/new/[替换标志]'`
   * [替换标志] - 标志可以一起使用，比如 `2p` 就是替换每行第 2 个匹配的字符串，并打印修改过的行
