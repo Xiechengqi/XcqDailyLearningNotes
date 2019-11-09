@@ -16,18 +16,43 @@ Git本地仓库包含代码库还有历史库，在本地的环境开发就可�
 Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件
 
 * <kbd>**git config**</kbd>
-* <kbd>**git init**</kbd>
-* <kbd>**git add file**</kbd>
-* <kbd>**git commit -m message**</kbd>
+* <kbd>**git init**</kbd> - 初始化一个 git 仓库
+* <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
+* <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
+ * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
+* <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
+* <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )
+* <kbd>**git commit -m \<message\>**</kbd> - 提交 ( commit ) 暂存区到本地仓库，message 是本次提交说明
 * <kbd>**git status**</kbd>
-* <kbd>**git log**</kbd>  - 查看当前 git 仓库 commit 日志
+* <kbd>**git log**</kbd>  - 查看本地仓库 commit 记录
+* <kbd>**git log --pretty=oneline**</kbd>  - 查看本地仓库 commit 记录及对应 commit ID，以单行形式展示
+* <kbd>**git reflog**</kbd> - 可以查看所有分支对当前仓库的操作记录 ( commit / reset / checkout / merge / etc ) 以及操作的 commit ID ( 方便回退到某个操作时版本状态 )
 * <kbd>**git ls-files**</kbd> - 查看暂存区文件
-* <kbd>**git checkout -- file**</kbd> - **工作区 file 修改撤销**，工作区的 file 回退到最近一次 `git commit` 或 `git add` 时的状态
-* <kbd>****</kbd> -  **暂存区 file 修改撤销**，把暂存区内关于 file 的修改回退到工作区
+ 
+* <kbd>**git checkout -- \<file\>**</kbd> - **工作区撤销 file 修改**，工作区的 file 回退到最近一次 `git commit` 或 `git add` 时的状态
+* <kbd>**git reset HEAD \<file\>**</kbd> -  **暂存区撤销 file 修改**，把暂存区内关于 file 的修改回退到工作区
+* <kbd>**git reset --hard HEAD^**</kbd> - 本地仓库回退到上一次 
+ 
+* <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
+* <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
+ * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
+* <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
+
+* <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )mit 版本
+* <kbd>**git reset --hard HEAD~5**</kbd> - 本地仓库回退到 5 次 commit 前版本
+* <kbd>**git reset --hard \<commit_ID\>**</kbd> - 本地仓库跳到 commit_ID 对应的 commit 版本
+ 
 * <kbd>**git diff file**</kbd> - 查看 file **工作区**和**暂存区**里的区别
 * <kbd>**git diff HEAD -- file**</kbd> - 查看 file **工作区**和**本地仓库**里的区别
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
-
+* <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 reponame git 仓库关联远程 github 上的 reponame 仓库
+* <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
+* <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
+* <kbd>**git branch**</kbd> - 查看显示分支和当前所在分支
+* <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支
+* <kbd>**git checkout <branch>**</kbd> - 切换到 branch 分支
+* <kbd>**git checkout -b <branch>**</kbd> - 创建并切换到 branch 分支 
+* <kbd>**git merge \<branch\>**</kbd> - 合并 branch 分支到当前分支
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
@@ -35,6 +60,8 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
+* <kbd>****</kbd> - 
+ 
 
 
 Git跟踪并管理的是修改，而非文件
@@ -83,7 +110,7 @@ b61f11035eff9ca39acd7a8d98356b3060c5997d delete again README.md;
 9d0e11c192851639ccfba51436af852e6fd5a029 create README.md
 
 # 使用 HEAD 回滚一次
-$ git reset HEAD^
+$ git reset --hard HEAD^
 $ git log --pretty=oneline
 b61f11035eff9ca39acd7a8d98356b3060c5997d delete again README.md;
 0e41957b5b5be1be7cabcffd09de3bf8ae297e60 modify README.md
@@ -91,7 +118,7 @@ b61f11035eff9ca39acd7a8d98356b3060c5997d delete again README.md;
 9d0e11c192851639ccfba51436af852e6fd5a029 create README.md
 
 # 使用 HEAD 回滚两次
-git reset HEAD~2
+git reset --hard HEAD~2
 重置后撤出暂存区的变更：
 D	README.md
 $ git log --pretty=oneline
@@ -99,7 +126,7 @@ $ git log --pretty=oneline
 9d0e11c192851639ccfba51436af852e6fd5a029 create README.md
 
 # 使用 commid ID 回到“未来”版本
-$ git reset 14ab
+$ git reset --hard 14ab
 $ git log --pretty=oneline
 14ab3268f5bda2287d04cd713e9df978b65bf381 create README
 b61f11035eff9ca39acd7a8d98356b3060c5997d delete again README.md;
