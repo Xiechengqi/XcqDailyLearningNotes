@@ -13,9 +13,9 @@
 * PXE 客户端会调用网际协议 ( IP )、用户数据报协议 ( UDP )、动态主机设定协议 ( DHCP )、小型文件传输协议 ( TFTP ) 等网络协议；
 * PXE客户端 ( client ) 这个术语是指机器在 PXE 启动过程中的角色。一个 PXE客户端可以是一台服务器、笔记本电脑或者其他装有 PXE 启动代码的机器（我们电脑的网卡）
 
-![pxe0](/home/xcq/桌面/pxe0.jpg)
+![pxe0](../images/pxe0.jpg)
 
-![pxe1](/home/xcq/桌面/pxe1.jpg)
+![pxe1](../images/pxe1.jpg)
 
 
 
