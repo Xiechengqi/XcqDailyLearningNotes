@@ -61,6 +61,10 @@
   * `sed -n '/string/p' filename`
 * 删除匹配 string 的行
   * `sed -n '/string/d' filename`
+* 在匹配 string 的行后插入字符串 new
+  * `sed -n '/string/a new' filename`
+* 在匹配 string 的行前插入字符创 new
+  * `sed -n '/string/i new' filename`
 * 用 new 字符串替换 string 字符串
   * `sed '[位置参数] s/string/new/[替换标志]'`
   * [替换标志] - 标志可以一起使用，比如 `2p` 就是替换每行第 2 个匹配的字符串，并打印修改过的行
@@ -76,6 +80,21 @@
        * eg: `ps aux | sed -n -e '1,10 s/0/1/' -e '1,10 p'`
 * 对匹配 string 行执行自定义命令
   * `sed -n '[位置参数] s/string/{命令}' filename`
+  
+### 实战命令
+
+``` shell
+# 删除空行并输出
+$ sed '/^$/d' file 
+或
+$ sed -n '/./p' file
+# 删除首行空格
+$ sed 's/^[[ :space: ]]*//g' file
+# 在特定字符串后添换行
+$ sed 's/new/&\n/g' file
+# 在特定字符串前添加空行
+$ sed 's/new/\n&/g' file
+```
  
 # awk
 
