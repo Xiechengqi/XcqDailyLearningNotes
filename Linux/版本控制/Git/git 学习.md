@@ -16,23 +16,30 @@ Git本地仓库包含代码库还有历史库，在本地的环境开发就可�
 Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件
 
 * <kbd>**git config**</kbd>
+* <kbd>**git config -l**</kbd> - `git config --list` ，显示 system、global、local 配置
+* <kbd>**git config --local --list**</kbd> - 显示当前仓库配置
+* <kbd>**git config --global --list**</kbd> - 显示用户配置
+* <kbd>**git config --system --list**</kbd> - 显示系统配置
+* <kbd>**git config**</kbd> - 当前仓库配置
+* <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置
+* <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
+* <kbd>**git config http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
+* <kbd>git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
+* <kbd>git config --unset http.https://github.com.proxy</kbd> - 取消 github git 代理
 * <kbd>**git init**</kbd> - 初始化一个 git 仓库
-
+* <kbd>**git init**</kbd> - 初始化一个 git 仓库
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
 * <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
  * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
 * <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
 * <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )
 * <kbd>**git commit -m \<message\>**</kbd> - 提交 ( commit ) 暂存区到本地仓库，message 是本次提交说明
-
 * <kbd>**git status**</kbd> - 查看工作区和暂存区文件修改状态
 * <kbd>**git status -s**</kbd> - `git status` 输出精简版
-
 * <kbd>**git log**</kbd>  - 查看本地仓库 commit 记录
 * <kbd>**git log --pretty=oneline**</kbd>  - 查看本地仓库 commit 记录及对应 commit ID，以单行形式展示
 * <kbd>**git reflog**</kbd> - 可以查看所有分支对当前仓库的操作记录 ( commit / reset / checkout / merge / etc ) 以及操作的 commit ID ( 方便回退到某个操作时版本状态 )
 * <kbd>**git ls-files**</kbd> - 查看暂存区文件
-
 * <kbd>**git checkout -- \<file\>**</kbd> - **工作区撤销 file 修改**，工作区的 file 回退到最近一次 `git commit` 或 `git add` 时的状态
 * <kbd>**git reset HEAD \<file\>**</kbd> -  **暂存区撤销 file 修改**，把暂存区内关于 file 的修改回退到工作区
 * <kbd>**git reset --hard HEAD^**</kbd> - 本地仓库回退到上一次 commit 版本
