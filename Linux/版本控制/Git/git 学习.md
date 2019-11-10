@@ -24,8 +24,8 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置
 * <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
 * <kbd>**git config http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
-* <kbd>git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
-* <kbd>git config --unset http.https://github.com.proxy</kbd> - 取消 github git 代理
+* <kbd>**git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
+* <kbd>**git config --unset http.https://github.com.proxy**</kbd> - 取消 github git 代理
 * <kbd>**git init**</kbd> - 初始化一个 git 仓库
 * <kbd>**git init**</kbd> - 初始化一个 git 仓库
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
