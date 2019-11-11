@@ -27,7 +27,7 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git config http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
 * <kbd>**git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
 * <kbd>**git config --unset http.https://github.com.proxy**</kbd> - 取消 github git 代理
-* <kbd>**git init**</kbd> - 初始化一个 git 仓库
+
 * <kbd>**git init**</kbd> - 初始化一个 git 仓库
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
 * <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
