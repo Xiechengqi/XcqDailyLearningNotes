@@ -20,8 +20,9 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git config --local --list**</kbd> - 显示当前仓库配置
 * <kbd>**git config --global --list**</kbd> - 显示用户配置
 * <kbd>**git config --system --list**</kbd> - 显示系统配置
-* <kbd>**git config**</kbd> - 当前仓库配置
-* <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置
+* <kbd>**git config**</kbd> - 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置。
+* <kbd>**./.git/config**</kbd> - 在 git 仓库执行，同 `git config`
+* <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置，会覆盖系统配置
 * <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
 * <kbd>**git config http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
 * <kbd>**git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
@@ -51,10 +52,12 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git diff file**</kbd> - 查看 file **工作区**和**暂存区**里的区别
 * <kbd>**git diff HEAD -- file**</kbd> - 查看 file **工作区**和**本地仓库**里的区别
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
-
 * <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 git 仓库关联 github 上的仓库
+* <kbd>**git remote -v**</kbd> - 查看当前远程仓库版本
 * <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
 * <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
+* <kbd>**git pull origin master**</kbd> - 拉取远程仓库 origin/master 分支合并到本地仓库当前分支
+* <kbd>**git pull origin dev**</kbd> - 拉取远程仓库 origin/dev 分支合并到本地仓库当前分支
 * <kbd>**git branch**</kbd> - 显示所有分支和标记当前所在分支
 * <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支 ( 在 branch 分支上是删除不了本分支的，需要先切换到其他分支 )
 * <kbd>**git checkout \<branch\>**</kbd> - 切换到 branch 分支
@@ -241,6 +244,45 @@ $ cat test
 你也好
 他也好
 ```
+
+
+
+### 2. 本地仓库需要合并与远程仓库的不同地方
+
+``` shell
+$ git fetch origin master:temp
+来自 github.com:Xiechengqi/wiki
+ * [新分支]          master     -> temp
+$ git diff temp    # 查看当前分支 master 和 temp 分支的不同
+diff --git a/index.md b/index.md
+deleted file mode 100644
+index c0cd5ef..0000000
+--- a/index.md
++++ /dev/null
+@@ -1,3 +0,0 @@
+-# 目录
+-
+-* [hello world](./hello.md)
+diff --git a/index.rst b/index.rst
+new file mode 100644
+index 0000000..42cee67
+--- /dev/null
++++ b/index.rst
+@@ -0,0 +1,20 @@
+
+$ git merge temp       # 合并 temp 到当前分支 master
+更新 7df7451..36ce930
+Fast-forward
+ index.md  |  3 +++
+ index.rst | 20 --------------------
+ 2 files changed, 3 insertions(+), 20 deletions(-)
+ create mode 100644 index.md
+ delete mode 100644 index.rst
+
+$ git brach -d temp       # 删除 temp 分支
+```
+
+
 
 ## 工作区、暂存区、本地仓库和远程仓库
 
