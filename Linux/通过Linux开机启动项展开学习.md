@@ -1,8 +1,17 @@
-# Linux 开机启动项详解
+# 通过 Linux 开机启动项学习
+
+## 目录
+* [相关文章](#【相关文章】-top)
+* [一、简述 Linux 开机启动流程](#一、简述 Linux 开机启动流程-top)
+
+## 【相关文章】[[Top]](#目录)
 
 > * [Linux 的启动流程 - 阮一峰](http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html)
+> * [Linux 守护进程的启动方法 - 阮一峰](http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html)
+> * [Systemd 入门教程：命令篇 - 阮一峰](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
+> * [Systemd 入门教程：实战篇 - 阮一峰](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html)
 
-## 一、简述 Linux 开机启动流程
+## 一、简述 Linux 开机启动流程 [[Top]](#目录)
 
 <div align=center>
 <img src="/Linux/images/computer_start.png"><br/>
