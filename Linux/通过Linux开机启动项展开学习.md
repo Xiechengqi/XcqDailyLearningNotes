@@ -1,11 +1,15 @@
 # 通过 Linux 开机启动项学习
 
 ## 目录
-* [相关文章](#【相关文章】-top)
-* [一、简述 Linux 开机启动流程](#一、简述 Linux 开机启动流程-top)
+* [**相关文章**](#相关文章top)
+* [**一、简述 Linux 开机启动流程**](#一简述-linux-开机启动流程-top)
+* [**二、开机启动相关文件**](#二开机启动相关文件-top)
+* [**三、Linux 管理守护进程两种方式**](#三Linux-管理守护进程两种方式-top)
+* [**四、设置开机启动方法**](#四设置开机启动方法-top)
 
 ## 【相关文章】[[Top]](#目录)
 
+> * [ - 阮一峰]()
 > * [Linux 的启动流程 - 阮一峰](http://www.ruanyifeng.com/blog/2013/08/linux_boot_process.html)
 > * [Linux 守护进程的启动方法 - 阮一峰](http://www.ruanyifeng.com/blog/2016/02/linux-daemon.html)
 > * [Systemd 入门教程：命令篇 - 阮一峰](http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-commands.html)
@@ -61,7 +65,7 @@ Linux 操作系统的启动流程
 
 * 用户进入操作系统以后，常常会再手动开启一个 shell。这个 shell 就叫做 non-login shell，意思是它不同于登录时出现的那个shell，不读取`/etc/profile`和`.profile`等配置文件
 
-## 二、开机启动相关文件
+## 二、开机启动相关文件 [[Top]](#目录)
 
 ### `/etc/rc[0-6].d`目录
 
@@ -121,8 +125,41 @@ lrwxrwxrwx 1 root root 16 Oct  4 12:56 K01polipo -> ../init.d/polipo
 
 * 可见 `/etc/rcX.d/` 目录下的文件都是软链接到 `/etc/init.d` 下的守护进程 ( daemon ) 启动文件
 
+## 三、Linux 管理守护进程两种方式 [[Top]](#目录)
 
-## 三、设置开机启动方法
+### 守护进程
+
+* 守护进程 ( daemon ) 就是一直在后台运行的进程
+* 许多程序需要开机启动，它们在 Windows 叫做 "服务"（service），在Linux就叫做 "守护进程"（daemon）
+
+**命名规则**
+
+* 通常在服务的名字后面加上 `d`，即表示守护进程，比如 sshd、teamviewerd、etc
+
+### 守护进程两种管理方式 
+
+<kbd>**service**</kbd>
+
+<kbd>**service sshd start**</kbd> ---> <kbd>**/etc/init.d/sshd**</kbd> ---> <kbd>**/usr/sbin/sshd 参数1 参数2 ...**</kbd> ---> <kbd>**成功启动 ssh**</kbd>
+
+* <kbd>相关文件</kbd> - `/etc/init.d`、`/usr/sbin/service`、etc
+* <kbd>which service</kbd>   - `/usr/sbin/service`
+* <kbd>file service</kbd> - `POSIX shell script`
+* <kbd>file /etc/init.d/ssh</kbd> - `POSIX shell script` - `/etc/init.d` 目录下全是守护进程的执行脚本
+* <kbd>cat /usr/sbin/service</kbd>  - `A convenient wrapper for the /etc/init.d init scripts`
+* 所以，`service` 其实就是一个在 `/etc/init.d` 目录下查找 `$1` 并执行的脚本
+* 所以，`service mysql start` 其实就是 `/etc/init.d/mysql start`
+* `/etc/init.d` 目录存在是为了封装直接使用命令操控守护进程传入各种参数等操作过程，通过查看该目录下脚本，简化言之就是通过调用 `/usr/bin`、`/usr/sbin/`等目录下守护进程对应可执行文件并传以各种参数，达到只需要 `/etc/init.d/xxx start|stop|reload|....` 就可以操控守护进程的目的
+
+<kbd>**systemctl**</kbd>
+
+* <kbd>相关文件</kbd> - `/etc/systemd/system`、`/lib/systemd/system`(ubuntu)、`/usr/lib/systemd/system`(RedHat)、etc
+* 可使用 `man systemd.unit` 查看各个文件解释
+* systemctl 是 Linux 系统最新初始化系统的守护进程 **systemd**  对应的进程管理命令
+* 对于那些支持 systemd 的软件，安装的时候，会自动在 `/usr/lib/systemd/system` 目录添加一个配置文件
+* systemctl 兼容 service 
+
+## 四、设置开机启动方法 [[Top]](#目录)
 
 ### 1. 编辑`/etc/rc.local`文件
 
