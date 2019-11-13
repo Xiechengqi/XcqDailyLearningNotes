@@ -1,39 +1,53 @@
-> 之前二面被 git 问题卡住了，主要还是自己太菜，再回头学习一边，不做笔记回答时只记得：git commit、git pull、git push，场面一度尴尬！
-
-# 分布式、集中式版本控制
-
-git：本地有与"中央仓库"一样的代码及历史记录的信息，一旦服务器有问题，那么找一个最新的本地代码同步上去后，之前所有的提交历史记录还可以看到；
-
-svn：所有人都将代码提交至“中央仓库”，一旦服务器有问题，就算找到一个最新的代码上去，也是只能以当前时间为节点作为新的项目去使用，之前所有的提交历史记录无法看到，对于处理历史遗留问题并不友好
-
-Git本地仓库包含代码库还有历史库，在本地的环境开发就可以记录历史 而SVN的历史库存在于中央仓库，每次对比与提交代码都必须连接到中央仓库才能进行
-
-这样的好处在于： 1、自己可以在脱机环境查看开发的版本历史 2、多人开发时如果充当中央仓库的Git仓库挂了，任何一个开发者的仓库都可以作为中央仓库进行服务
 
 
-所有的版本控制系统，其实只能跟踪文本文件的改动，比如TXT文件，网页，所有的程序代码等等，Git也不例外。版本控制系统可以告诉你每次的改动，比如在第5行加了一个单词“Linux”，在第8行删了一个单词“Windows”。而图片、视频这些二进制文件，虽然也能由版本控制系统管理，但没法跟踪文件的变化，只能把二进制文件每次改动串起来，也就是只知道图片从100KB改成了120KB，但到底改了啥，版本控制系统不知道，也没法知道
+# Git 学习笔记
 
-Microsoft的Word格式是二进制格式，因此，版本控制系统是没法跟踪Word文件的改动的，前面我们举的例子只是为了演示，如果要真正使用版本控制系统，就要以纯文本方式编写文件
 
-* <kbd>**git config**</kbd>
-* <kbd>**git config -l**</kbd> - `git config --list` ，显示 system、global、local 配置
+
+## 【参考】
+
+> * [常用 Git 命令清单](https://www.hi-linux.com/posts/60426.html)
+>
+> * []()
+>
+> * []()
+
+## 常用命令
+
+> * Workspace：工作区
+> * Index / Stage：暂存区
+> * Repository：仓库区（或本地仓库）
+> * Remote：远程仓库
+
+![](/home/xcq/桌面/codeLearn/git/github/XcqDailyLearningNotes/Linux/images/git_command.png)
+
+
+
+* <kbd>**git init**</kbd> - 初始化当前目录没 git 仓库
+* <kbd>**git init [RepName]**</kbd> - 新建一个目录 RepName，并将其初始化为 git 本地仓库
+* <kbd>**git clone [url]**</kbd> - 下载一个项目和它的整个代码历史
+
+* <kbd>**git config**</kbd>- 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置
+* <kbd>**./.git/config**</kbd> - 在 git 仓库目录下执行该命令，同 `git config`
+* <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置，会覆盖系统配置
+* <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
+
+* <kbd>**git config -l[--list]**</kbd> - 显示 system、global、local 配置
 * <kbd>**git config --local --list**</kbd> - 显示当前仓库配置
 * <kbd>**git config --global --list**</kbd> - 显示用户配置
 * <kbd>**git config --system --list**</kbd> - 显示系统配置
-* <kbd>**git config**</kbd> - 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置。
-* <kbd>**./.git/config**</kbd> - 在 git 仓库执行，同 `git config`
-* <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置，会覆盖系统配置
-* <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
-* <kbd>**git config http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
-* <kbd>**git config https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
+* <kbd>**git config [--global] user.name "[name]"**</kbd> - 设置提交代码时的用户名
+* <kbd>**git config [--global] user.email "[email]"**</kbd> - 设置提交代码时的用户邮箱
+* <kbd>**git config [--global] http.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理，执行 git 命令时只对 github 代理
+* <kbd>**git config [--global] https.https://github.com.proxy socks5://127.0.0.1:1080**</kbd> - 配置 git github socks5 代理 
 * <kbd>**git config --unset http.https://github.com.proxy**</kbd> - 取消 github git 代理
-
-* <kbd>**git init**</kbd> - 初始化一个 git 仓库
 * <kbd>**git add \<file\>**</kbd> - 工作区把 file 添加到暂存区
 * <kbd>**git add -u**</kbd> - 可以暂存 ( stage ) 工作区 modified、deleted 文件，但不能暂存 untracked 文件
  * <kbd>**git add --ignore-removal .**</kbd> - 可以暂存工作区 modified、untracked 文件，但不能暂存 deleted 文件
 * <kbd>**git add .**</kbd> - git 2.0+ 版本中，和 `git add -A` 功能一样，可以暂存工作区 modified、deleted、untracked 文件
 * <kbd>**git add -A**</kbd> - 暂存工作区所有文件变化 ( modified、deleted、untracked  )
+* <kbd>**git rm \<file\>**</kbd> - 同时删除工作区和暂存区 file
+* <kbd>**git mv \<file1\> \<file2\>**</kbd> - 在工作区和暂存区同时重命名 file1 为 file2
 * <kbd>**git commit -m \<message\>**</kbd> - 提交 ( commit ) 暂存区到本地仓库，message 是本次提交说明
 * <kbd>**git commit -a -m \<message\>**</kbd> - 会自动暂存 modified、deleted，但不会暂存 untracked 文件，然后 commit
 * <kbd>**git status**</kbd> - 查看工作区和暂存区文件修改状态
@@ -50,7 +64,8 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 
 
 * <kbd>**git diff file**</kbd> - 查看 file **工作区**和**暂存区**里的区别
-* <kbd>**git diff HEAD -- file**</kbd> - 查看 file **工作区**和**本地仓库**里的区别
+* <kbd>**git diff HEAD**</kbd> - 查看工作区与当前分支最新commit之间的差异
+* <kbd>**git diff HEAD -- file**</kbd> - 查看文件 file **工作区**和**当前本地仓库**之间的差异
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
 * <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 git 仓库关联 github 上的仓库
 * <kbd>**git remote -v**</kbd> - 查看当前远程仓库版本
@@ -61,10 +76,16 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git pull origin master**</kbd> - 拉取远程仓库 origin/master 分支合并到本地仓库当前分支
 * <kbd>**git pull origin dev**</kbd> - 拉取远程仓库 origin/dev 分支合并到本地仓库当前分支
 * <kbd>**git branch**</kbd> - 显示所有分支和用 `*` 标记当前所在分支
+* <kbd>**git branch -r**</kbd> - 列出所有远程分支
+* <kbd>**git branch -a**</kbd> - 列出所有本地分支和远程分支
+* <kbd>**git branch**</kbd>
 * <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支 ( 在 branch 分支上是删除不了本分支的，需要先切换到其他分支 )
-* <kbd>**git checkout \<branch\>**</kbd> - 切换到 branch 分支
-* <kbd>**git checkout -b \<branch\>**</kbd> - 创建并切换到 branch 分支 
+* <kbd>**git checkout \<branch\>**</kbd> - 切换到 branch 分支，并更新工作区
+* <kbd>**git checkout -**</kbd> - 切换到上一分支
+* <kbd>**git branch \<newbrach\>**</kbd> - 新建一个 newbranch 分支，但依旧停在当前分支
+* <kbd>**git checkout -b \<newbranch\>**</kbd> - 创建并切换到 newbranch 分支 
 * <kbd>**git merge \<branch\>**</kbd> - 合并 branch 分支到当前分支
+* <kbd>**git cherry-pick \<commit_ID\>**</kbd> - 选择一个commit，合并进当前分支
 * <kbd>**git switch -c \<branch\>**</kbd> - 切换到 branch 分支，最新版切换分支方式
 * <kbd>**git switch master**</kbd> - 切换到本地仓库的 master 主分支
 * <kbd>****</kbd> - 
@@ -76,7 +97,7 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 
 
 
-Git跟踪并管理的是修改，而非文件
+
 
 ## 查看变更内容 - <kbd>**git diff**</kbd>
 
