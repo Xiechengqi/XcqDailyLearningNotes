@@ -11,7 +11,7 @@ Linux Shell 学习时的小知识
 * [数值进制间相互转换](#数值进制间相互转换-top)
 * [等号两边不能有空格](#等号两边不能有空格-top)
 * [ $( )、\` \`、${ }、$(( ))、$[ ] 、[ ]、(( )) 和 [[ ]] 详解](#---------和---详解-top)
-* [用 cat 命令向文件写入](#用-cat-命令向文件写入-top)
+* [用 cat、echo 命令向文件写入](#用-cat-命令向文件写入-top)
 * [杀死一个进程](#杀死一个进程-top)
 * [删除空行](#删除空行-top)
 * [文件去重](#文件去重-top)
@@ -304,7 +304,7 @@ http://bbs.chinaunix.net/forum.php?mod=viewthread&tid=218853&page=7#pid1617953
 
 https://www.cnblogs.com/zejin2008/p/8412680.html
 
-## 用 cat 命令向文件写入 [[Top]](#目录)
+## 用 cat、echo 命令向文件写入 [[Top]](#目录)
 
  <div align=center>
   <img src="./images/cat_write.jpg"><br/>
@@ -314,7 +314,12 @@ https://www.cnblogs.com/zejin2008/p/8412680.html
 > * 文件已存在，则会先删除源文件内容，在写入新内容
 > * `EOF` 为开头结尾标记，可以换成任意字符串
 
+```shell
+echo 'hello
+hello
 
+world'>hello
+```
 
 ## 杀死一个进程 [[Top]](#目录)
 
@@ -326,7 +331,8 @@ https://www.cnblogs.com/zejin2008/p/8412680.html
 
 
 
-* <kbd>**kill [信号] [进程号]**</kbd>
+<kbd>**kill [信号] [进程号]**</kbd>
+
 * kill 给指定进程发送指定信号，默认发送 TERM 信号，这回杀死不能捕获该信号的进程，对于单纯 kill 杀不死的进程，可能需要使用 kill ( 9 ) 信号，因为该信号不能被任何进程捕获
 * 当我们杀掉父进程时，其下的子进程也会被杀死
 * `kill -9` 常用来杀死僵尸进程
@@ -398,5 +404,21 @@ Proto RefCnt Flags       Type       State         I-Node   路径
 unix  2      [ ]         数据报                25378    /var/spool/postfix/dev/log
 unix  2      [ ACC ]     流        LISTENING     38931    /tmp/.ICE-unix/3025
 unix  2      [ ACC ]     流        LISTENING     36700    public/pickup
+```
+
+
+
+## 文件以包含当前时间命名
+
+``` shell
+$ ls
+hello_log.txt
+$ mv hello_log.txt $(date +%Y%m%d-%H%M%S)_hello_log.txt
+$ ls
+20191113-205057_hello_log.txt
+$ tar cvf hello_log_$(date +%Y%m%d-%H%M%S).tar.gz 20191113-205057_hello_log.txt 
+20191113-205057_hello_log.txt
+$ ls
+20191113-205057_hello_log.txt  hello_log_20191113-205252.tar.gz
 ```
 
