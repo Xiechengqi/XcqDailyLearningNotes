@@ -18,12 +18,12 @@
 ## 一、简述 Linux 开机启动流程 [[Top]](#目录)
 
 <div align=center>
-<img src="/Linux/images/computer_start.png"><br/>
+<img src="./images/computer_start.png"><br/>
 这个过程不涉及操作系统，只与主板的板载程序有关
 </div>
 
 <div align=center>
-<img src="/Linux/images/os_start.png"><br/>
+<img src="./images/os_start.png"><br/>
 Linux 操作系统的启动流程
 </div>
 
@@ -57,6 +57,7 @@ Linux 操作系统的启动流程
   * （2）ssh 登录
   * （3）图形界面登录
   
+
 **第六步、进入 login shell**
 
 * 用户登录时打开的 shell，就叫做 login shell
@@ -101,8 +102,9 @@ K01cups-browsed    K01ipmievd  K01nginx       K01postfix   K01thermald          
   * <kbd>**nn**</kbd> - 取值 0 - 100，表示优先级，数字越大，优先级越低
   * <kbd>**script**</kbd> - 软链接指向的脚本的文件名
   
+
  <kbd>**ls -l /etc/rc0.d/**</kbd>
- 
+
 ``` shell
 总用量 0
 lrwxrwxrwx 1 root root 20 Mar 10  2018 K01alsa-utils -> ../init.d/alsa-utils
