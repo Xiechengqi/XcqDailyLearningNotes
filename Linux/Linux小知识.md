@@ -18,6 +18,7 @@
 * [永久修改 DNS](#永久修改-dns-top)
 * [Linux程序存放目录](#Linux程序存放目录-top)
 * [更换镜像源](#更换镜像源-top)
+* [诊断某文件无法修改](#诊断某文件无法修改-top)
 
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
@@ -53,11 +54,11 @@ No such file or directory
 <div align=center>
   <img src="./images/ld.so.conf文件.jpg"><br/>/etc/ld.so.conf 文件
  </div>
- 
+
  <div align=center>
   <img src="./images/ld.so.conf.d文件夹.jpg"><br/>/etc/ld.so.conf.d/文件夹
  </div>
- 
+
 ### 查看某个库是否安装
 ``` shell
 # 查看 libqt.so 是否安装
@@ -371,7 +372,7 @@ purge 关键字（而不是 remove ）将删除与要卸载的软件包关联的
     * 系统任务调度：系统需要定期执行的任务，比如重启、日志清理等，其配置文件是：`/etc/crontab`
     * 用户任务调度：某个用户需要定期执行的任务，用户可以使用`crontab`命令来配置自己的定时任务。所有用户配置的定时任务都存放在 `/var/spool/cron/crontabs/` 目录下，其文件名与用户名一致。如：root用户的所有定时任务就保存在 `/var/spool/cron/root` 文件中
  > `/var/spool/cron/crontabs`目录需要切换到 root 权限才能打开
- 
+
 ## crontab 文件详解
 
 ### `/etc/crontab`文件源代码
@@ -522,6 +523,14 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 阿里镜像源：https://opsx.alibaba.com/mirror?lang=zh-CN
 
 > * 对应镜像源后【帮助】，有对应修改详细介绍
+
+
+
+## 诊断某文件无法修改 [[Top]](#目录)
+
+1. 使用 `file filename` 查看文件格式，若不是文本文件，是无法编辑的
+2. 最可能是权限问题，`ls -l filename` 查看文件权限，若是，使用 `chmod` 或 `chown` 修改之
+3. `1 、2` 都不是的话，使用 `lsattr filename` 查看文件隐藏属性，若是，使用 `chattr` 修改之
 
 
 ## 一台服务器至少应该设置两个用户，一个是 root,另外一个是拥有 root 权限的普通用户（通过配置`/etc/sudoers`可以实现），这样就能够保证一个密码出错后还可以通过另外一个用户登录服务器重置密码

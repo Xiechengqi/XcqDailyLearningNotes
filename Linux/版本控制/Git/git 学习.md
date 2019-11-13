@@ -56,9 +56,11 @@ Microsoft的Word格式是二进制格式，因此，版本控制系统是没法�
 * <kbd>**git remote -v**</kbd> - 查看当前远程仓库版本
 * <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
 * <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
+* <kbd>**git fetch origin master:temp**</kbd> - 从远程的 origin 仓库的 master 分支下载到本地，并新建一个 temp 分支
+* <kbd>**git log -p master..origin/master**</kbd> - 查看本地 master 与远程 origin/master 的版本差异
 * <kbd>**git pull origin master**</kbd> - 拉取远程仓库 origin/master 分支合并到本地仓库当前分支
 * <kbd>**git pull origin dev**</kbd> - 拉取远程仓库 origin/dev 分支合并到本地仓库当前分支
-* <kbd>**git branch**</kbd> - 显示所有分支和标记当前所在分支
+* <kbd>**git branch**</kbd> - 显示所有分支和用 `*` 标记当前所在分支
 * <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支 ( 在 branch 分支上是删除不了本分支的，需要先切换到其他分支 )
 * <kbd>**git checkout \<branch\>**</kbd> - 切换到 branch 分支
 * <kbd>**git checkout -b \<branch\>**</kbd> - 创建并切换到 branch 分支 
@@ -247,7 +249,9 @@ $ cat test
 
 
 
-### 2. 本地仓库需要合并与远程仓库的不同地方
+### 2. 远程仓库分支和本地仓库分支合并
+
+* 如果远程仓库分支和本地仓库当前分支都修改了同一文件的同一位置（都修改了同一文件是可以的,），这就会导致 merge 失败，需要手动修改远程或本地其一
 
 ``` shell
 $ git fetch origin master:temp
