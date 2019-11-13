@@ -408,7 +408,7 @@ unix  2      [ ACC ]     流        LISTENING     36700    public/pickup
 
 
 
-## 文件以包含当前时间命名
+## 修改文件以包含当前时间命名
 
 ``` shell
 $ ls
