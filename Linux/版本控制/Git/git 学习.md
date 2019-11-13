@@ -8,9 +8,11 @@
 
 > * [常用 Git 命令清单](https://www.hi-linux.com/posts/60426.html)
 >
-> * []()
+> * [Git 简明指南](https://www.hi-linux.com/posts/3337.html)
 >
-> * []()
+> * [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
+> * [Github 帮助](https://help.github.com/cn)
+> * [Git 官方文档](https://book.git-scm.com/)
 
 ## 常用命令
 
@@ -72,7 +74,7 @@
 * <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
 * <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
 * <kbd>**git fetch origin master:temp**</kbd> - 从远程的 origin 仓库的 master 分支下载到本地，并新建一个 temp 分支
-* <kbd>**git log -p master..origin/master**</kbd> - 查看本地 master 与远程 origin/master 的版本差异
+* <kbd>**git pull**</kbd> - 合并远程仓库到当前本地仓库分支
 * <kbd>**git pull origin master**</kbd> - 拉取远程仓库 origin/master 分支合并到本地仓库当前分支
 * <kbd>**git pull origin dev**</kbd> - 拉取远程仓库 origin/dev 分支合并到本地仓库当前分支
 * <kbd>**git branch**</kbd> - 显示所有分支和用 `*` 标记当前所在分支
@@ -270,9 +272,13 @@ $ cat test
 
 
 
-### 2. 远程仓库分支和本地仓库分支合并
+### 2. 更新本地仓库至最新改动
 
-* 如果远程仓库分支和本地仓库当前分支都修改了同一文件的同一位置（都修改了同一文件是可以的,），这就会导致 merge 失败，需要手动修改远程或本地其一
+方法一、`git merge`
+
+* 如果远程仓库分支和本地仓库当前分支都修改了同一文件的同一位置（都修改了同一文件是可以的），这就会导致 merge 失败，需要手动修改远
+
+  程或本地其一
 
 ``` shell
 $ git fetch origin master:temp
@@ -305,6 +311,13 @@ Fast-forward
  delete mode 100644 index.rst
 
 $ git brach -d temp       # 删除 temp 分支
+```
+
+方法二、`git pull`
+
+``` shell
+# 在本地仓库执行 git pull，便自动更新你的本地仓库至最新改动
+$ git pull
 ```
 
 
