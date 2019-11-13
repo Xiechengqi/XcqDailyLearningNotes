@@ -21,6 +21,9 @@
 > * Repository：仓库区（或本地仓库）
 > * Remote：远程仓库
 
+* <kbd>**工作区**</kbd> -> <kbd>**git add**</kbd> - > <kbd>**暂存区**</kbd>  -> <kbd>**git commit**</kbd> -> <kbd>**本地仓库**</kbd> -> <kbd>**git push**</kbd> -> <kbd>**远程仓库**</kbd>
+* `git init` 时默认创建了一个 master 分支，后续 `git commit`就是往 master 上提交
+
 ![](/home/xcq/桌面/codeLearn/git/github/XcqDailyLearningNotes/Linux/images/git_command.png)
 
 
@@ -93,11 +96,6 @@
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
-* <kbd>****</kbd> - 
-* <kbd>****</kbd> - 
-* <kbd>****</kbd> - 
-
-
 
 
 
@@ -274,58 +272,53 @@ $ cat test
 
 ### 2. 更新本地仓库至最新改动
 
-方法一、`git merge`
-
-* 如果远程仓库分支和本地仓库当前分支都修改了同一文件的同一位置（都修改了同一文件是可以的），这就会导致 merge 失败，需要手动修改远
-
-  程或本地其一
-
-``` shell
-$ git fetch origin master:temp
-来自 github.com:Xiechengqi/wiki
- * [新分支]          master     -> temp
-$ git diff temp    # 查看当前分支 master 和 temp 分支的不同
-diff --git a/index.md b/index.md
-deleted file mode 100644
-index c0cd5ef..0000000
---- a/index.md
-+++ /dev/null
-@@ -1,3 +0,0 @@
--# 目录
--
--* [hello world](./hello.md)
-diff --git a/index.rst b/index.rst
-new file mode 100644
-index 0000000..42cee67
---- /dev/null
-+++ b/index.rst
-@@ -0,0 +1,20 @@
-
-$ git merge temp       # 合并 temp 到当前分支 master
-更新 7df7451..36ce930
-Fast-forward
- index.md  |  3 +++
- index.rst | 20 --------------------
- 2 files changed, 3 insertions(+), 20 deletions(-)
- create mode 100644 index.md
- delete mode 100644 index.rst
-
-$ git brach -d temp       # 删除 temp 分支
-```
-
-方法二、`git pull`
+**方法一、`git pull`**
 
 ``` shell
 # 在本地仓库执行 git pull，便自动更新你的本地仓库至最新改动
 $ git pull
 ```
 
+**方法二、`git merge`**
 
+* 如果远程仓库分支和本地仓库当前分支都修改了同一文件的同一位置（都修改了同一文件是可以的），这就会导致 merge 失败，需要手动修改远
 
-## 工作区、暂存区、本地仓库和远程仓库
+  程或本地其一
 
-* <kbd>**工作区**</kbd> -> <kbd>**git add**</kbd> - > <kbd>**暂存区**</kbd>  -> <kbd>**git commit**</kbd> -> <kbd>**本地仓库**</kbd> -> <kbd>**git push**</kbd> -> <kbd>**远程仓库**</kbd>
-* `git init` 时默认创建了一个 master 分支，后续 `git commit`就是往 master 上提交
+  ``` shell
+  $ git fetch origin master:temp
+  来自 github.com:Xiechengqi/wiki
+   * [新分支]          master     -> temp
+  $ git diff temp    # 查看当前分支 master 和 temp 分支的不同
+  diff --git a/index.md b/index.md
+  deleted file mode 100644
+  index c0cd5ef..0000000
+  --- a/index.md
+  +++ /dev/null
+  @@ -1,3 +0,0 @@
+  -# 目录
+  -
+  -* [hello world](./hello.md)
+  diff --git a/index.rst b/index.rst
+  new file mode 100644
+  index 0000000..42cee67
+  --- /dev/null
+  +++ b/index.rst
+  @@ -0,0 +1,20 @@
+  
+  $ git merge temp       # 合并 temp 到当前分支 master
+  更新 7df7451..36ce930
+  Fast-forward
+   index.md  |  3 +++
+   index.rst | 20 --------------------
+   2 files changed, 3 insertions(+), 20 deletions(-)
+   create mode 100644 index.md
+   delete mode 100644 index.rst
+  
+  $ git brach -d temp       # 删除 temp 分支
+  ```
+
+  
 
 
 

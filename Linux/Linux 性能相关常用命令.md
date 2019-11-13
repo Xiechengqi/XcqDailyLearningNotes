@@ -3,29 +3,27 @@
 > * 主要以Ubuntu 18.04 LTS 为例，命令在 Linux 不同操作系统可能略有差别
 > * [《BPF Performance Tools》](http://www.brendangregg.com/linuxperf.html)
 <div align=center>
-<img src="../images/AnalysisAndTools.png" /></br> Linux 性能分析工具
-</div>
-
-</br>
-
-<div align=center>
-<img src="../images/PerformanceObservabilityTools.png" /></br> Linux 性能观测工具
+<img src="./images/AnalysisAndTools.png" /></br> Linux 性能分析工具
 </div>
 
 <div align=center>
-<img src="../images/linux_benchmarking_tools.png" /></br> Linux 性能测评工具
+<img src="./images/PerformanceObservabilityTools.png" /></br> Linux 性能观测工具
 </div>
 
 <div align=center>
-<img src="../images/linux_observability_sar.png" /></br> Linux
+<img src="./images/linux_benchmarking_tools.png" /></br> Linux 性能测评工具
 </div>
 
 <div align=center>
-<img src="../images/perf-tools_2016.png" /></br> Linux
+<img src="./images/linux_observability_sar.png" /></br> Linux
 </div>
 
 <div align=center>
-<img src="../images/bcc_tracing_tools.png" /></br> Linux
+<img src="./images/perf-tools_2016.png" /></br> Linux
+</div>
+
+<div align=center>
+<img src="./images/bcc_tracing_tools.png" /></br> Linux
 </div>
 
 ## 目录
@@ -80,27 +78,27 @@
   * <kbd>-p <pid></kbd> - 指定进程号
   * <kbd>-w</kbd> - 显示每个进程的上下文切换情况
   * <kbd>-t</kbd> - 显示选择任务的线程的统计信息外的额外信息
- 
+
  ### 常用命令
- 
+
  ``` shell
  pidstat                                              # 显示所有进程的 CPU 使用率
  pidstat -r                                          # 输出进程内存使用情况统计
  pidstat -d -p 1 1 5                         # 每隔一秒，一共输出 5 次进程 ID 为 1 的 IO 统计信息
  pidstat -t -p 1                                # 显示选择任务 ( pid =1 )的线程的统计信息外的额外信息
-```
+ ```
 
 ### 使用技巧
 
 * pidstat 首次运行时显示自系统启动开始的各项统计信息，之后运行 pidstat 将显示自上次运行该命令以后的统计信息。用户可以通过指定统计的次数和时间来获得所需的统计信息
 * pidstat 是 sysstat 软件套件的一部分，sysstat 包含很多监控 linux 系统状态的工具，它能够从大多数 linux 发行版的软件源中获得
 * 安装：`sudo apt install sysstat` 或 `yum install sysstat`
- 
- 
+
+
  ### 命令输出详解
- 
+
  <kbd>**pidstat**</kbd>
- 
+
  ``` shell
 Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
 
@@ -112,7 +110,7 @@ Linux 4.15.0-66-generic (xcq) 	Friday, November 08, 2019 	_x86_64_	(8 CPU)
 08:41:58 CST     0            22       0.00       0.00           0.00        0.00        0.00        2        ksoftirqd/2
 08:41:58 CST     0            28       0.00       0.00           0.00        0.01        0.00        3        ksoftirqd/3
 08:41:58 CST     0            34       0.00       0.00           0.00        0.00        0.00        4        ksoftirqd/4
-```
+ ```
 
 * `UID` - 用户 ID
 * `PID` - 进程 ID
@@ -428,9 +426,9 @@ systemd      1                            root   mem     REG              8,2   
   # 统计连接某服务端口最多的 IP 地址
   netstat -nat | grep ":80" | awk '{print $5}' | awk -F: '{print $1}' | sort | uniq -c | sort -nr | head -20
 ```
-  
+
   ### 命令输出详解
-  
+
 <kbd>**netstat -a**</kbd>
 
 ``` shell
@@ -451,7 +449,7 @@ systemd      1                            root   mem     REG              8,2   
     unix  3      [ ]         STREAM     CONNECTED     11234    /run/systemd/journal/stdout
 . . . . 
 ```
-    
+
 * `Active Internet connections (servers and established)` - 称为有源 TCP 连接，包括 TCP 和 UDP 等的详细状态
 * `Active UNIX domain sockets (servers and established)` - 称为有源 Unix 域套接口（ 和网络套接字一样，但是只能用于本机通信，性能可以提高一倍 ）
 * 有源 TCP 连接字段详解：
@@ -508,7 +506,7 @@ Destination         Gateway                   Genmask         Flags   MSS  Windo
   * <kbd>-h</kbd> - 以人类友好的方式显示内存使用情况
   
 ### 命令输出详解
-  
+
 ``` shell
 free -h
                       total        used        free      shared  buff/cache   available
@@ -650,7 +648,7 @@ KiB Swap:  8275964 total,  8273784 free,     2180 used.  3538032 avail Mem
   * <kbd>-s，-stats，statistics</kbd> - 输出详细信息
   * <kbd>-h，-human，-human-readable</kbd> - 输出人类可读的统计信息和后缀
   * <kbd>-o，-oneline</kbd> - 将每条记录输出到一行，用 `\` 字符替换换行符
- 
+
 ### 常用命令
 
 ``` shell
@@ -724,7 +722,7 @@ ip address
        valid_lft 3378sec preferred_lft 3378sec
     inet6 fe80::1b3d:9f06:efac:3878/64 scope link noprefixroute 
        valid_lft forever preferred_lft forever
- ```
+```
 * 系统有三个接口：lo 、eth0 和 wlo1，lo 是环回接口，eth0 这个普通网络接口，wlo1 是 wifi 接口
   * <kbd> <BROADCAST,MULTICAST,UP,LOWER_UP></kbd> 
     * <kbd>BROADCAST</kbd> - 表示该接口支持广播
@@ -747,9 +745,9 @@ ip address
  * <kbd>scope link</kbd> - 仅在此设备上有效
  * <kbd>valid_lft forever</kbd> - IPv6 地址的有效使用期限
  * <kbd>preferred_lft forever</kbd> - IPv6 地址的首选生存期
- 
+
  <kbd>**ip route**</kbd>
- 
+
  ```shell
  ip route
  default via 192.168.152.1 dev wlo1 proto dhcp metric 600 
@@ -757,7 +755,7 @@ ip address
 172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
 192.168.152.0/21 dev wlo1 proto kernel scope link src 192.168.158.164 metric 600
  ```
- 
+
 * 第一条是默认的路由，我们可以根据我们的需要改动它
 * <kbd>metric 1002</kbd> - 跳跃计数，确定网关的优先级，默认 20，数值越小优先级越高
 * <kbd>proto kernel</kbd> - 该路由的协议，主要有 redirect，kernel，boot，static，ra 等，其中 kernel 指的是直接由核心判断自动设定
@@ -798,7 +796,7 @@ ip address
     0          0        0       0       0       0       
     TX errors: aborted  fifo   window heartbeat transns
                0        0       0       0       1  
-   ```
+```
 
 * <kbd>RX</kbd> - 表示接收
 * <kbd>TX</kbd> - 表示发送
