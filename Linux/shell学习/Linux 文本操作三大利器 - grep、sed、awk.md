@@ -8,6 +8,8 @@
 
 * grep - global search regular expression(RE) and print out the line - 全面搜索正则表达式并把行打印出来
 
+
+
 # sed
 
 * sed - stream editor - 流编辑器
@@ -95,6 +97,8 @@ $ sed 's/new/&\n/g' file
 # 在特定字符串前添加空行
 $ sed 's/new/\n&/g' file
 ```
+
+
 
 # awk
 
@@ -197,3 +201,9 @@ $ cat /etc/passwd | awk -F ':' '$1 > "q" {print $0}'
 # if else
 $ cat /etc/passwd | awk -F ':' '{if ($1 > "m") print $0; else print "---"}'
 ```
+
+
+
+## 参考
+
+* [awk 入门教程 - 阮一峰](http://www.ruanyifeng.com/blog/2018/11/awk.html?20191114101617#comment-last)
