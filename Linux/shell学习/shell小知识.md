@@ -384,10 +384,12 @@ cat file | sort | uniq
 ## 截取文件开头几行、末尾几行和中间几行 [[Top]](#目录)
 
 ``` shell
- # 截取前 5 行
+ # 截取前 5 行 - head、sed、awk
  head -5 filename
  # 或
  sed -n '1,5p' filename
+ # 或
+ awk 'NR < 5 {print $0}' filename
 # 截取最后 5 行
 tail -5 
 # 截取 5 - 10 行
@@ -408,7 +410,7 @@ unix  2      [ ACC ]     流        LISTENING     36700    public/pickup
 
 
 
-## 修改文件以包含当前时间命名
+## 修改文件以包含当前时间命名 [[Top]](#目录)
 
 ``` shell
 $ ls
