@@ -424,3 +424,17 @@ $ ls
 20191113-205057_hello_log.txt  hello_log_20191113-205252.tar.gz
 ```
 
+
+
+## 查看当前主机公网 IP [[Top]](#目录)
+
+``` shell
+# 只返回 ip
+$ curl ip.sb 
+$ curl www.pubyun.com/dyndns/getip
+$ curl members.3322.org/dyndns/getip
+
+# 返回中文解析，包括 IP、地址、运营商
+$ curl cip.cc
+```
+
