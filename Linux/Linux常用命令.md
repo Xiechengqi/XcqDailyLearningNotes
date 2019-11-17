@@ -5,6 +5,14 @@
 * [硬件信息](#硬件信息-top)<br/>
 * [性能分析](./LinuxCommand/Linux%20性能相关常用命令.md)<br/>
 * [日志管理](#日志管理-top)<br/>
+
+* [搜索命令]()
+  * [find]()
+  * [locate]()
+  * [whereis]()
+  * [which]()
+  * [grep]()
+
 * [wget](#wget---world-wide-web-get-top)<br/>
 * [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
 * [sed]()<br/>
@@ -80,10 +88,126 @@ ethtool -i <网卡名> # 查看网卡驱动版本，先用 ip -a 查看网卡名
 
 ```
 
-## sed 
 
-* 文本筛选和格式转换的流式编辑器
-* <kbd>**sed [选项] ... {命令或脚本} [输入文件] ...**</kbd>
+
+## 搜索命令 [[Top]](#目录)
+
+#### 1. find
+
+* 实时查找工具，通过遍历指定路径而完成对文件的查找，精确实时查找，但速度慢，且只能搜索用户具备读取和执行权限的目录
+
+* <kbd>**find \<搜索路径\> [选项]|[表达式] ... \<处理动作\>**</kbd>
+
+* <kbd>**\<搜索路径\>**</kbd> - 指定搜索范围路径，默认为当前目录
+
+* <kbd>**\<处理动作\>**</kbd> - 指定对符合条件的文件的操作，默认输出至屏幕
+  * `-exec command` - 
+
+* <kbd>**[选项]**</kbd> 
+
+  * `-name` - 搜索文件（夹）名
+    * -iname：name的忽略大小写版本
+    * -lname pattern：查找符号连接文件名为pattern的文件
+    * -ilname：lname的忽略大小写版本
+  * `-type filetype` - 以指定文件类型 `filetype` 查找文件，`filetype` 可以是：
+    * b：块设备
+    * c：字符设备
+    * d：目录
+    * p：命名管道
+    * f：普通文件
+    * l：符号连接
+    * s：socket
+
+  * `-regex "PATTERN"` - 以 `PATTERN` 匹配整个文件路径字符串，而不仅仅是文件名称
+  * `-iregex` - regex 的忽略大小写版本
+  * `-inum` - 根据文件的 inode 编号查找
+  * `-size [+-]n[cwbkMG]` - 指定文件长度查找文件。单位可以是：
+    * c：字节单位
+    * b：默认以块为单位，块大小为 512 字节
+    * w：以 words 为单位，words 表示两个字节
+    * k：以 1024 字节为单位
+    * M：以 1048576 字节为单位
+    * G：以 1073741824 字节为单位
+    * +或-：文件大小大于或小于 n 单位
+
+* <kbd>**[表达式]**</kbd>
+  * `expr1 expr2` `expr1 -a expr2` 或 `expr1 -and expr2` - 效果一样，若 expr1 是 false 则不执行 expr2 ，反之则执行 expr2
+    * `find / -size +10M -a -size -50M -type f` - 根目录下搜索大于 10M 且 小于 50M 的普通文件
+  * `expr1 -o expr2` 或 `expr1 -or expr2` - 效果一样，类似上面
+
+
+
+#### 2. locate
+
+<kbd>**原理**</kbd>
+
+* Linux 系统会在 `/etc/crontab` 设定每天执行一次 `updatedb` ，而 `updatedatedb` 这个命令会建立硬盘中的所有档案和目录资料的索引数据库 更新 `lib/mlocate/mlocage.db` ，执行 `locate` 命令会在这个索引数据库中查找，所以相比于 `find` 命令查找 `locate` 更快
+
+``` bash
+$ cat /etc/crontab
+25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
+. . . 
+$ ls /etc/cron.daily
+mlocate
+. . .
+$ cat /etc/cron.daily/mlocate
+# 可以看到定时执行 updatedb 具体过程
+```
+
+* `locate` 不能查找到上次(一般一天更新一次) `updatedb` 或变动的文件，所以，需要查找当天变动的文件，可以前执行一边 `updatedb` ，更新索引数据库，再执行 `locate`
+
+* <kbd>**locate [选项] 目标名**</kbd>
+* <kbd>**[选项]**</kbd>
+  * `-r` - 使用正规运算式 做寻找的条件
+
+``` bash
+# 搜索 /etc/ 目录下名为 passwd 的文件路径
+$ locate /etc/passwd
+/etc/passwd
+/etc/passwd-
+/snap/core/7917/etc/passwd
+/snap/core/8039/etc/passwd
+# 搜索主目录下以 a  开头的所有文件，且不区分大小写
+$ locate -i ~/a
+```
+
+#### 3. whereis
+
+* <kbd>**whereis [选项] commandName**</kbd>
+* 用于定位命令的二进制可执行文件、源码文件和手册文件
+* <kbd>**[选项]**</kbd>
+  * `-b` - binaries
+  * `-m` - manuals
+  * `-s` - sources
+
+``` bash
+$ whereis docker
+docker: /usr/bin/docker /etc/docker /usr/libexec/docker /usr/share/man/man1/docker.1.gz
+
+# 选项一定要放在 whereis 和 commandName 之间
+$ whereis -b docker
+docker: /usr/bin/docker /etc/docker /usr/libexec/docker
+```
+
+#### 4. which
+
+* 在当前环境变量 `$PATH` 路径中，搜快速查找命令可执行文件路径
+* <kbd>**which [-a] commandName**</kbd>
+* <kbd>**[-a]**</kbd> - 输出所有匹配的结果
+
+``` bash
+$ which docker
+/usr/bin/docker
+
+# -a 必须在 which 和 commandName 之间
+$ which -a java
+/usr/lib/jvm/jdk-12.0.1/bin/java
+/usr/bin/java
+```
+
+#### 5. grep
+
+
 
 
 ## [wget] - World Wide Web Get [[Top]](#目录)
