@@ -2,13 +2,30 @@
 
 ## 目录
 
+
+
+* [pip设置默认镜像源](#pip设置默认镜像源-top)
+
 * [`# -*- coding: UTF-8 -*-`和`#coding=utf-8`中文编码问题](#----coding-utf-8---和codingutf-8中文编码问题-top)
 * [列表特性 - 就地修改和有无返回值](#列表特性---就地修改和有无返回值-top)
 
 
 
 
-## `# -*- coding: UTF-8 -*-`和`#coding=utf-8`中文编码问题 [【Top】](#目录)
+
+## pip设置默认镜像源 [[Top]](#目录)
+
+``` bash
+$ pip config set global.index-url https://pypi.tuna.tsinghua.edu.cn/simple
+
+豆瓣：https://pypi.douban.com/simple/
+阿里云：https://mirrors.aliyun.com/pypi/simple/
+中国科技大学：https://pypi.mirrors.ustc.edu.cn/simple/
+清华大学：https://pypi.tuna.tsinghua.edu.cn/simple/
+```
+
+
+## `# -*- coding: UTF-8 -*-`和`#coding=utf-8`中文编码问题 [[Top]](#目录)
 
 Python 中默认的编码格式是 ASCII 格式，在没修改编码格式时无法正确打印汉字，所以在读取中文时会报错
 
@@ -20,8 +37,8 @@ Python 中默认的编码格式是 ASCII 格式，在没修改编码格式时无
 
 |  | `list(lst)` | `del lst[x]` | `lst.append(o)` | `lst.clear() ` | `lst1.extend(lst2)` | `lst.insert(x,o)` | `lst.pop()` | `lst.remove(o)` | `lst.reverse()` | `lst.sort()` | `sorted(lst)` |
 | --- | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: | :---: |
-| 就地修改 | :x: |  :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: | 
-| 返回值 | :heavy_check_mark: | :x: | :x: | :x: | :x: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: | 
+| 就地修改 | :x: |  :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: |  :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :heavy_check_mark: | :x: |
+| 返回值 | :heavy_check_mark: | :x: | :x: | :x: | :x: | :x: | :heavy_check_mark: | :x: | :x: | :x: | :heavy_check_mark: |
 
 > * `lst`：列表
 > * `x`：元素索引
