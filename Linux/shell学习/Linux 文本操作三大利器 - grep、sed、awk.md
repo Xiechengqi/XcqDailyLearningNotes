@@ -102,13 +102,58 @@ $ sed 's/new/\n&/g' file
 
 # awk
 
+## 抛砖引玉
+
+<kbd>**如何查看Linux系统上的所有用户？**</kbd>
+
+``` bash
+awk 'BEGIN{
+    FS=":"
+    printf("%-10s%-20s\n", "UserName", "HomeDir")
+    print "=============================="
+}
+{
+    printf("%-10s%-20s\n", $1, $6)
+}
+END{
+    print "=============================="
+    printf("User(s):%d\n", NR)
+    print "=============================="
+}' /etc/passwd
+```
+
+## 原理简述
+
+<div align=center>
+<img src="./images/awk_theory.png"><br>awk 原理
+</div>
+
+
+
+从上图中可以看出，awk 在工作时主要分为以下三个部分：
+
+- `BEGIN` - 也就是所谓的初始化模块，比如定义分隔符，初始化一些值等，它会在数据处理部分执行之前执行，并且只执行一次，这一部分是可选的
+
+- `数据处理` - 这一部分也就是 awk 脚本的核心部分，它是一对以模式 `pattern` 与大括号括起来的操作 `action` 组合而成的，二者可能会出现以下组合：
+
+  - <kdb>pattern {action}</kbd> - 记录匹配对应的模式，则执行大括号中的操作
+  - <kdb>pattern</kbd> - 记录匹配对应的模式，则直接打印记录
+  - <kdb>{action}</kbd> - 对每一条记录都执行大括号中的操作
+
+  数据处理模块会循环读取待处理文件中的记录，每次读取一条记录，处理完一条以后再读取下一条记录，直至所有记录被读取完毕
+
+- `END` - 是最终的收尾处理模块，它会在所有数据处理完成以后才执行，并且只执行一次；比如我们处理完数据了，需要输出一共处理了多少条记录，多少个字段等信息，就可以在 END 部分进行输出，这一部分也是可选的
+
+> * 记录 - 行
+> * 字段 - 列
+
+## 命令使用
+
 * awk 是一种处理文本文件的语言，是一个强大的文本分析工具
 * awk 更适合格式化文本，对文本进行较复杂格式处理
 * awk 是以列为划分计数的，$0 表示当前行（即所有列），$1 表示第一列，$2 表示第二列
-
 * <kbd>**awk [选项] '[动作]' [文件名]**</kbd>
-*  awk 动作只能使用单引号
-
+* awk 动作只能使用单引号
 * <kbd>**[选项]** </kbd>
 
 | 选项 | 解释 |
@@ -187,7 +232,7 @@ $ cat /etc/passwd | awk 'NR > 5 {print $0}'
 $ cat /etc/passwd | awk -F ':' '$1 == "root" || $1 == "bin" {print $0} '
 ```
 
-### awk if 条件判断
+#### awk if 条件判断
 
 * <kbd>**awk [选项] '{if(条件判断) 动作}' 文件名**</kbd>
 * 适合于需要多次判断
@@ -207,3 +252,5 @@ $ cat /etc/passwd | awk -F ':' '{if ($1 > "m") print $0; else print "---"}'
 ## 参考
 
 * [awk 入门教程 - 阮一峰](http://www.ruanyifeng.com/blog/2018/11/awk.html?20191114101617#comment-last)
+* [进阶：玩玩awk - 果冻想](https://www.jellythink.com/archives/138)
+* [进阶：awk中的函数 - 果冻想](https://www.jellythink.com/archives/140)

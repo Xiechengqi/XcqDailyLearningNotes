@@ -6,12 +6,12 @@
 * [性能分析](./LinuxCommand/Linux%20性能相关常用命令.md)<br/>
 * [日志管理](#日志管理-top)<br/>
 
-* [搜索命令]()
-  * [find]()
-  * [locate]()
-  * [whereis]()
-  * [which]()
-  * [grep]()
+* [搜索命令](#搜索命令-top)
+  * [find](#1-find)
+  * [locate](#2-locate)
+  * [whereis](#3-whereis)
+  * [which](#4-which)
+  * [grep](#5-grep)
 
 * [wget](#wget---world-wide-web-get-top)<br/>
 * [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
