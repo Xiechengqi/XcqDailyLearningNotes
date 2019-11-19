@@ -53,6 +53,8 @@
 * ipconfig
 * slabtop
 * nicstat
+* nmcli conn show -a
+* nmcli conn show '连接名称'
 
 ## vmstat [[Top]](#目录)
 
