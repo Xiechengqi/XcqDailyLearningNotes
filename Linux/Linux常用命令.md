@@ -1,4 +1,11 @@
 # 记录平时常用易忘的 Linux 命令
+
+
+
+## 【参考】
+
+* [搞定Linux Shell文本处理工具，看完这篇集锦就够了 - 腾讯云](https://cloud.tencent.com/developer/article/1366507)
+
 ## 目录
 
 * [系统信息](#系统信息-top)<br/>
@@ -134,6 +141,39 @@ ethtool -i <网卡名> # 查看网卡驱动版本，先用 ip -a 查看网卡名
   * `expr1 expr2` `expr1 -a expr2` 或 `expr1 -and expr2` - 效果一样，若 expr1 是 false 则不执行 expr2 ，反之则执行 expr2
     * `find / -size +10M -a -size -50M -type f` - 根目录下搜索大于 10M 且 小于 50M 的普通文件
   * `expr1 -o expr2` 或 `expr1 -or expr2` - 效果一样，类似上面
+
+<kbd>**实战**</kbd>
+
+``` bash
+# 正则方式查找 .txt 和 pdf
+$ find . -regex  ".*\(\.txt|\.pdf\)$"
+
+# 查找 txt 和 pdf 文件
+$ find . \( -name "*.txt" -o -name "*.pdf" \) -print
+
+# 查找所有非 txt 文本
+$ find . ! -name "*.txt" -print
+
+# 最近 7 天被访问过的所有文件
+$ find . -atime 7 -type f -print
+
+# 寻找大于 2k 的文件
+$ find . -type f -size +2k
+
+# 找具有可执行权限的所有文件
+$ find . -type f -perm 644 -print 
+
+# 找用户weber所拥有的文件
+ $ find . -type f -user weber -print
+  
+ # 删除当前目录下所有的swp文件
+$ find . -type f -name "*.swp" -delete
+  
+# 将当前目录下的所有权变更为weber
+$ find . -type f -user root -exec chown weber {} \
+```
+
+
 
 
 
