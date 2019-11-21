@@ -12,14 +12,13 @@
 * [硬件信息](#硬件信息-top)<br/>
 * [性能分析](./LinuxCommand/Linux%20性能相关常用命令.md)<br/>
 * [日志管理](#日志管理-top)<br/>
-
 * [搜索命令](#搜索命令-top)
   * [find](#1-find)
   * [locate](#2-locate)
   * [whereis](#3-whereis)
   * [which](#4-which)
   * [grep](#5-grep)
-
+* [screen](#screen-top)<br/>
 * [wget](#wget---world-wide-web-get-top)<br/>
 * [gcc](#gcc---gnu-c-compiler---gnu-compiler-collection-top)<br/>
 * [sed]()<br/>
@@ -247,10 +246,20 @@ $ which -a java
 
 #### 5. grep
 
+## screen [[Top]](#目录)
+
+* <kbd>**yum install screen**</kbd>
+* <kbd>**apt install screen**</kbd>
+* <kbd>**screen**</kbd> - 新建一个会话
+* <kbd>**screen -S [name]**</kbd> - 新建一个 name 会话
+* <kbd>**Ctrl+a+d**</kbd> - 暂离当前会话
+* <kbd>**screen -r**</kbd> -当只有一个会话时，直接重新进入会话
+* <kbd>**screen -r [name]|[id]**</kbd> - 重新进入 name 会话
+* <kbd>**screen -ls**</kbd> - 列出已创建的会话
+* <kbd>**exit**</kbd> - 在需要退出的会话执行 exit ，即删除当前会话
 
 
-
-## [wget] - World Wide Web Get [[Top]](#目录)
+## wget - World Wide Web Get [[Top]](#目录)
 
 <kbd>**wget [ ]  [URL地址]**</kbd>
 
@@ -282,7 +291,7 @@ wget -i filelist.txt
 // 限制总下载文件大小
 wget -Q 5m -i filelist.txt   //想要下载的文件超过5M而退出下载，-Q 参数对单个文件下载不起作用，只能递归下载时才有效
 ```
-* wget 支持 HTTP，HTTPS 和 FTP 协议，支持FTP和HTTP下载方式，支持 http、https 代理（但不支持 socks 代理）
+* wget 支持 HTTP，HTTPS 和 FTP 协议，支持 FTP 和 HTTP 下载方式，支持 http、https 代理（ 但不支持 socks 代理 ）
 
 ## gcc - GNU C Compiler - GNU Compiler Collection [[Top]](#目录)
 
