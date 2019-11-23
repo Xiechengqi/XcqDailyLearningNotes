@@ -10,22 +10,24 @@
 
 
 
-每当执行命令进行软件的安装或着更新，或者软件源的更新时，apt 会访问 <kbd>/etc/apt/sources.list</kbd> 内的地址，并在该网站中找到对应系统的包信息例如我的操作系统是 ubuntu，网站是 <kbd>deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</kbd> 网易的，那么当我们执行安装的命令时，他就会对应的访问 <kbd>http://mirrors.163.com/ubuntu/dists/lucid/main/binary-i386/</kbd> 的 <kbd>packages.gz</kbd>，这个文件是服务器上软件包及其依赖关系的清单，并且用 `gzip` 压缩过了。`apt-get update`使用这个清单来确定能够获得哪些补充的软件包且他的内容会被保存在`/var/lib/apt/lists`内，通过访问这个 lists 确定该软件是否已安装，是否是最新版本，依赖关系是否满足，从而确定要更新内容，并进行更新，其安装过程主要是由dpkg来完成
+每当执行命令进行软件的安装或着更新，或者软件源的更新时，apt 会访问 <kbd>/etc/apt/sources.list</kbd> 内的地址，并在该网站中找到对应系统的包信息例如我的操作系统是 ubuntu，网站是 <kbd>deb http://mirrors.163.com/ubuntu/ precise main restricted universe multiverse</kbd> 网易的，那么当我们执行安装的命令时，他就会对应的访问 <kbd>http://mirrors.163.com/ubuntu/dists/lucid/main/binary-i386/</kbd> 的 <kbd>packages.gz</kbd>，这个文件是服务器上软件包及其依赖关系的清单，并且用 `gzip` 压缩过了。`apt-get update`使用这个清单来确定能够获得哪些补充的软件包且他的内容会被保存在 `/var/lib/apt/lists` 内，通过访问这个 lists 确定该软件是否已安装，是否是最新版本，依赖关系是否满足，从而确定要更新内容，并进行更新，其安装过程主要是由 dpkg 来完成
 
 ## 一、 背景知识
 
 ### 1. PPA 源 - Personal Package Archives - 个人软件包集
 
-> 源和软件仓库实际上是一个意思，厂商将编译后的二进制文件和软件信息存放至服务器，用户需要安装软件时，包管理器自动分析本机和容器（repository）内的信息，下载需要的包并自动安装，安装后将新安装的软件信息存放至本地数
+> 源和软件仓库实际上是一个意思，厂商将编译后的二进制文件和软件信息存放至服务器，用户需要安装软件时，包管理器自动分析本机和容器（repository）内的信息，下载需要的包并自动安装，安装后将新安装的软件信息存放至本地
 
-* 如何添加 PPA 软件源
-```
-添加 PPA 软件源的命令：sudo add-apt-repository ppa:user/ppa-name
-删除 PPA 软件源的命令：sudo add-apt-repository --remove ppa:user/ppa-name
+* 添加、删除 PPA 软件源
+```bash
+# 添加 PPA 软件源的命令
+$ sudo add-apt-repository ppa:user/ppa-name
+# 删除 PPA 软件源的命令
+$ sudo add-apt-repository --remove ppa:user/ppa-name
 ```
 例如，我们想要添加一个 Wireshark 软件的 PPA 源，我们可以根据它官网上提供的命令来进行添加，如下图所示： 
 
-当我们添加完 PPA 源之后，系统就会在 <kbd>/etc/apt/sources.list.d/</kbd> 文件夹里创建了两个文件：
+当我们添加完 PPA 源之后，系统就会在 <kbd>/etc/apt/sources.list.d/</kbd> 文件夹里创建了两个文件，一个 `.list` 文件和一个带有 `.save` 后缀的备份文件：
 
 ``` shell
 $ cd /etc/apt/sources.list.d
@@ -57,8 +59,8 @@ deb-src http://mirrors.aliyun.com/ubuntu/ bionic restricted universe multiverse 
   * deb - 档案类型为二进制预编译软件包，一般我们所用的档案类型
   * deb-src - 档案类型为用于编译二进制软件包的源代码
 
-> 每行的第一个单词 deb 或 deb-src，描述了文件类型，目录中包含的是二进制软件包（ deb ），即我们通常使用的已编译好的软件包；或包含的是源码包（ deb-src ），源码包包含源程序编码、Debian 管理文件（ .dsc ）和 “Debian化” 该程序所做更改的记录文件 diff.gz
-  
+> 每行的第一个单词 deb 或 deb-src，描述了文件类型，目录中包含的是二进制软件包（ deb ），即我们通常使用的已编译好的软件包；或包含的是源码包（ deb-src ），源码包包含源程序编码、Debian 管理文件（ .dsc ）和 “Debian 化” 该程序所做更改的记录文件 diff.gz
+
 2. 仓库地址 - Repository URL
 
 * 条目的第二个词则是软件包所在仓库的地址，我们可以更换仓库地址为其他地理位置更靠近自己的镜像来提高下载速度
@@ -118,56 +120,67 @@ Codename:	bionic
 
 ## 二、 apt 基本命令
 
-``` shell 
-用法： apt [选项] 命令
+* <kbd>**apt [选项] 命令**</kbd>
 
-命令行软件包管理器 apt 提供软件包搜索，管理和信息查询等功能。
-它提供的功能与其他 APT 工具相同（像 apt-get 和 apt-cache），
-但是默认情况下被设置得更适合交互。
+* <kbd>**[选项]**</kbd>
+  * `list` - 根据名称列出软件包
+  * `search` - 搜索软件包描述
+  * `show` - 显示软件包细节
+  * `install` - 安装软件包
+  * `remove` - 移除软件包
+  * `autoremove` - 卸载所有自动安装且不再使用的软件
+  * `update` - 根据 <kbd>/etc/apt/sources.list</kbd> 更新 <kbd>/var/lib/apt/lists</kbd> 软件包列表
+  * `upgrade` - 根据 <kbd>/var/lib/apt/lists</kbd> 安装/升级 软件来更新系统
+  * `full-upgrade` - 通过 卸载/安装/升级 来更新系统
+  * `edit-sources` - 编辑软件源信息文件
 
-常用命令：
-  list - 根据名称列出软件包
-  search - 搜索软件包描述
-  show - 显示软件包细节
-  install - 安装软件包
-  remove - 移除软件包
-  autoremove - 卸载所有自动安装且不再使用的软件包
-  update - 更新可用软件包列表
-  upgrade - 通过 安装/升级 软件来更新系统
-  full-upgrade - 通过 卸载/安装/升级 来更新系统
-  edit-sources - 编辑软件源信息文件
-  
- 您需要强制重新安装包，只需传递 --reinstall 标志即可(您将有效地强制重新安装包，即使它已经安装并且是最新版本。这将完全从系统*中删除包并重新安装它)
- $ sudo apt-get --reinstall install [package-name]
+
+
+<kbd>**添加 PPA 软件源并安装**</kbd>
+
+```bash
+$ sudo add-apt-repository <PPA_info>            # 此命令将 PPA 仓库添加到列表中
+$ sudo apt-get update     # 此命令更新可以在当前系统上安装的软件包列表
+$ sudo apt-get install <package_in_PPA>       # 此命令安装软件包
+
+# 例如
+$ sudo add-apt-repository ppa:dr-akulavich/lighttable
+$ sudo apt-get update
+$ sudo apt-get install lighttable-installer
 ```
 
-## 1. `sudo apt install xxx` 详解
 
 
-### 命令执行背后的故事
+<kbd>**强制重装已安装的软件**</kbd>
 
-### 安装中下载的各种软件源文件、配置文件到哪里去了？
-
-#### ```sudo apt install xxx```安装软件的各种文件主要分散到以下四个目录
-* <kbd>/usr/bin</kbd> - 二进制文件
-* <kbd>/usr/lib</kbd> - 动态函数库文件
-* <kbd>/usr/share/doc</kbd> - 使用手册
-* <kbd>/usr/share/man</kbd> - man page
-
-> 所以在多用户情况下使用 `sudo apt install xxx`安装软件，会造成软件存放散乱，寻找软件配置文件麻烦；但 apt 安装软件系统会自动注册环境变量，且是全局的
-
-#### 补充：源码安装软件应该把源码包放在 /usr/local
+```bash
+ $ sudo apt-get --reinstall install <package-name>
+ # 会先删除软件，再安装
+```
 
 
-## 2. `sudo apt update`
 
-### 命令执行背后的故事
+<kbd>**sudo apt install \<package-name\> 新增文件位置**</kbd>
+
+* 主要分散到以下四个目录
+  * <kbd>/usr/bin</kbd> - 二进制文件
+  * <kbd>/usr/lib</kbd> - 动态函数库文件
+  * <kbd>/usr/share/doc</kbd> - 使用手册
+  * <kbd>/usr/share/man</kbd> - man page
+*   所以在多用户情况下使用 `sudo apt install <package-name>` 安装软件，会造成软件存放散乱，寻找软件配置文件麻烦；但好处是 apt 安装软件系统会自动注册环境变量，且是全局的
+* 当自己使用源码安装软件通常把源码包放在 <kbd>/usr/local</kbd>
+
+
+
+<kbd>**sudo apt update 具体执行动作**</kbd>
 
 * 执行 `sudo apt update`
 * 链接 <kbd>/etc/apt/sources.list</kbd> 里的软件源的镜像站，自动检索对比镜像站里的所有软件源与本地的 <kbd>/var/lib/apt/lists/</kbd> 目录，若发现有更新，立即在 <kbd>/var/lib/apt/lists/</kbd> 目录里跟新
 * 更新完毕
 
-## `/var/lib/apt/lists`
+
+
+<kbd>**强制更新**</kbd>
 
 ``` shell
 sudo rm -rf /var/lib/apt/lists/*

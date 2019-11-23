@@ -19,6 +19,8 @@
 * [Linux程序存放目录](#Linux程序存放目录-top)
 * [更换镜像源](#更换镜像源-top)
 * [诊断某文件无法修改](#诊断某文件无法修改-top)
+* [Linux terminal 快捷键](#Linux-terminal-快捷键-top)
+* [通过 PID 查看进程完整信息](#通过-PID-查看进程完整信息-top)
 
 
 ## 使用 wget 提示无法建立SSL连接 [[Top]](#目录)
@@ -534,7 +536,7 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 
 
 
-##
+## Linux terminal 快捷键 [[Top]](#目录)
 
 | 终端快捷键   | 功能                                       |
 | ------------ | ------------------------------------------ |
@@ -550,9 +552,77 @@ https://www.zhujibiji.com/2017/12/linux-permanently-modify-dns/
 | Ctrl+shift+c | 复制                                       |
 | Ctrl+shift+v | 粘贴                                       |
 
+## 通过 PID 查看进程完整信息 [[Top]](#目录)
 
+> 通常已知 Port ，可以通过 <kbd>**lsof -i:\<Port\>**</kbd> 得到 PID，然后使用 <kbd>**ps aux | grep PID**</kbd> 或 <kbd>**ps -ef | grep PID**</kbd>，查看进程信息，但有时需要进程的更多的信息，这时就可以直接找到进程的文件（Linux 中一切皆是文件）
 
+* **每个进程，都会在 `/proc` 文件夹里面生成一个进程目录，里面存放了进程的各种信息**
 
+* <kbd>**sudo ls -l /proc/\<PID\>**</kbd>
+
+  ``` BASH
+  $ ps -ef | grep v2ray | grep -v grep
+  root      9541     1  0 Nov21 ?        00:00:02 /usr/bin/v2ray/v2ray -config /etc/v2ray/config.json
+  $ sudo ls -l /proc/9541
+  总用量 0
+  dr-xr-xr-x  2 root root 0 Nov 21 19:23 attr
+  -rw-r--r--  1 root root 0 Nov 22 19:41 autogroup
+  -r--------  1 root root 0 Nov 22 19:41 auxv
+  -r--r--r--  1 root root 0 Nov 21 19:23 cgroup
+  --w-------  1 root root 0 Nov 22 19:41 clear_refs
+  -r--r--r--  1 root root 0 Nov 21 19:23 cmdline
+  -rw-r--r--  1 root root 0 Nov 21 19:23 comm
+  -rw-r--r--  1 root root 0 Nov 22 19:41 coredump_filter
+  -r--r--r--  1 root root 0 Nov 22 19:41 cpuset
+  lrwxrwxrwx  1 root root 0 Nov 22 19:41 cwd -> /
+  -r--------  1 root root 0 Nov 22 19:41 environ
+  lrwxrwxrwx  1 root root 0 Nov 22 19:41 exe -> /usr/bin/v2ray/v2ray
+  dr-x------  2 root root 0 Nov 21 19:23 fd
+  dr-x------  2 root root 0 Nov 22 19:41 fdinfo
+  -rw-r--r--  1 root root 0 Nov 22 19:41 gid_map
+  -r--------  1 root root 0 Nov 22 19:41 io
+  -r--r--r--  1 root root 0 Nov 22 19:41 limits
+  -rw-r--r--  1 root root 0 Nov 21 19:23 loginuid
+  dr-x------  2 root root 0 Nov 22 19:41 map_files
+  -r--r--r--  1 root root 0 Nov 22 19:41 maps
+  -rw-------  1 root root 0 Nov 22 19:41 mem
+  -r--r--r--  1 root root 0 Nov 22 19:41 mountinfo
+  -r--r--r--  1 root root 0 Nov 22 19:41 mounts
+  -r--------  1 root root 0 Nov 22 19:41 mountstats
+  dr-xr-xr-x  6 root root 0 Nov 22 19:41 net
+  dr-x--x--x  2 root root 0 Nov 22 19:41 ns
+  -r--r--r--  1 root root 0 Nov 22 19:41 numa_maps
+  -rw-r--r--  1 root root 0 Nov 22 19:41 oom_adj
+  -r--r--r--  1 root root 0 Nov 22 19:41 oom_score
+  -rw-r--r--  1 root root 0 Nov 22 19:41 oom_score_adj
+  -r--------  1 root root 0 Nov 22 19:41 pagemap
+  -r--------  1 root root 0 Nov 22 19:41 patch_state
+  -r--------  1 root root 0 Nov 22 19:41 personality
+  -rw-r--r--  1 root root 0 Nov 22 19:41 projid_map
+  lrwxrwxrwx  1 root root 0 Nov 22 19:41 root -> /
+  -rw-r--r--  1 root root 0 Nov 22 19:41 sched
+  -r--r--r--  1 root root 0 Nov 22 19:41 schedstat
+  -r--r--r--  1 root root 0 Nov 21 19:23 sessionid
+  -rw-r--r--  1 root root 0 Nov 22 19:41 setgroups
+  -r--r--r--  1 root root 0 Nov 22 19:41 smaps
+  -r--r--r--  1 root root 0 Nov 22 19:41 smaps_rollup
+  -r--------  1 root root 0 Nov 22 19:41 stack
+  -r--r--r--  1 root root 0 Nov 21 19:23 stat
+  -r--r--r--  1 root root 0 Nov 22 19:41 statm
+  -r--r--r--  1 root root 0 Nov 21 19:23 status
+  -r--------  1 root root 0 Nov 22 19:41 syscall
+  dr-xr-xr-x 19 root root 0 Nov 22 19:41 task
+  -r--r--r--  1 root root 0 Nov 22 19:41 timers
+  -rw-rw-rw-  1 root root 0 Nov 22 19:41 timerslack_ns
+  -rw-r--r--  1 root root 0 Nov 22 19:41 uid_map
+  -r--r--r--  1 root root 0 Nov 22 19:41 wchan
+  ```
+
+- `cwd` - 符号链接的是进程运行目录
+- `exe` - 符号连接就是执行程序的绝对路径
+- `cmdline` - 就是程序运行时输入的命令行命令
+- `environ` - 记录了进程运行时的环境变量
+- `fd` - 目录下是进程打开或使用的文件的符号连接
 
 ## 一台服务器至少应该设置两个用户，一个是 root,另外一个是拥有 root 权限的普通用户（通过配置`/etc/sudoers`可以实现），这样就能够保证一个密码出错后还可以通过另外一个用户登录服务器重置密码
 

@@ -93,7 +93,8 @@ echo -e "\033[41;36m something here \033[0m"
 案例三、`whoami`（显示当前用户的用户名）
 
 ``` shell
-[$(whoami) != "root" ] && echo  "Error: You must be root to run this script" && exit 1
+# != 两边一定要有空格，中括号内两侧也一定要有一个空格
+[ $(whoami) != "root" ] && echo  "Error: You must be root to run this script" && exit 1
 或
-[`whoami` != "root" ] && echo  "Error: You must be root to run this script" && exit 1
+[ `whoami` != "root" ] && echo  "Error: You must be root to run this script" && exit 1
 ```
