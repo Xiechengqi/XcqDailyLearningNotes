@@ -438,3 +438,17 @@ $ curl members.3322.org/dyndns/getip
 $ curl cip.cc
 ```
 
+## while 无限循环
+
+```bash
+while :
+do
+    echo '我是死循环'
+done
+
+while /bin/true
+do
+     echo '我是死循环'
+done
+```
+
