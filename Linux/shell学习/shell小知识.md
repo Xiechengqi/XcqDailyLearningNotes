@@ -1,4 +1,4 @@
-Linux Shell 学习时的小知识
+# Linux Shell 学习时的小知识
 
 ## 目录
 
@@ -10,12 +10,17 @@ Linux Shell 学习时的小知识
 * [几种数值计算方法](#几种数值计算方法-top)
 * [数值进制间相互转换](#数值进制间相互转换-top)
 * [等号两边不能有空格](#等号两边不能有空格-top)
-* [ $( )、\` \`、${ }、$(( ))、$[ ] 、[ ]、(( )) 和 [[ ]] 详解](#---------和---详解-top)
+* [ $( )、\` \`、${ }、$(( ))、$[ ] 、[ ]、(( )) 和 [[ ]] 详解]（#---------和---详解-top)
 * [用 cat、echo 命令向文件写入](#用-cat-命令向文件写入-top)
 * [杀死一个进程](#杀死一个进程-top)
 * [删除空行](#删除空行-top)
 * [文件去重](#文件去重-top)
 * [截取文件开头几行、末尾几行和中间几行](#截取文件开头几行、末尾几行和中间几行-top)
+* [修改文件以包含当前时间命名](#修改文件以包含当前时间命名-top)
+* [查看当前主机公网 IP](#查看当前主机公网-ip-top)
+* [while 无限循环](while-无限循环-top)
+* [进程查端口，端口查进程](#进程查端口端口查进程-top)
+* [查看其他主机开放的端口](#查看其他主机开放的端口-top)
 
 ## `exit 0`和`exit 1` [[Top]](#目录)
 
@@ -438,7 +443,7 @@ $ curl members.3322.org/dyndns/getip
 $ curl cip.cc
 ```
 
-## while 无限循环
+## while 无限循环 [[Top]](#目录)
 
 ```bash
 while :
@@ -450,5 +455,39 @@ while /bin/true
 do
      echo '我是死循环'
 done
+```
+
+## 进程查端口，端口查进程 [[Top]](#目录)
+
+<kbd>**进程**</kbd> **->** <kbd>**端口**</kbd>
+
+1. <kbd>**sudo netstat -tlpn | grep nginx**</kbd>
+2. <kbd>**sudo ss -tlpn | grep nginx**</kbd>
+3. <kbd>**sudo netstat -nap | grep \<pid\>**</kbd>
+
+<kbd>**端口**</kbd> **->** <kbd>**进程**</kbd>
+
+1. <kbd>**lsof -i:\<port\>**</kbd>
+2. <kbd>**sudo netstat -nap | grep \<port\>**</kbd>
+
+## 查看其他主机开放的端口 [[Top]](#目录)
+
+<kbd>**sudo nmap -sS \<ip\>**</kbd>
+
+```bash
+$ sudo nmap -sS 47.101.133.201
+
+Starting Nmap 7.60 ( https://nmap.org ) at 2019-11-26 19:40 CST
+Nmap scan report for 47.101.133.201
+Host is up (0.045s latency).
+Not shown: 995 filtered ports
+PORT     STATE  SERVICE
+22/tcp   open   ssh
+80/tcp   closed http
+443/tcp  closed https
+1080/tcp closed socks
+8080/tcp closed http-proxy
+
+Nmap done: 1 IP address (1 host up) scanned in 28.81 seconds
 ```
 

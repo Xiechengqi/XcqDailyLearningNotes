@@ -20,7 +20,11 @@ tr
 
 paste
 
-​	
+join
+
+paste
+
+split
 
 ## sort
 
