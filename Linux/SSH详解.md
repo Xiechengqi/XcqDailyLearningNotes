@@ -12,7 +12,32 @@
 ### 无密码登录
 
 1. 生成本地 RSA / DSA 密钥对
+
+```bash
+$ ssh-keygen
+# 一路回车就可
+# root 用户生成公私钥在：/root/.ssh/
+# 非 root 用户：在自己主目录下的 .ssh/
+```
+
 2. 将本地公钥内容追加到远程服务器的 `/root/.ssh/authorized_keys` 或 用户目录下的 `.ssh/authorized_keys`
+
+``` bash
+# 也可以使用 ssh-copy-id
+$ ssh-copy-id root@目标节点IP
+
+# ssh-copy-id root@192.168.56.101
+/usr/bin/ssh-copy-id: INFO: Source of key(s) to be installed: "/root/.ssh/id_rsa.pub"
+/usr/bin/ssh-copy-id: INFO: attempting to log in with the new key(s), to filter out any that are already installed
+/usr/bin/ssh-copy-id: INFO: 1 key(s) remain to be installed -- if you are prompted now it is to install the new keys
+root@192.168.56.101's password: 
+
+Number of key(s) added: 1
+
+Now try logging into the machine, with:   "ssh 'root@192.168.56.101'"
+and check to make sure that only the key(s) you wanted were added.
+```
+
 3. 重启 ssh, 退出再次登陆即可实现无密码登录
 
 ## 原理篇

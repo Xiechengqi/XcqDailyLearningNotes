@@ -98,8 +98,6 @@ $ sed 's/new/&\n/g' file
 $ sed 's/new/\n&/g' file
 ```
 
-
-
 # awk
 
 ## 抛砖引玉
