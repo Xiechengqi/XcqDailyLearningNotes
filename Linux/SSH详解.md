@@ -6,7 +6,7 @@
 
 * [应用篇](应用篇-top)
   * [Linux SSH 相关命令](linux-ssh-相关命令)
-  * [host ssh 密码或无密码登录](host-ssh-密码或无密码登录)
+  * [SSH 密码或无密码( 密钥 )登录](ssh-密码或无密码-密钥-登录)
 
 * [原理篇]()
   * [密码学加密算法](密码学加密算法)
@@ -76,16 +76,17 @@
   StrictHostKeyChecking no  
   ```
 
-<kbd>**~/.ssh/authorized_keys**</kbd> - 
+<kbd>**~/.ssh/authorized_keys**</kbd> - 存放需要密钥登录本机的 host 公钥
+
+### SSH 密码或无密码( 密钥 )登录
 
 * SSH 登录通常有**密码登录**和**密钥登录 ( 或无密码直接登录 )**
 
-### 密码登录
+<kbd>**密码登录**</kbd>
 
 * [云服务器创建配后置密码登录](https://github.com/Xiechengqi/XcqDailyLearningNotes/blob/master/Linux/VPS/AWS/lightsail.md)
 
-
-### 无密码登录
+<kbd>**无密码登录**</kbd>
 
 1. 生成本地 RSA 或 DSA 密钥对
 
