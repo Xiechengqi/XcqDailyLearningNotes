@@ -24,3 +24,5 @@
 * illustrate - 说明
 * temporary - 临时的
 * privilege escalation - 提升权限
+* inherit - 继承
+* nested - 嵌套的

@@ -15,7 +15,13 @@ The network devices (and/or servers) you manage with Ansible.
 
 ## [Inventory](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#id3)
 
-A list of managed nodes. An inventory file is also sometimes called a “hostfile”. 
+* A list of managed nodes. An inventory file is also sometimes called a “hostfile”. 
+
+* default location: `/etc/ansible/hosts`
+
+* specify a different inventory file at the command line using the `-i <path> ` option
+* you can also use multiple inventory files at the same time, and/or pull inventory from dynamic or cloud sources or different formats (YAML, ini, etc)
+* The most common formats are **INI** and **YAML**
 
 ## [Modules](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#id4)
 
