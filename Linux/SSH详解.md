@@ -142,7 +142,9 @@ and check to make sure that only the key(s) you wanted were added.
 
 <kbd>**ssh 密码登录原理**</kbd>
 
-![](./images/sshPrinciple.png)
+<div align=center>
+<img src="./images/sshPrinciple.png" /></br>
+</div>
 
 1. 用户使用 `ssh user@host` 命令对远程主机发起登陆
 2. 远程主机将自己的公钥返回给请求主机
@@ -153,7 +155,9 @@ and check to make sure that only the key(s) you wanted were added.
 
 <kbd>**ssh 密钥登录原理**</kbd>
 
-![](./images/sshPubKeyLoginPrinciple.png)
+<div align=center>
+<img src="./images/sshPubKeyLoginPrinciple.png" /></br>
+</div>
 
 1. 用户使用 `ssh user@host` 命令对远程主机发起登陆
 2. 远程主机对用户返回一个随机串
