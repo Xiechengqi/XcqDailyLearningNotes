@@ -14,8 +14,6 @@
 
 * [SSH 中间人攻击](#ssh-中间人攻击-top)
 
-
-
 ## SSH 介绍 [[Top]](#目录)
 
 * **Secure Shell**（安全外壳协议，简称**SSH**）是一种加密的[网络传输协议](https://zh.wikipedia.org/wiki/网络传输协议)，可在不安全的网络中为网络服务提供安全的传输环境
@@ -32,7 +30,7 @@
 
 <kbd>**ssh \<user\>@\<hostip\> \<command\>**</kbd> - 登录 host 直接执行命令
 
-<kbd>**ssh \<user\>@\<hostip\> 'tar cz file' | tar zxv **</kbd> - 本地 `~/file` 文件通过 ssh 加密传输到 hostip 的 `~` 目录下
+<kbd>**ssh \<user\>@\<hostip\> 'tar cz file' | tar zxv**</kbd> - 本地 `~/file` 文件通过 ssh 加密传输到 hostip 的 `~` 目录下
 
 <kbd>**ssh \<user\>@\<hostip\> 'tar cz file' | tar xzv**</kbd> - hostip 的 `~/file` 文件通过 ssh 加密传输到本地的 `~` 目录下
 
@@ -144,7 +142,7 @@ and check to make sure that only the key(s) you wanted were added.
 
 <kbd>**ssh 密码登录原理**</kbd>
 
-![](/home/xcq/桌面/codeLearn/git/github/XcqDailyLearningNotes/Linux/images/sshPrinciple.png)
+![](./images/sshPrinciple.png)
 
 1. 用户使用 `ssh user@host` 命令对远程主机发起登陆
 2. 远程主机将自己的公钥返回给请求主机
@@ -155,7 +153,7 @@ and check to make sure that only the key(s) you wanted were added.
 
 <kbd>**ssh 密钥登录原理**</kbd>
 
-![](/home/xcq/桌面/codeLearn/git/github/XcqDailyLearningNotes/Linux/images/sshPubKeyLoginPrinciple.png)
+![](./images/sshPubKeyLoginPrinciple.png)
 
 1. 用户使用 `ssh user@host` 命令对远程主机发起登陆
 2. 远程主机对用户返回一个随机串
@@ -164,8 +162,6 @@ and check to make sure that only the key(s) you wanted were added.
 5. 如果解密成功，就证明用户的登陆信息是正确的，则允许登陆；否则反之
 
 ### SSH 中间人攻击 [[Top]](#目录)
-
-## 中间人攻击
 
 ​    由于 SSH 不像 https 协议那样，SSH 协议的公钥是没有证书中心（CA）公证的，也就是说，都是自己签发的。这就导致如果有人截获了登陆请求，然后冒充远程主机，将伪造的公钥发给用户，那么用户很难辨别真伪，用户再通过伪造的公钥加密密码，再发送给冒充主机，此时冒充的主机就可以获取用户的登陆密码了，那么 SSH 的安全机制就荡然无存了，这也就是我们常说的中间人攻击
 
