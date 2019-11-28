@@ -3,6 +3,7 @@
 * automation - 自动化
 * orchestrate - 编排
 * continuous deployments - CD - 持续部署
+* Continuous Integration - CI - 持续集成
 * zero downtime rolling updates - 不停机滚动更新
 * security and reliability - 安全性和可靠性
 * agent-less - 无代理的
