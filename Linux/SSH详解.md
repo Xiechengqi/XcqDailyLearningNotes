@@ -26,6 +26,8 @@
 
 ### Linux SSH 相关命令
 
+<kbd>**ssh -v \<user\>@\<hostip\>**</kbd> - 打印运行情况和调试信息
+
 <kbd>**ssh \<user\>@\<hostip\>**</kbd> - 登录 host
 
 <kbd>**ssh \<user\>@\<hostip\> \<command\>**</kbd> - 登录 host 直接执行命令

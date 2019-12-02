@@ -1,9 +1,15 @@
 # Ansible 学习笔记
 
-* Playbooks contain plays
-* Plays contain tasks
-* Tasks call modules, tasks run sequentially
-* Handlers are triggered by tasks
+* Tasks：任务，由模板定义的操作列表
+* Variables：变量
+* Templates：模板，即使用模板语法的文件
+* Handlers：处理器 ，当某条件满足时，触发执行的操作
+* Roles：角色
+
+> * Playbooks contain plays
+> * Plays contain tasks
+> * Tasks call modules, tasks run sequentially
+> * Handlers are triggered by tasks
 
 ## [Control node](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#id1)
 
@@ -25,7 +31,9 @@ The network devices (and/or servers) you manage with Ansible.
 
 ## [Modules](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#id4)
 
-The units of code Ansible executes.
+* The units of code Ansible executes.
+
+* Ansible 自带的模块都是用 Python 编写的，但实际上可以使用任何语言编写模块
 
 ## [Tasks](https://docs.ansible.com/ansible/latest/user_guide/basic_concepts.html#id5)
 

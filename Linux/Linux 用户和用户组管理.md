@@ -4,11 +4,17 @@
 
 相关配置文件：
 
-/etc/passwd
+   /etc/passwd
+       用户账户信息。
 
-/etc/group
+   /etc/shadow
+       安全用户账户信息。
 
-/etc/shadow
+   /etc/group
+       组账户信息。
+
+   /etc/gshadow
+       安全组账户信息
 
 chmod
 
@@ -42,3 +48,24 @@ usermod
 
 suid/guid
 
+<kbd>**useradd**</kbd>
+
+<kbd>**userdel**</kbd>
+
+<kbd>**usermod**</kbd>
+
+<kbd>**groupadd**</kbd>
+
+<kbd>**groupdel**</kbd>
+
+<kbd>**groupmod**</kbd>
+
+<kbd>**chmod**</kbd>
+
+<kbd>****</kbd>
+
+<kbd>****</kbd>
+
+<kbd>****</kbd>
+
+<kbd>****</kbd>

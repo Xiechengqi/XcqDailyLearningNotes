@@ -21,6 +21,7 @@
 * [while 无限循环](while-无限循环-top)
 * [进程查端口，端口查进程](#进程查端口端口查进程-top)
 * [查看其他主机开放的端口](#查看其他主机开放的端口-top)
+* [快速查看配置文件中有效配置行](#快速查看配置文件中有效配置行-top)
 
 ## `exit 0`和`exit 1` [[Top]](#目录)
 
@@ -489,5 +490,14 @@ PORT     STATE  SERVICE
 8080/tcp closed http-proxy
 
 Nmap done: 1 IP address (1 host up) scanned in 28.81 seconds
+```
+
+## 快速查看配置文件中有效配置行 [[Top]](#目录)
+
+> 配置文件往往动辄几百行，但可能只有几行是非注释非换行的有效配置，可以使用 egrep -v 排除空行和注释行，快速查看配置文件的有效配置行
+
+``` bash
+# 查看 ansible 配置文件中的有效配置 ( 以 # 号开头是注释行 )
+$ egrep -v "(^$|^#)" ./ansible.cfg
 ```
 

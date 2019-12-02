@@ -78,9 +78,9 @@ containerd 子进程
 
 
 
+## Docker 原理简述
 
-
-## 命名空间 - namespace
+### 命名空间 - namespace
 
 * 操作系统中，进程间共享的资源有内核、文件系统、网络、进程号 ( Process ID, PID )、用户号 ( User ID，UID )、进程间通信 ( InterProcess Communication，IPC )等。Linux 命名空间就是为了实现以上的相互隔离，保证了容器之间彼此互补影响
 
@@ -126,11 +126,54 @@ containerd 子进程
 
 
 
-## 控制组 - Control Groups - CGroups
+
+
+### 控制组 - Control Groups - CGroups
 
 * Linux 内核特性，主要用来对共享资源进行隔离、限制、审计等
 
 
 
-## 联合文件系统 - Union File System - UnionFS
+
+
+### 联合文件系统 - Union File System - UnionFS
+
+![](./images/UnionFs.jpg)
+
+![](./images/rslayer.png)
+
+1. 容器就是由存储 image 的只读层和读写层构成
+
+2. 容器需要修改只读层的文件，会先从只读层拷贝一份到读写层，再修改它，实际上修改的是副本，但原来的文件此后就相当 “隐藏” 起来了
+
+3. 容器的只读层是共享的，也就是当同一镜像创建的多个容器时，其实只是创建了多个读写层，删除容器时，就只是删除容器的读写层。而且读写层也是在容器操作产生数据时才消耗资源，所以创建容器的成本很小！
+4. docker 是共享宿主机操作系统的，容器又是共享 image 的（只读层共享），所以容器启动成本很小！
+
+## Dockerfile - 构建产生镜像
+
+
+
+
+
+## Docker Compose - 编排操控容器
+
+1. 编写需要重复生成应用 ( app ) 的 **Dockerfile**
+
+> 一般一个容器里一个应用，比如 mysql 数据库
+
+2. 定义用于编排多个应用以组成服务 ( service ) 的 **docker-compose.yml** 
+
+> 一个服务一般由多个应用组成，比如 web service 可以有 nignx 负载均衡器、tomcat web 服务器、mysql 数据库服务器等组成
+
+3.  `docker-compose up`
+
+* docker-compose 本身没有构建镜像的功能，如果容器镜像是直接从 registry 拉取，则不需要 Dockerfile ;但如果需要基于拉取的镜像操作后再构建新的镜像，则需要使用 Dockerfile
+
+
+
+## Docker Machine
+
+
+
+## Docker Swarm
 
