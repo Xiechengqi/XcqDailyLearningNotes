@@ -7,7 +7,7 @@
 * **[Docker 原理简述](#docker-原理简述-top)**
 * **[Dockerfile - 构建产生镜像](#dockerfile---构建产生镜像-top)**
 * **[Docker Compose - 编排操控容器](#docker-compose---编排操控容器-top)**
-* **[Docker Machine](#docker-machine-top)**
+* **[Docker Machine - 配置管理容器宿主机](#docker-machine---配置管理容器宿主机-top)**
 * **[Docker Swarm](#docker-swarm-top)**
 
 
@@ -72,7 +72,7 @@
 * C/S 架构 - 客户端、服务器两大组件
 * 客户端可以通过 **socket** 或 **RESTful API** 与服务器进行通信
 * 常说的 Docker 也可称为 Docker Engine
-* <kbd>**Docker Engine**</kbd> = <kbd>**Docker 守护进程**</kbd> + <kbd>**REST API 指定与守护进程交互的接口**</kbd> + <kbd>**命令行接口（CLI）与守护进程通信（通过封装 REST API）**</kbd>
+* <kbd>**Docker Engine**</kbd> = <kbd>**Docker 守护进程**</kbd> + <kbd>**REST API （指定与守护进程交互的接口）**</kbd> + <kbd>**命令行接口（CLI）（与守护进程通信，通过封装 REST API）**</kbd>
 
 
 
@@ -198,15 +198,47 @@ containerd 子进程
 
 2. 定义用于编排多个应用以组成服务 ( service ) 的 **docker-compose.yml** 
 
-> 一个服务一般由多个应用组成，比如 web service 可以有 nignx 负载均衡器、tomcat web 服务器、mysql 数据库服务器等组成
+> 一个服务一般由多个应用组成，比如 web service 可以由 nignx 负载均衡器、tomcat web 服务器、mysql 数据库服务器等组成
 
 3.  `docker-compose up`
 
-* docker-compose 本身没有构建镜像的功能，如果容器镜像是直接从 registry 拉取，则不需要 Dockerfile ;但如果需要基于拉取的镜像操作后再构建新的镜像，则需要使用 Dockerfile
+* docker-compose 本身没有构建镜像的功能，如果容器镜像是直接从 docker registry 拉取，则不需要 Dockerfile ；但如果需要基于基础镜像构建新的镜像，则需要使用 Dockerfile
 
 
 
-## Docker Machine [[Top]](#目录)
+## Docker Machine - 配置管理容器宿主机 [[Top]](#目录)
+
+<kbd>**安装**</kbd>
+
+> https://github.com/docker/machine/releases/
+
+```bash
+$ curl -L https://github.com/docker/machine/releases/download/v0.16.2/docker-machine-`uname -s`-`uname -m` >/usr/local/bin/docker-machine
+$ chmod +x /usr/local/bin/docker-machine
+```
+
+<kbd>**常用命令**</kbd>
+
+* <kbd>docker-machine -h</kbd> - 查看常用命令
+
+<kbd>**解决首次运行慢**</kbd>
+
+> 第一次运行 `docker-machine create` 会去 https://github.com/boot2docker/boot2docker/releases/ 下载一个最新的 57M 的 boot2docker.iso 镜像，国内下载会很慢
+
+``` bash
+# 1. 下载 boot2docker.iso  最新版本到本地 - https://github.com/boot2docker/boot2docker/releases/
+# 2. 移动 boot2docker.iso  到 ~/.docker/machine/cache/
+$ mv boot2docker.iso ~/.docker/machine/cache/
+# 3. 指定本地的 boot2docker.iso 路径，并跳过网络检查创建新的 docker machine ，命名为 default
+$ docker-machine create default -d virutalbox --virtualbox-boot2docker-url=/home/`whoami`/.docker/machine/cache/boot2docker.iso 
+# --virtualbox-boot2docker-url  手动指定了boot2docker.iso 位置
+```
+
+
+
+
+
+
 
 负责在多种平台上快速安装 Docker 环境
 
