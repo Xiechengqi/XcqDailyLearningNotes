@@ -1,6 +1,18 @@
 # Docker 基础学习笔记
 
-## 常用命令
+## 目录
+
+* **[Docker 常用命令](docker-常用命令-top)**
+* **[Docker 基础架构](#docker-基础架构-top)**
+* **[Docker 原理简述](docker-原理简述-top)**
+* **[Dockerfile - 构建产生镜像](dockerfile---构建产生镜像-top)**
+* **[Docker Compose - 编排操控容器](docker-compose---编排操控容器-top)**
+* **[Docker Machine](docker-machine-top)**
+* **[Docker Swarm](#docker-swarm-top)**
+
+
+
+## Docker 常用命令 [[Top]](#目录)
 
 * <kbd>docker search 关键字</kbd> - 默认从 docker hub 搜索指定镜像
 * <kbd>docker pull 镜像名:tag</kbd> - 拉取镜像
@@ -32,7 +44,19 @@
 * docker run—在隔离容器中运行命令
 * docker search—在 Docker Hub 中搜索镜像
 * docker version—显示 docker 版本信息
-* <kbd>**docker network**</kbd> - 管理网络
+
+<kbd>**docker run volume**</kbd> - 数据卷、数据卷容器
+
+* <kbd>**docker run -v|--volume[=[[HOST-DIR:]CONTAINER-DIR[:OPTIONS]]] ...**</kbd> - 添加一个数据卷
+* <kbd>**docker inspect --format="{{ .Volumes }}" [container]**</kbd> - 查看宿主机上对应容器数据卷位置
+* <kbd>**docker run -it -v /dbdata --name dbdata ubuntu**</kbd> - 创建一个数据卷容器 dbdata ，并在其中创建一个数据卷挂载到 /dbdata
+* <kbd>**docker run -it --volumes-from dbdata --name db1 ubuntu**</kbd> - 创建 db1 容器，并从 dbdata 容器挂载数据卷
+* <kbd>**docker rm -v**</kbd> - 删除容器和容器绑定的数据卷
+* <kbd>**docker run --rm**</kbd> - 在关闭容器后也会自动删除容器和容器绑定的数据卷
+* <kbd>****</kbd> - 
+
+<kbd>**docker network**</kbd> - 管理网络
+
 * docker network ls
 * docker network connect
 * docker network create
@@ -46,7 +70,13 @@
 ## Docker 基础架构
 
 * C/S 架构 - 客户端、服务器两大组件
-* 客户端、服务器可以通过 socket 或 RESTful API 进行通信
+* 客户端可以通过 **socket** 或 **RESTful API** 与服务器进行通信
+* 常说的 Docker 也可称为 Docker Engine
+* <kbd>**Docker Engine**</kbd> = <kbd>**Docker 守护进程**</kbd> + <kbd>**REST API 指定与守护进程交互的接口**</kbd> + <kbd>**命令行接口（CLI）与守护进程通信（通过封装 REST API）**</kbd>
+
+
+
+![](./images/DockerEngine.png)
 
 ### 服务端
 
@@ -54,7 +84,12 @@
 
 1. <kbd>**dockerd**</kbd>
 
-2. <kbd>**docker-proxy**</kbd>
+``` bash
+$ ps -ef | grep dockerd
+root      3769     1  0 Dec02 ?        00:01:08 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+```
+
+1. <kbd>**docker-proxy**</kbd>
 
 dockerd 子进程，当容器启动并使用端口映射时才会执行，负责配置容器的端口映射规则
 
@@ -78,7 +113,7 @@ containerd 子进程
 
 
 
-## Docker 原理简述
+## Docker 原理简述 [[Top]](#目录)
 
 ### 命名空间 - namespace
 
@@ -144,18 +179,18 @@ containerd 子进程
 
 1. 容器就是由存储 image 的只读层和读写层构成
 
-2. 容器需要修改只读层的文件，会先从只读层拷贝一份到读写层，再修改它，实际上修改的是副本，但原来的文件此后就相当 “隐藏” 起来了
+2. 容器需要修改只读层的文件，会先从只读层拷贝一份到读写层，再修改它，实际上修改的是副本。但修改后，只读层对应的文件就“隐藏” 起来了
 
 3. 容器的只读层是共享的，也就是当同一镜像创建的多个容器时，其实只是创建了多个读写层，删除容器时，就只是删除容器的读写层。而且读写层也是在容器操作产生数据时才消耗资源，所以创建容器的成本很小！
-4. docker 是共享宿主机操作系统的，容器又是共享 image 的（只读层共享），所以容器启动成本很小！
+4. docker engine 是共享宿主机操作系统的，容器又是共享 image 的（只读层共享），所以容器启动成本很小！
 
-## Dockerfile - 构建产生镜像
-
-
+## Dockerfile - 构建产生镜像 [[Top]](#目录)
 
 
 
-## Docker Compose - 编排操控容器
+
+
+## Docker Compose - 编排操控容器 [[Top]](#目录)
 
 1. 编写需要重复生成应用 ( app ) 的 **Dockerfile**
 
@@ -173,7 +208,9 @@ containerd 子进程
 
 ## Docker Machine
 
+负责在多种平台上快速安装 Docker 环境
 
+使用 docker-machine 命令，你可以启动、审查、停止和重新启动托管的宿主机、升级 Docker 客户端和守护程序、并配置 Docker 客户端与你的宿主机通信
 
 ## Docker Swarm
 
