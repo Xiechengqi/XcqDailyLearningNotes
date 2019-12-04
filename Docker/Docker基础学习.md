@@ -7,7 +7,7 @@
 * **[Docker 原理简述](#docker-原理简述-top)**
 * **[Dockerfile - 构建产生镜像](#dockerfile---构建产生镜像-top)**
 * **[Docker Compose - 编排操控容器](#docker-compose---编排操控容器-top)**
-* **[Docker Machine - 配置管理容器宿主机](#docker-machine---配置管理容器宿主机-top)**
+* **[Docker Machine - 创建管理容器宿主机](#docker-machine---创建管理容器宿主机-top)**
 * **[Docker Swarm](#docker-swarm-top)**
 
 
@@ -206,7 +206,15 @@ containerd 子进程
 
 
 
-## Docker Machine - 配置管理容器宿主机 [[Top]](#目录)
+## Docker Machine - 创建管理容器宿主机 [[Top]](#目录)
+
+<kbd>**简介**</kbd>
+
+* docker-machine 可以在本地、云端服务器快速创建包含 Docker Engine 的虚拟主机环境，但不能在虚拟机中创建（虚拟机中不能再创建虚拟机）
+* docker-machine 可以启动、审查、停止和重新启动托管的宿主机、升级 Docker 客户端和守护程序、并配置 Docker 客户端与你的宿主机通信
+* 也可以使用 Ansible 等 DevOps 工具实现对 Docker 环境的自动化管理
+
+* 本质上 docker-machine 是一个虚拟机管理工具，它通过创建一个安装好docker 的虚拟机（支持 VirtualBox，DigitalOcean，EC2 等），并设置对应的环境变量（ DOCKER_HOST，DOCKER_MACHINE_NAME 等），使得本地的 docker 工具获得透明远程操作虚拟机的能力。从而使本身不支持 docker 的 Windows 和 Mac 系统能够直接使用 docker 命令
 
 <kbd>**安装**</kbd>
 
@@ -219,7 +227,10 @@ $ chmod +x /usr/local/bin/docker-machine
 
 <kbd>**常用命令**</kbd>
 
+* <kbd>**docker-machine [OPTIONS] COMMAND [arg...]**</kbd>
+
 * <kbd>docker-machine -h</kbd> - 查看常用命令
+* <kbd>docker-machine COMMAND -h</kbd> - 查看具体某一个命令功能
 
 <kbd>**解决首次运行慢**</kbd>
 
@@ -234,15 +245,21 @@ $ docker-machine create default -d virutalbox --virtualbox-boot2docker-url=/home
 # --virtualbox-boot2docker-url  手动指定了boot2docker.iso 位置
 ```
 
+<kbd>**配置当前shell docker server**</kbd>
+
+```bash
+$ docker-machine env default
+export DOCKER_TLS_VERIFY="1"
+export DOCKER_HOST="tcp://192.168.99.100:2376"
+export DOCKER_CERT_PATH="/home/xcq/.docker/machine/machines/default"
+export DOCKER_MACHINE_NAME="default"
+# Run this command to configure your shell: 
+# eval $(docker-machine env default)
+$ eval $(docker-machine env default)
+# 执行上面命令即可切换 docker server 为 default 主机中 docker server
+```
 
 
-
-
-
-
-负责在多种平台上快速安装 Docker 环境
-
-使用 docker-machine 命令，你可以启动、审查、停止和重新启动托管的宿主机、升级 Docker 客户端和守护程序、并配置 Docker 客户端与你的宿主机通信
 
 ## Docker Swarm [[Top]](#目录)
 
