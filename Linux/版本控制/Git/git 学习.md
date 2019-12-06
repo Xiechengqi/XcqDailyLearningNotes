@@ -7,12 +7,11 @@
 ## 【参考】
 
 > * [常用 Git 命令清单](https://www.hi-linux.com/posts/60426.html)
->
-> * [Git 简明指南](https://www.hi-linux.com/posts/3337.html)
->
+>* [Git 简明指南](https://www.hi-linux.com/posts/3337.html)
 > * [图解Git](http://marklodato.github.io/visual-git-guide/index-zh-cn.html)
-> * [Github 帮助](https://help.github.com/cn)
+>* [Github 帮助](https://help.github.com/cn)
 > * [Git 官方文档](https://book.git-scm.com/)
+> * [Git远程操作详解 - 阮一峰](https://www.ruanyifeng.com/blog/2014/06/git_remote.html)
 
 ## 常用命令
 
@@ -30,8 +29,6 @@
 
 * <kbd>**git init**</kbd> - 初始化当前目录没 git 仓库
 * <kbd>**git init [RepName]**</kbd> - 新建一个目录 RepName，并将其初始化为 git 本地仓库
-* <kbd>**git clone [url]**</kbd> - 下载一个项目和它的整个代码历史
-
 * <kbd>**git config**</kbd>- 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置
 * <kbd>**./.git/config**</kbd> - 在 git 仓库目录下执行该命令，同 `git config`
 * <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置，会覆盖系统配置
@@ -72,27 +69,78 @@
 * <kbd>**git diff HEAD**</kbd> - 查看工作区与当前分支最新commit之间的差异
 * <kbd>**git diff HEAD -- file**</kbd> - 查看文件 file **工作区**和**当前本地仓库**之间的差异
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
-* <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 git 仓库关联 github 上的仓库
-* <kbd>**git remote -v**</kbd> - 查看当前远程仓库版本
-* <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支
-* <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
 * <kbd>**git fetch origin master:temp**</kbd> - 从远程的 origin 仓库的 master 分支下载到本地，并新建一个 temp 分支
-* <kbd>**git pull**</kbd> - 合并远程仓库到当前本地仓库分支
-* <kbd>**git pull origin master**</kbd> - 拉取远程仓库 origin/master 分支合并到本地仓库当前分支
-* <kbd>**git pull origin dev**</kbd> - 拉取远程仓库 origin/dev 分支合并到本地仓库当前分支
-* <kbd>**git branch**</kbd> - 显示所有分支和用 `*` 标记当前所在分支
-* <kbd>**git branch -r**</kbd> - 列出所有远程分支
-* <kbd>**git branch -a**</kbd> - 列出所有本地分支和远程分支
-* <kbd>**git branch**</kbd>
-* <kbd>**git branch -d \<branch\>**</kbd> - 删除 branch 分支 ( 在 branch 分支上是删除不了本分支的，需要先切换到其他分支 )
-* <kbd>**git checkout \<branch\>**</kbd> - 切换到 branch 分支，并更新工作区
-* <kbd>**git checkout -**</kbd> - 切换到上一分支
-* <kbd>**git branch \<newbrach\>**</kbd> - 新建一个 newbranch 分支，但依旧停在当前分支
+
+* <kbd>**git checkout \<分支名\>**</kbd> - 切换到其他分支，并更新工作区
 * <kbd>**git checkout -b \<newbranch\>**</kbd> - 创建并切换到 newbranch 分支 
+* <kbd>**git checkout -**</kbd> - 切换到上一分支
 * <kbd>**git merge \<branch\>**</kbd> - 合并 branch 分支到当前分支
-* <kbd>**git cherry-pick \<commit_ID\>**</kbd> - 选择一个commit，合并进当前分支
+* <kbd>**git cherry-pick \<commit_ID\>**</kbd> - 选择一个 commit，合并到当前分支
 * <kbd>**git switch -c \<branch\>**</kbd> - 切换到 branch 分支，最新版切换分支方式
 * <kbd>**git switch master**</kbd> - 切换到本地仓库的 master 主分支
+
+<kbd>**git branch**</kbd>
+
+
+* **显示所有分支和用 `*` 标记当前所在分支**
+* <kbd>**git branch -r**</kbd> - 列出所有远程分支
+* <kbd>**git branch -a**</kbd> - 列出所有本地分支和远程分支
+* <kbd>**git branch \<分支名\>**</kbd> - 新建一个分支，但依旧停在当前分支
+* <kbd>**git branch -d \<分支名\>**</kbd> - 删除分支 ( 删除不了当前分支，需要先切换到其他分支; 也删除不了未合并的分支 )
+* <kbd>**git branch -D <分支名>**</kbd> - 强制删除分支
+* <kbd>**git branch -vv**</kbd> - 查看本地分支和远程分支的跟踪关系
+* <kbd>**git branch --set-upstream-to=<主机名>/<分支名> <本地分支名>**</kbd> - 为本地分支创建跟踪分支，跟踪远程主机的某个分支
+
+<kbd>**git clone**</kbd>
+
+* <kbd>**git clone [-o <主机名>] <版本库的网址> [<本地目录名>]**</kbd>
+  * <kbd>**git clone <版本库的网址>**</kbd> - 从远程主机克隆一个版本库到本地，且默认生成的本地仓库名就是远程版本库名
+  * <kbd>**<本地目录名>**</kbd> - 指定克隆到本地的版本库名字，
+  * <kbd>**-o <主机名>**</kbd> - 克隆并指定远程主机名，默认是 origin
+
+<kbd>**git remote**</kbd> 
+
+
+* **列出所有远程主机名**
+* <kbd>**git remote -v**</kbd> - 参看远程主机的网址
+* <kbd>**git remote show <主机名>**</kbd> - 查看远程主机详细信息
+* <kbd>**git remote add <主机名> <版本库的网址>**</kbd> - 添加远程主机
+* <kbd>**git remote add origin git@github.com:username/reponame.git**</kbd> - 本地 git 仓库关联 github 上的仓库
+* <kbd>**git remote rm <主机名>**</kbd> - 删除远程主机
+* <kbd>**git remote rename <原主机名> <新主机名>**</kbd> - 远程主机重命名
+
+<kbd>**git fetch**</kbd>
+
+
+* <kbd>**git fetch <远程主机名>**</kbd> - 将某个远程主机的更新，全部取回本地
+* <kbd>**git fetch <远程主机名> <分支名>**</kbd> - 取回远程主机特定分支的更新，默认取回所有分支的更新
+
+<kbd>**git pull**</kbd>
+
+* **取回远程主机某个分支的更新，再与本地的指定分支合并**
+
+
+* <kbd>**git pull <远程主机名> <远程分支名>:<本地分支名>**</kbd>
+  * <kbd>**git pull <远程主机名> <远程分支名>**</kbd> - 远程主机指定分支与本地当前分支合并
+  * <kbd>**git pull <远程主机名>**</kbd> - 当前分支设置了跟踪分支
+  * <kbd>**git pull**</kbd> - 当前分支只设置了一个跟踪分支
+* <kbd>**git pull -p**</kbd> - 在本地删除远程已经删除的分支
+* <kbd>**git pull --rebase**</kbd> - 合并采用 rebase 模式
+
+<kbd>**git push**</kbd> 
+
+* **将本地分支的更新，推送到远程主机**
+
+
+* <kbd>**git push <远程主机名> <本地分支名>:<远程分支名>**</kbd>
+  * <kbd>**git push <远程主机名> <本地分支名>**</kbd> - 省略远程分支名，则表示将本地分支推送与之存在"追踪关系"的远程分支（通常两者同名），如果该远程分支不存在，则会被新建
+  * <kbd>**git push <远程主机名> :<远程分支名>**</kbd> - 省略本地分支名，则表示删除指定的远程分支，因为这等同于推送一个空的本地分支到远程分支
+  * <kbd>**git push <远程主机名>**</kbd> - 当前分支与远程分支之间存在追踪关系
+  * <kbd>**git push**</kbd> - 当前分支只有一个追踪分支，那么主机名都可以省略
+* <kbd>**git push <远程主机名> --delete <远程分支名>**</kbd> - 删除远程分支，效果同上
+* <kbd>**git push -u <远程主机名> <本地分支名>:<远程分支名>**</kbd> - 当前分支与多个主机存在追踪关系，则可以使用 `-u` 选项指定一个默认主机，之后就可以直接用`git push` 
+* <kbd>**git push -u origin master**</kbd> - 第一次推送 master 分支，`-u` 创建跟踪关系，指定当前分支的 upstream
+* <kbd>**git push origin master**</kbd> - 后续本地推送到远程仓库
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
 * <kbd>****</kbd> - 
@@ -209,6 +257,21 @@ b61f110 HEAD@{7}: commit: delete again README.md;
 <kbd>**git mv file file1**</kbd> - 同时重命名工作区和暂存区 file 为 file1 - <kbd>**还原：git reset HEAD file + git checkout file + rm file1 -rf**</kbd>
 
 > * note: 重命名 file file1 = 删除 file + 新建 file1（ 和 file 内容相同 ）
+
+## 建立、删除、修改跟踪关系
+
+1. `git clone` 时自动创建 `master` 分支追踪 `origin/master` 分支
+
+``` bash
+$ git clone git@github.com:Xiechengqi/test.git testbook
+正克隆到 'testbook'...
+. . .
+$ cd testbook
+$ git branch -vv
+* master 77418ad [origin/master] Update index.html
+```
+
+2. 
 
 ## 案例实操
 

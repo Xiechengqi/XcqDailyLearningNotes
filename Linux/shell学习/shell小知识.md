@@ -312,19 +312,35 @@ https://www.cnblogs.com/zejin2008/p/8412680.html
 
 ## 用 cat、echo 命令向文件写入 [[Top]](#目录)
 
- <div align=center>
-  <img src="./images/cat_write.jpg"><br/>
- </div>
+<kbd>**cat**</kbd>
 
-> * 文件不存在则自动创建
-> * 文件已存在，则会先删除源文件内容，在写入新内容
-> * `EOF` 为开头结尾标记，可以换成任意字符串
+``` bash
+# 文件不存在则自动创建
+# EOF 为开头结尾标记，可以换成任意字符串
+# 1. 覆盖
+cat > test.sh << EOF
+> 1
+> 2
+> EOF
+# 2. 追加
+$ cat >> test.sh << EOF
+> 1
+> 2
+> EOF
+```
 
-```shell
+<kbd>**echo**</kbd>
+
+``` bash
+# 文件不存在则自动创建
+# 1. 覆盖
 echo 'hello
 hello
-
 world'>hello
+# 2. 追加
+echo 'hello
+hello
+world' >> hello
 ```
 
 ## 杀死一个进程 [[Top]](#目录)
