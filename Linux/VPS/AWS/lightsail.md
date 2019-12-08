@@ -4,7 +4,7 @@
 
 ### 步骤讲解
 
-1.  首次登录命令: `ssh -i xxx.pem username@host_ip`
+1. 首次登录命令: `ssh -i xxx.pem username@host_ip`
 
 <div align=center>
   <img src="./images/08.jpg"><br/>使用密钥直接登录无需密码

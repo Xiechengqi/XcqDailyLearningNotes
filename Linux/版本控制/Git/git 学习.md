@@ -1,4 +1,4 @@
-
+ 	
 
 # Git 学习笔记
 
@@ -23,17 +23,20 @@
 * <kbd>**工作区**</kbd> -> <kbd>**git add**</kbd> - > <kbd>**暂存区**</kbd>  -> <kbd>**git commit**</kbd> -> <kbd>**本地仓库**</kbd> -> <kbd>**git push**</kbd> -> <kbd>**远程仓库**</kbd>
 * `git init` 时默认创建了一个 master 分支，后续 `git commit`就是往 master 上提交
 
-![](/home/xcq/桌面/codeLearn/git/github/XcqDailyLearningNotes/Linux/images/git_command.png)
+![](../../images/git_command.png)
 
 
 
 * <kbd>**git init**</kbd> - 初始化当前目录没 git 仓库
 * <kbd>**git init [RepName]**</kbd> - 新建一个目录 RepName，并将其初始化为 git 本地仓库
-* <kbd>**git config**</kbd>- 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置
+
+<kbd>**git config**</kbd>
+
+* <kbd>**git config**</kbd> - 修改 `./.git/config` 配置文件，当前仓库配置，相同配置会覆盖用户和系统配置
+
 * <kbd>**./.git/config**</kbd> - 在 git 仓库目录下执行该命令，同 `git config`
 * <kbd>**git config --global**</kbd> - 修改 `~/.gitconfig` 配置文件，当前用户配置，会覆盖系统配置
 * <kbd>**git config --system**</kbd> - 修改 `/etc/gitconfig` 配置文件，系统配置
-
 * <kbd>**git config -l[--list]**</kbd> - 显示 system、global、local 配置
 * <kbd>**git config --local --list**</kbd> - 显示当前仓库配置
 * <kbd>**git config --global --list**</kbd> - 显示用户配置
@@ -59,23 +62,34 @@
 * <kbd>**git reflog**</kbd> - 可以查看所有分支对当前仓库的操作记录 ( commit / reset / checkout / merge / etc ) 以及操作的 commit ID ( 方便回退到某个操作时版本状态 )
 * <kbd>**git ls-files**</kbd> - 查看暂存区文件
 * <kbd>**git checkout -- \<file\>**</kbd> - **工作区撤销 file 修改**，工作区的 file 回退到最近一次 `git commit` 或 `git add` 时的状态
+
+<kbd>**git reset**</kbd>
+
 * <kbd>**git reset HEAD \<file\>**</kbd> -  **暂存区撤销 file 修改**，把暂存区内关于 file 的修改回退到工作区
 * <kbd>**git reset --hard HEAD^**</kbd> - 本地仓库回退到上一次 commit 版本
 * <kbd>**git reset --hard HEAD~5**</kbd> - 本地仓库回退到 5 次 commit 前版本
 * <kbd>**git reset --hard \<commit_ID\>**</kbd> - 本地仓库跳到 commit_ID 对应的 commit 版本
+
+<kbd>**git diff**</kbd>
 
 
 * <kbd>**git diff file**</kbd> - 查看 file **工作区**和**暂存区**里的区别
 * <kbd>**git diff HEAD**</kbd> - 查看工作区与当前分支最新commit之间的差异
 * <kbd>**git diff HEAD -- file**</kbd> - 查看文件 file **工作区**和**当前本地仓库**之间的差异
 * <kbd>**git diff --cached**</kbd> - 查看已暂存未提交的内容，及查看**暂存区**和**本地仓库**里的区别
-* <kbd>**git fetch origin master:temp**</kbd> - 从远程的 origin 仓库的 master 分支下载到本地，并新建一个 temp 分支
+
+<kbd>**git checkout**</kbd>
+
 
 * <kbd>**git checkout \<分支名\>**</kbd> - 切换到其他分支，并更新工作区
 * <kbd>**git checkout -b \<newbranch\>**</kbd> - 创建并切换到 newbranch 分支 
 * <kbd>**git checkout -**</kbd> - 切换到上一分支
 * <kbd>**git merge \<branch\>**</kbd> - 合并 branch 分支到当前分支
 * <kbd>**git cherry-pick \<commit_ID\>**</kbd> - 选择一个 commit，合并到当前分支
+
+<kbd>**git switch**</kbd>
+
+
 * <kbd>**git switch -c \<branch\>**</kbd> - 切换到 branch 分支，最新版切换分支方式
 * <kbd>**git switch master**</kbd> - 切换到本地仓库的 master 主分支
 
@@ -114,6 +128,7 @@
 
 * <kbd>**git fetch <远程主机名>**</kbd> - 将某个远程主机的更新，全部取回本地
 * <kbd>**git fetch <远程主机名> <分支名>**</kbd> - 取回远程主机特定分支的更新，默认取回所有分支的更新
+* <kbd>**git fetch origin master:temp**</kbd> - 从远程的 origin 仓库的 master 分支下载到本地，并新建一个 temp 分支
 
 <kbd>**git pull**</kbd>
 

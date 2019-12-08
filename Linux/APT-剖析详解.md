@@ -6,6 +6,10 @@
 <img src="./images/软件安装方法历程.jpg" /></br>软件安装方法历程图
 </div>
 
+
+
+![软件安装方法历程.jpg](http://ww1.sinaimg.cn/large/007vKa8Jgy1g9p3fc17dyj30pa0btq50.jpg)
+
 <kbd>/etc/apt/sources.list</kbd> 只会告知系统可以访问的镜像站点地址，这时每当系统执行一次 `sudo apt install xxx` 都要链接镜像站检索出对应的软件地址，这样是很浪费时间的，所以在本地 <kbd>/var/lib/apt/lists/</kbd> 会缓存一份镜像站里的所有软件源信息，这样每次执行 `sudo apt install xxx` 直接在本地缓冲里检索，在连接网络下载文件。所以 `sudo apt install` 会先访问 <kbd>/var/lib/apt/lists/</kbd>；而且 `sudo apt update` 更新的是 <kbd>/var/lib/apt/lists/</kbd> 里的软件源
 
 
